@@ -7,10 +7,26 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Produit</string>
+    <string name="menu_gallery">Fournisseur</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="Nomp"> Nom </string>
+    <string name="Nomp1"> Nom</string>
+    <string name="boutton"> Générales </string>
+    <string name="stk_min"> Stock Sécurité</string>
+    <string name="stk_max"> Stock Optimal</string>
+    <string name="p_a"> Prix achat</string>
+    <string name="p_v"> Prix vente</string>
+    <string name="NumSerie"> Numero Série</string>
+    <string name="NumS"> Entrer le code</string>
+    <string name="mark"> Marque</string>
+    <string name="att"> Attribut </string>
+    <string name="a1"> Poids</string>
+    <string name="a2"> Couleur</string>
+    <string name="a3"> Taille</string>
+
+
 </resources>
