@@ -11,7 +11,7 @@
         android:id="@+id/iv_picture"
         android:layout_width="190dp"
         android:layout_height="118dp"
-        app:layout_constraintBottom_toTopOf="@+id/cl_nom"
+        app:layout_constraintBottom_toTopOf="@id/cl_nom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:hint="@string/Nomp1"
             android:inputType="textPersonName"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/et_prenom"
+            app:layout_constraintBottom_toTopOf="@id/et_nom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,6 +76,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.4" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

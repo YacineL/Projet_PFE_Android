@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".AddProduct">
 
+    <!-- Saha Ftorkom !!-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Picture"
@@ -67,9 +68,17 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_label_nom"
+            app:layout_constraintStart_toEndOf="@+id/guideline4"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.39" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Stock"
@@ -105,7 +114,7 @@
             android:hint="@string/stk_min"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/StockS"
+            app:layout_constraintStart_toEndOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -133,8 +142,15 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Stockop1"
+            app:layout_constraintStart_toEndOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/Stock1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4019851" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -155,10 +171,9 @@
         android:id="@+id/Prix"
         android:layout_width="0dp"
         android:layout_height="131dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -182,7 +197,7 @@
             android:hint="@string/p_a"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Pa"
+            app:layout_constraintStart_toEndOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -198,7 +213,7 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Pv"
+            app:layout_constraintStart_toEndOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/Pa1" />
 
         <TextView
@@ -211,6 +226,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Pa" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.39" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -259,9 +281,16 @@
             android:hint="@string/NumS"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/NumS"
+            app:layout_constraintStart_toEndOf="@+id/guideline7"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.454" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.37956205" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
