@@ -28,5 +28,16 @@
     <string name="a2"> Couleur</string>
     <string name="a3"> Taille</string>
 
+    <string name="prenom"> Prénom </string>
+    <string name="contact"> Contact </string>
+    <string name="numfour"> Numéro fournisseur</string>
+    <string name="emfour"> Email fournisseur</string>
+    <string name="adr"> Adresse </string>
+    <string name="rue"> Rue</string>
+    <string name="ville"> Ville </string>
+    <string name="pays"> Pays</string>
+
+
+
 
 </resources>

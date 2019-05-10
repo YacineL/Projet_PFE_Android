@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Add_fournisseur"></activity>
         <activity android:name=".Generales" />
         <activity android:name=".AddProduct" />
         <activity
