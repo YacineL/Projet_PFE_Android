@@ -47,13 +47,10 @@
             android:layout_width="94dp"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center_vertical"
             android:text="@string/Nomp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/et_nom"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/et_nom"
@@ -68,11 +65,11 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline4"
+            app:layout_constraintStart_toEndOf="@+id/guideline44"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/guideline44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -91,30 +88,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/B1">
+        app:layout_constraintTop_toBottomOf="@+id/B1"
+        app:layout_constraintVertical_bias="0.214">
 
         <TextView
             android:id="@+id/StockS"
             android:layout_width="94dp"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
             android:text="@string/stk_min"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/Stock1"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/Stock1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="28dp"
             android:ems="10"
             android:hint="@string/stk_min"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline44" />
+<<<<<<< Updated upstream
             app:layout_constraintStart_toEndOf="@+id/guideline5"
+=======
+>>>>>>> Stashed changes
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -122,26 +122,24 @@
             android:layout_width="94dp"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/stk_max"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StockS" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/Stockop"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/Stockop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="28dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/stk_max"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline44" />
+<<<<<<< Updated upstream
             app:layout_constraintStart_toEndOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/Stock1" />
 
@@ -151,6 +149,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.4019851" />
+=======
+            app:layout_constraintTop_toBottomOf="@+id/Stock1"
+            app:layout_constraintVertical_bias="0.444" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4"  />
+>>>>>>> Stashed changes
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
