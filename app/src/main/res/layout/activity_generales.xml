@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/att"
+        android:id="@+id/attribut"
         android:layout_width="94dp"
         android:layout_height="31dp"
         android:layout_marginStart="8dp"
@@ -17,76 +17,84 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/att"
-        app:layout_constraintBottom_toTopOf="@+id/A11"
+        app:layout_constraintBottom_toTopOf="@+id/poids_lab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/A1"
+        android:id="@+id/poids"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/a1"
-        app:layout_constraintBottom_toTopOf="@+id/A22"
-        app:layout_constraintEnd_toStartOf="@+id/A11"
+        app:layout_constraintBottom_toTopOf="@+id/color_lab"
+        app:layout_constraintEnd_toStartOf="@+id/poids_lab"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/A11" />
+        app:layout_constraintTop_toTopOf="@+id/poids_lab" />
 
     <EditText
-        android:id="@+id/A11"
+        android:id="@+id/poids_lab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="92dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toEndOf="@+id/att"
+        app:layout_constraintStart_toEndOf="@id/guideline8"
         tools:layout_editor_absoluteY="140dp" />
 
     <TextView
-        android:id="@+id/A2"
+        android:id="@+id/color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/a2"
-        app:layout_constraintBottom_toTopOf="@+id/A33"
-        app:layout_constraintStart_toStartOf="@+id/A1"
-        app:layout_constraintTop_toTopOf="@+id/A22" />
+        app:layout_constraintBottom_toTopOf="@+id/taille_lab"
+        app:layout_constraintStart_toStartOf="@+id/poids"
+        app:layout_constraintTop_toTopOf="@+id/color_lab" />
 
     <EditText
-        android:id="@+id/A22"
+        android:id="@+id/color_lab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+
+        app:layout_constraintStart_toEndOf="@+id/guideline8"
         tools:layout_editor_absoluteX="137dp"
         tools:layout_editor_absoluteY="185dp" />
 
     <TextView
-        android:id="@+id/A3"
+        android:id="@+id/talle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a3"
-        app:layout_constraintBottom_toBottomOf="@+id/A33"
-        app:layout_constraintStart_toStartOf="@+id/A2"
-        app:layout_constraintTop_toTopOf="@+id/A33" />
+        app:layout_constraintBottom_toBottomOf="@+id/taille_lab"
+        app:layout_constraintStart_toStartOf="@+id/color"
+        app:layout_constraintTop_toTopOf="@+id/taille_lab" />
 
     <EditText
-        android:id="@+id/A33"
+        android:id="@+id/taille_lab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="456dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline8"
         tools:layout_editor_absoluteX="137dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25547445" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

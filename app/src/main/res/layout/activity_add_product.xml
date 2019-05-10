@@ -105,13 +105,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/stk_min"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline44" />
-<<<<<<< Updated upstream
+            app:layout_constraintStart_toStartOf="@+id/guideline5" />
             app:layout_constraintStart_toEndOf="@+id/guideline5"
 =======
 >>>>>>> Stashed changes
@@ -131,16 +130,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/stk_max"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline44" />
-<<<<<<< Updated upstream
-            app:layout_constraintStart_toEndOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/Stock1" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -283,7 +280,7 @@
             android:id="@+id/NumS1"
             android:layout_width="156dp"
             android:layout_height="45dp"
-            android:layout_marginStart="44dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
