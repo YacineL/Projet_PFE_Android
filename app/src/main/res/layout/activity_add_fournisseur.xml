@@ -8,158 +8,181 @@
     tools:context=".Add_fournisseur">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_picture"
         android:layout_width="190dp"
         android:layout_height="118dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_nom"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_menu_camera" />
 
 
-    <TextView
-        android:id="@+id/Nomp"
-        android:layout_width="94dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="72dp"
-        android:text="@string/Nomp"
-        app:layout_constraintBottom_toBottomOf="@+id/Nomp1"
-        app:layout_constraintEnd_toStartOf="@+id/Nomp1"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/cl_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Nomp1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_picture">
 
-    <EditText
-        android:id="@+id/Nomp1"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_label_nom"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:text="@string/Nomp"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_nom"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_nom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/Nomp1"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/et_prenom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_label_prenom"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:text="@string/prenom"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_prenom"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_prenom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/prenom"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/et_nom" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_contact"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/Nomp1"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="182dp" />
-
-    <TextView
-        android:id="@+id/p"
-        android:layout_width="94dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="72dp"
-        android:text="@string/prenom"
-        app:layout_constraintBottom_toBottomOf="@+id/p1"
-        app:layout_constraintEnd_toStartOf="@+id/p1"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_adresse"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/p1" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_nom">
 
-    <EditText
-        android:id="@+id/p1"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_label_contact"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:text="@string/contact"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_numero_tel"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_numero_tel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/numfour"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_adresse_mail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/emfour"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/et_numero_tel" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_adresse"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/prenom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nomp1" />
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_contact"
+        tools:layout_editor_absoluteX="8dp">
 
-    <TextView
-        android:id="@+id/cont"
-        android:layout_width="94dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="68dp"
-        android:text="@string/contact"
-        app:layout_constraintBottom_toBottomOf="@+id/editText4"
-        app:layout_constraintEnd_toStartOf="@+id/cont1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_label_adresse"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:text="@string/adr"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_rue"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <EditText
+            android:id="@+id/et_rue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/rue"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/et_ville"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/ville"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/et_rue" />
 
-    <EditText
-        android:id="@+id/cont1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/numfour"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="350dp" />
+        <EditText
+            android:id="@+id/et_pays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:inputType="textPersonName"
+            android:text="@string/pays"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/et_ville" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/emfour"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cont1" />
-
-    <TextView
-        android:id="@+id/adr"
-        android:layout_width="94dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="68dp"
-        android:text="@string/adr"
-        app:layout_constraintBottom_toTopOf="@+id/adr2"
-        app:layout_constraintEnd_toStartOf="@+id/adr1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/adr1"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/adr1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/rue"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="501dp" />
-
-    <EditText
-        android:id="@+id/adr2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/ville"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adr1" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/pays"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/adr2"
-        app:layout_constraintTop_toBottomOf="@+id/adr2" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
