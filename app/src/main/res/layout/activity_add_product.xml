@@ -104,13 +104,13 @@
             android:id="@+id/Stock1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="28dp"
             android:ems="10"
             android:hint="@string/stk_min"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline44" />
+            app:layout_constraintStart_toStartOf="@+id/guideline44"
+            app:layout_constraintTop_toTopOf="parent" />
 <<<<<<< Updated upstream
             app:layout_constraintStart_toEndOf="@+id/guideline5"
 =======
@@ -130,7 +130,6 @@
             android:id="@+id/Stockop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
@@ -148,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4019851" />
+            app:layout_constraintGuide_percent="0.4" />
 =======
             app:layout_constraintTop_toBottomOf="@+id/Stock1"
             app:layout_constraintVertical_bias="0.444" />
@@ -182,7 +181,7 @@
         android:layout_height="131dp"
         app:layout_constraintBottom_toTopOf="@+id/Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -199,13 +198,13 @@
             android:id="@+id/Pa1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/p_a"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -213,7 +212,6 @@
             android:id="@+id/Pv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
@@ -222,8 +220,10 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/Pa1" />
+            app:layout_constraintTop_toBottomOf="@+id/Pa1"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/Pv"
@@ -241,7 +241,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.39" />
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,8 +263,10 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toEndOf="@+id/NumS1"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.43"
             app:srcCompat="@drawable/ic_menu_camera" />
 
         <TextView
@@ -283,7 +285,6 @@
             android:id="@+id/NumS1"
             android:layout_width="156dp"
             android:layout_height="45dp"
-            android:layout_marginStart="44dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
@@ -299,7 +300,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.37956205" />
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
