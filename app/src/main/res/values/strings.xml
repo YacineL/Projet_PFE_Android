@@ -38,4 +38,8 @@
     <string name="pays"> Pays</string>
 
 
+    <string name="caisse"> Votre solde est : </string>
+    <string name="solde"> 00000000</string>
+
+
 </resources>
