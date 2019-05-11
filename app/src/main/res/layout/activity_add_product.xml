@@ -15,7 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/Nom"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,8 +39,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Nom"
         android:layout_width="0dp"
-        android:layout_height="81dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/B1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Picture">
 
@@ -46,7 +51,6 @@
             android:id="@+id/tv_label_nom"
             android:layout_width="94dp"
             android:layout_height="31dp"
-            android:layout_marginStart="8dp"
             android:gravity="center_vertical"
             android:text="@string/Nomp"
             app:layout_constraintBaseline_toBaselineOf="@+id/et_nom"
@@ -54,15 +58,11 @@
 
         <EditText
             android:id="@+id/et_nom"
-            android:layout_width="215dp"
+            android:layout_width="0dp"
             android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
             android:hint="@string/Nomp1"
             android:inputType="textPersonName"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline44"
@@ -73,93 +73,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.39" />
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Stock"
         android:layout_width="0dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Prix"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/B1"
         app:layout_constraintVertical_bias="0.214">
 
         <TextView
             android:id="@+id/StockS"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/stk_min"
             app:layout_constraintBaseline_toBaselineOf="@+id/Stock1"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/Stock1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="28dp"
-            android:ems="10"
             android:hint="@string/stk_min"
             android:inputType="textPersonName"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline44" />
-<<<<<<< Updated upstream
             app:layout_constraintStart_toEndOf="@+id/guideline5"
-=======
->>>>>>> Stashed changes
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Stockop1"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/stk_max"
             app:layout_constraintBaseline_toBaselineOf="@+id/Stockop"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/Stockop"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
             android:hint="@string/stk_max"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline44" />
-<<<<<<< Updated upstream
             app:layout_constraintStart_toEndOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/Stock1" />
+            app:layout_constraintTop_toBottomOf="@id/Stock1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4019851" />
-=======
-            app:layout_constraintTop_toBottomOf="@+id/Stock1"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintGuide_percent="0.4" /><![CDATA[
+        =======
+        app:layout_constraintTop_toBottomOf="@+id/Stock1"
+        app:layout_constraintVertical_bias="0.444" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4"  />
->>>>>>> Stashed changes
+        >>>>>>> Stashed changes
+    ]]>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -171,135 +150,117 @@
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/boutton"
+        app:layout_constraintBottom_toTopOf="@+id/Stock"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nom" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Prix"
         android:layout_width="0dp"
-        android:layout_height="131dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Stock">
 
         <TextView
             android:id="@+id/Pa"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/p_a"
+            app:layout_constraintBaseline_toBaselineOf="@id/Pa1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/Pa1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
             android:hint="@string/p_a"
             android:inputType="textPersonName"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/Pv1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="32dp"
-            android:ems="10"
             android:hint="@string/p_v"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/Pa1" />
 
         <TextView
             android:id="@+id/Pv"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/p_v"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Pa" />
+            app:layout_constraintBaseline_toBaselineOf="@id/Pv1"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.39" />
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Code"
         android:layout_width="0dp"
-        android:layout_height="131dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Prix">
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/NumS1"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu_camera" />
 
         <TextView
             android:id="@+id/NumS"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/NumSerie"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@id/NumS1"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/NumS1"
-            android:layout_width="156dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
             android:hint="@string/NumS"
             android:inputType="textPersonName"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline7"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.454" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/guideline7"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.37956205" />
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
