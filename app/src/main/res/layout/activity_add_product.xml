@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddProduct">
+    android:layout_height="match_parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!-- Saha Ftorkom !!-->
 
@@ -13,9 +17,8 @@
         android:id="@+id/Picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Nom"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_info_produit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,15 +40,39 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Nom"
+        android:id="@+id/cl_info_produit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/B1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Picture">
+        app:layout_constraintTop_toBottomOf="@+id/Picture"
+        app:layout_constraintBottom_toTopOf="@id/cl_info_stock">
+
+        <TextView
+            android:id="@+id/tv_label_numero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Produit N° :"
+            app:layout_constraintBaseline_toBaselineOf="@+id/et_numero_produit"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/et_numero_produit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:hint="000015"
+            android:padding="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/tv_label_numero"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/et_nom"/>
 
         <TextView
             android:id="@+id/tv_label_nom"
@@ -63,11 +90,52 @@
             android:hint="@string/Nomp1"
             android:inputType="textPersonName"
             android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@id/et_brand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline44"
+            app:layout_constraintTop_toBottomOf="@id/et_numero_produit" />
+        <TextView
+            android:id="@+id/tv_label_brand"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:gravity="center_vertical"
+            android:text="Marque"
+            app:layout_constraintBaseline_toBaselineOf="@+id/et_brand"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_brand"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:hint="Marque"
+            android:inputType="textPersonName"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@id/et_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline44"
+            app:layout_constraintTop_toBottomOf="@id/et_nom" />
+
+        <TextView
+            android:id="@+id/tv_label_description"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:gravity="center_vertical"
+            android:text="Description"
+            app:layout_constraintBaseline_toBaselineOf="@+id/et_description"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:hint="Description"
+            android:inputType="textPersonName"
+            android:textSize="16dp"
+            android:lines="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline44"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@id/et_brand" />
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline44"
             android:layout_width="wrap_content"
@@ -78,16 +146,16 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Stock"
+        android:id="@+id/cl_info_stock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Prix"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_info_commercial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/B1"
-        app:layout_constraintVertical_bias="0.214">
+        app:layout_constraintTop_toBottomOf="@+id/cl_info_produit">
 
         <TextView
             android:id="@+id/StockS"
@@ -132,51 +200,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4" /><![CDATA[
-        =======
-        app:layout_constraintTop_toBottomOf="@+id/Stock1"
-        app:layout_constraintVertical_bias="0.444" />
-
-        >>>>>>> Stashed changes
-    ]]>
+            app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/B1"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/boutton"
-        app:layout_constraintBottom_toTopOf="@+id/Stock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nom" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Prix"
+        android:id="@+id/cl_info_commercial"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/Code"
+        app:layout_constraintBottom_toTopOf="@+id/cl_code_produit"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Stock">
+        app:layout_constraintTop_toBottomOf="@+id/cl_info_stock">
 
         <TextView
-            android:id="@+id/Pa"
+            android:id="@+id/tv_label_uom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/p_a"
-            app:layout_constraintBaseline_toBaselineOf="@id/Pa1"
+            android:text="Unité"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_uom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/Pa1"
+            android:id="@+id/et_uom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Unité"
+            android:inputType="textPersonName"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_label_prix_achat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/p_a"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_prix_achat"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/et_prix_achat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/p_a"
@@ -184,10 +250,18 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/et_uom" />
+
+        <TextView
+            android:id="@+id/tv_label_prix_vente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/p_v"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_prix_vente"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/Pv1"
+            android:id="@+id/et_prix_vente"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/p_v"
@@ -195,15 +269,7 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/Pa1" />
-
-        <TextView
-            android:id="@+id/Pv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/p_v"
-            app:layout_constraintBaseline_toBaselineOf="@id/Pv1"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/et_prix_achat" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
@@ -214,14 +280,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Code"
+        android:id="@+id/cl_code_produit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv1"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Prix">
+        app:layout_constraintTop_toBottomOf="@+id/cl_info_commercial">
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -263,5 +329,24 @@
             app:layout_constraintGuide_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ceci a été ajouté juste pour vérifier le scrolling."
+        android:textColor="@android:color/black"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_code_produit"
+        app:layout_constraintBottom_toTopOf="@id/tv2"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Et ça aussi ..."
+        android:textColor="@android:color/black"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tv1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
