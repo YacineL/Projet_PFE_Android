@@ -40,6 +40,8 @@
 
     <string name="caisse"> Votre solde est : </string>
     <string name="solde"> 00000000</string>
+    <string name="benefice"> Bénéfice: </string>
+    <string name="benefice1"> 0000000</string>
 
 
 </resources>
