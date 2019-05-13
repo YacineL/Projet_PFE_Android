@@ -15,16 +15,15 @@ public class ViewModel extends AndroidViewModel {
     //C'est aussi un maillon indispensable pour implémenter une MVVM : ModelViewViewModel architecture
     //ça simplifie les choses
     //Les Views ou l'interface graphique puiseront les données depuis le ViewModel
-    //Le ViewModel se charge de ramener les données nécessaires depuis la BDD
+    //Le ViewModel se charge de ramener les données nécessaires depuis la BDD à travers Repository
 
-    private Database database;
-    private ProductDao productDao;
+    private Repository repository;
+
 
     public ViewModel(@NonNull Application application) {
         super(application);
 
-        //Connexion à la BDD
-        database = Database.getInstance(application); //instance de la BDD
-        productDao = database.productDao();
+        repository = new Repository(application);
+
     }
 }

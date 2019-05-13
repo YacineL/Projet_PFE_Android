@@ -9,7 +9,12 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "fournisseurs")
 public class Fournisseur{
 
-    @PrimaryKey
+    public Fournisseur() {
+        //Required empty constructor
+    }
+
+    //Fields must be public
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     public String nom;

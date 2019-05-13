@@ -10,7 +10,12 @@ public class Product {
 
     //J'ai mis des champs qui me parraissent importants, à vous de modifier selon votre diagramme de classes
 
-    @PrimaryKey //Définit id en tant que clé primaire
+
+    public Product() {
+        //Required empty constructor
+    }
+
+    @PrimaryKey(autoGenerate = true) //Définit id en tant que clé primaire
     public int id;
 
     public String name;
