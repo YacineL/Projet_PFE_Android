@@ -1,21 +1,24 @@
 package com.example.projet_pfe_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
-import com.example.projet_pfe_android.CustomViews.ProductView;
-import com.example.projet_pfe_android.Data.Database;
-import com.example.projet_pfe_android.Data.ProductDao;
 import com.example.projet_pfe_android.Model.Product;
 
 import java.util.List;
@@ -25,7 +28,12 @@ public class ListProduit extends AppCompatActivity {
     private ProductAdapter adapter;
     private AppViewModel viewModel;
 
-    private Repository repository;
+    private ConstraintLayout clValidationWindow;
+    private TextView tvProductName;
+    private AppCompatEditText etQuantity;
+    private Button bValider, bAnnuler;
+
+    private Product selectedProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,53 +41,86 @@ public class ListProduit extends AppCompatActivity {
         setContentView(R.layout.activity_list_produit);
         getSupportActionBar().setTitle("Produits");
 
-        repository = new Repository(getApplication());
-        repository.getAllProducts().observe(this, new Observer<List<Product>>() {
+        setupRecyclerView();
+
+        viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
                 adapter.submitList(products);
+                Toast.makeText(ListProduit.this, "Produits : "+products.size(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        setupRecyclerView();
+        setupValidationWindow();
 
-//  App crashes when I use ViewModel - Currently bypassing it - Looking for a solution
-//        viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-//        viewModel.init();
-//        viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
-//            @Override
-//            public void onChanged(List<Product> products) {
-//                adapter.submitList(products);
-//            }
-//        });
-
-        createDummyList();
+//        createDummyList();
     }
 
     private void createDummyList() {
-        repository.deleteAllProducts();
+        viewModel.insertProduct(new Product("CocaCola 1.5L",70));
+        viewModel.insertProduct(new Product("CocaCola Canette",70));
+        viewModel.insertProduct(new Product("CocaCola 2L",70));
+        viewModel.insertProduct(new Product("CocaCola 0.25L",70));
+        viewModel.insertProduct(new Product("Le chat 500g",70));
+        viewModel.insertProduct(new Product("Le chat 5Kg",70));
+        viewModel.insertProduct(new Product("Le chien !",70));
+        viewModel.insertProduct(new Product("Milka",70));
+    }
 
-        repository.insertProduct(new Product("CocaCola Canette",40));
-        repository.insertProduct(new Product("CocaCola 1.5L",89));
-        repository.insertProduct(new Product("CocaCola 2L",75));
-        repository.insertProduct(new Product("CocaCola 250cl",37));
-        repository.insertProduct(new Product("Le Chat 5Kg",29));
+    private void setupValidationWindow(){
+        clValidationWindow = findViewById(R.id.cl_validation_window);
+        tvProductName = findViewById(R.id.tv_nom_produit);
+        etQuantity = findViewById(R.id.et_quantity);
+        bValider = findViewById(R.id.b_valider);
+        bAnnuler = findViewById(R.id.b_annuler);
 
+        bValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add product with qty to transaction list
+                try{
+                    float qty = Float.parseFloat(etQuantity.getText().toString());
+                    if (selectedProduct!=null){
+                        selectedProduct.setTransactionQty(qty);
+                        viewModel.addToCurrentTransaction(selectedProduct);
+                    }
+                    Toast.makeText(ListProduit.this, "Produit ajouté", Toast.LENGTH_SHORT).show();
+                }catch (NumberFormatException e){
+                    Log.d("#EXP", "ListProduit.bValider.onClick: "+e.getMessage());
+                }
+                hideValidationWindow();
+            }
+        });
 
-//  App crashes when I use ViewModel - Currently bypassing it - Looking for a solution
-//        viewModel.deleteAllProducts();
-//
-//        viewModel.insertProduct(new Product("CocaCola Canette",40));
-//        viewModel.insertProduct(new Product("CocaCola 1.5L",89));
-//        viewModel.insertProduct(new Product("CocaCola 2L",75));
-//        viewModel.insertProduct(new Product("CocaCola 250cl",37));
-//        viewModel.insertProduct(new Product("Le Chat 5Kg",29));
+        bAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideValidationWindow();
+            }
+        });
+    }
+
+    private void hideValidationWindow(){
+        clValidationWindow.setVisibility(View.GONE);
+    }
+
+    private void showValidationWindow(){
+        clValidationWindow.setVisibility(View.VISIBLE);
+        tvProductName.setText(selectedProduct.getName());
     }
 
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.rc_product_list);
 
-        adapter = new ProductAdapter(null); //Null to be replaced with the proper adapter listener ones implemented
+//        AdapterListener, onAdd, set selected to current product
+        adapter = new ProductAdapter(new ProductAdapter.ProductAdapterListener() {
+            @Override
+            public void onAdd(Product product) {
+                selectedProduct = product;
+                showValidationWindow();
+            }
+        }); //Null to be replaced with the proper adapter listener ones implemented
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

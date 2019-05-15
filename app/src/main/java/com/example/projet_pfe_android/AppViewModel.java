@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.example.projet_pfe_android.Model.Product;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppViewModel extends AndroidViewModel {
@@ -19,18 +21,18 @@ public class AppViewModel extends AndroidViewModel {
 
     private Repository repository;
     private LiveData<List<Product>> products;
+    private List<Product> currentTransaction=new ArrayList<>();
 
     public AppViewModel(@NonNull Application application) {
         super(application);
-//        Must remain empty
-    }
-
-    public void init(){
-//        These lines should be in the constructor but it doesn't work, I've been forced to leave
-//        the constructor totally empty  (default) otherwise app crashes. Couldn't find a better fix (yet)
         repository = new Repository(getApplication());
         products = repository.getAllProducts();
     }
+
+    public void addToCurrentTransaction(Product product){
+        currentTransaction.add(product);
+    }
+
     public LiveData<List<Product>> getAllProducts(){
         return products;
     }

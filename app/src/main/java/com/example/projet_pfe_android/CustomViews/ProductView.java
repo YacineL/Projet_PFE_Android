@@ -7,11 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.R;
 import com.example.projet_pfe_android.Util.ViewUtil;

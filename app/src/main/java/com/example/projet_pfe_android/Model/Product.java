@@ -2,6 +2,7 @@ package com.example.projet_pfe_android.Model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 //Ceci est un exemple de class définissant une table Room, à utiliser comme modèle pour créer les autres tables
@@ -41,7 +42,11 @@ public class Product {
     @ColumnInfo(name = "unit_price")
     public double unitPrice; //Price for 1 UOM
 
+    @ColumnInfo(name = "picture_uri")
     public String pictureURI;
+
+    @Ignore //Cette ligne impose le nom du champs correspondant dans la BD
+    public float transactionQty;
 
     public int getId() {
         return id;
@@ -109,5 +114,13 @@ public class Product {
 
     public void setPictureURI(String pictureURI) {
         this.pictureURI = pictureURI;
+    }
+
+    public float getTransactionQty() {
+        return transactionQty;
+    }
+
+    public void setTransactionQty(float transactionQty) {
+        this.transactionQty = transactionQty;
     }
 }

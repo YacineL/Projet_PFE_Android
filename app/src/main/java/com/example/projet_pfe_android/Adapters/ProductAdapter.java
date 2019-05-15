@@ -5,16 +5,13 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.projet_pfe_android.CustomViews.ProductView;
 import com.example.projet_pfe_android.Model.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
 
     public ProductAdapter(ProductAdapterListener listener) {
         super(DIFF_UTIL);
+        productAdapterListener = listener;
     }
 
     private static DiffUtil.ItemCallback DIFF_UTIL = new DiffUtil.ItemCallback<Product>() {
@@ -43,7 +41,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
         productAdapterListener = listener;
     }
     public interface ProductAdapterListener{
-
+        void onAdd(Product product);
     }
 
     @Override
@@ -61,7 +59,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ProductHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProductHolder holder, final int position) {
         holder.setProduct(getItem(position));
         holder.setListener(new ProductView.ProductViewListener() {
             @Override
@@ -72,8 +70,8 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
 
             @Override
             public void onAdd() {
-//                Execute the corresponding method from adapter's custom listener
-                Toast.makeText(holder.getContext(), "Add !!", Toast.LENGTH_SHORT).show();
+                if (getItem(position)!=null)
+                    productAdapterListener.onAdd(getItem(position));
             }
         });
     }

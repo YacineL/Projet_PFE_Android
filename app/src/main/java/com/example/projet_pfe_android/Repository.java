@@ -2,9 +2,7 @@ package com.example.projet_pfe_android;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import androidx.lifecycle.LiveData;
-
 import com.example.projet_pfe_android.Data.Database;
 import com.example.projet_pfe_android.Data.ProductDao;
 import com.example.projet_pfe_android.Model.Product;

@@ -30,14 +30,4 @@ public class Fournisseur{
     public String ville;
     public String pays;
 
-
-
-
-
-
-
-
-
-
-
 }

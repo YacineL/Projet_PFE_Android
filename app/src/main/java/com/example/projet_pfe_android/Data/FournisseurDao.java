@@ -21,7 +21,7 @@ public interface FournisseurDao {
     void deleteFournisseur(Fournisseur fournisseur);
 
     @Query("SELECT * FROM fournisseurs")
-    List<Fournisseur> getAllFournisseurs();
+    LiveData<List<Fournisseur>> getAllFournisseurs();
 
     @Query("DELETE FROM fournisseurs")
     void deleteAllFournisseurs();
