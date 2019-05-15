@@ -16,13 +16,21 @@ import com.example.projet_pfe_android.Util.ViewUtil;
 
 public class ProductView extends CardView {
 
-    private TextView tvName, tvStock;
-    private ImageView ivProductImg, ivButton;
+    private TextView tvName, tvStock, tvTransactionQty;
+    private ImageView ivProductImg, ivButton, ivCaddy;
     private ProductViewListener listener;
 
     public void setProduct(Product product) {
         tvName.setText(product.getName());
         tvStock.setText(Float.toString(product.getAvailableQty()));
+        if (product.getTransactionQty()!=0){
+            tvTransactionQty.setText(Float.toString(product.getTransactionQty()));
+            tvTransactionQty.setVisibility(VISIBLE);
+            ivCaddy.setVisibility(VISIBLE);
+        }else{
+            tvTransactionQty.setVisibility(INVISIBLE);
+            ivCaddy.setVisibility(INVISIBLE);
+        }
     }
 
     public void setProductViewListener(ProductViewListener listener){
@@ -55,8 +63,10 @@ public class ProductView extends CardView {
 
         tvName = this.findViewById(R.id.tv_product_name);
         tvStock = this.findViewById(R.id.tv_stock);
+        tvTransactionQty = this.findViewById(R.id.tv_transaction_qty);
         ivProductImg = this.findViewById(R.id.iv_product_img);
         ivButton = this.findViewById(R.id.iv_button);
+        ivCaddy = this.findViewById(R.id.iv_caddy);
 
         this.setOnClickListener(new OnClickListener() {
             @Override

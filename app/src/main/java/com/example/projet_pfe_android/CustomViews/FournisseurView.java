@@ -28,12 +28,14 @@ public class FournisseurView extends CardView {
     }
 
 
+    public void setFournisseurViewListener(FournisseurViewListener Listener) {
+        this.listener = listener;
+    }
 
-    public void setFournisseurViewListener(FournisseurViewListener Listener) { this.listener=listener ;}
 
-
-    public interface FournisseurViewListener{
+    public interface FournisseurViewListener {
         void onClick();
+
         void onAdd();
         //void onEdit();
         //void onDelete();
@@ -44,13 +46,13 @@ public class FournisseurView extends CardView {
     }
 
     public FournisseurView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context,attrs,0);
+        this(context, attrs, 0);
     }
 
     public FournisseurView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.fournisseur_view,this,true);
+        inflater.inflate(R.layout.fournisseur_view, this, true);
         init();
     }
 
@@ -58,36 +60,28 @@ public class FournisseurView extends CardView {
 
         nameF = this.findViewById(R.id.name_fournisseur);
         prenomF = this.findViewById(R.id.prenom_fournisseur);
-        telF=this.findViewById(R.id.numeroTel);
+        telF = this.findViewById(R.id.numeroTel);
 
 
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener!=null)
+                if (listener != null)
                     listener.onClick();
             }
         });
 
-      
-        public void setMargin (int top, int bottom, int left, int right) {
-
-//        this.setMargin(top, bottom, left, right);
-      ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(
-                    ViewUtil.dpToPx(this.getContext(), left),
-                    ViewUtil.dpToPx(this.getContext(), top),
-                    ViewUtil.dpToPx(this.getContext(), right),
-                    ViewUtil.dpToPx(this.getContext(), bottom));
-            this.setLayoutParams(params);
-        }
-
-
-
-
-
     }
 
+    public void setMargin(int top, int bottom, int left, int right) {
 
-
+//        this.setMargin(top, bottom, left, right);
+        ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(
+                ViewUtil.dpToPx(this.getContext(), left),
+                ViewUtil.dpToPx(this.getContext(), top),
+                ViewUtil.dpToPx(this.getContext(), right),
+                ViewUtil.dpToPx(this.getContext(), bottom));
+        this.setLayoutParams(params);
+    }
 }

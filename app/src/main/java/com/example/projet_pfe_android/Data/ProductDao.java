@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.projet_pfe_android.Model.Product;
 
@@ -31,4 +32,7 @@ public interface ProductDao {
 
     @Query("SELECT unit_price FROM products WHERE id=:productId")
     float getProductPriceById(int productId);
+
+    @Update
+    void updateProduct(Product product);
 }

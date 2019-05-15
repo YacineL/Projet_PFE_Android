@@ -32,8 +32,9 @@ public class ListProduit extends AppCompatActivity {
     private TextView tvProductName;
     private AppCompatEditText etQuantity;
     private Button bValider, bAnnuler;
-
+    private androidx.appcompat.widget.SearchView searchView;
     private Product selectedProduct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,16 @@ public class ListProduit extends AppCompatActivity {
             @Override
             public void onChanged(List<Product> products) {
                 adapter.submitList(products);
+                adapter.notifyDataSetChanged();
                 Toast.makeText(ListProduit.this, "Produits : "+products.size(), Toast.LENGTH_SHORT).show();
             }
         });
 
         setupValidationWindow();
 
-//        createDummyList();
+        viewModel.deleteAllProducts();
+        createDummyList();
+        createDummyList();
     }
 
     private void createDummyList() {
@@ -83,13 +87,16 @@ public class ListProduit extends AppCompatActivity {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
                     if (selectedProduct!=null){
                         selectedProduct.setTransactionQty(qty);
-                        viewModel.addToCurrentTransaction(selectedProduct);
+                        viewModel.updateProduct(selectedProduct);
+                        searchView.setQuery("",false);
+                        Toast.makeText(ListProduit.this, "Update ID : "+selectedProduct.getId(), Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(ListProduit.this, "Produit ajouté", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();
                 }catch (NumberFormatException e){
                     Log.d("#EXP", "ListProduit.bValider.onClick: "+e.getMessage());
                 }
                 hideValidationWindow();
+
             }
         });
 
@@ -108,6 +115,7 @@ public class ListProduit extends AppCompatActivity {
     private void showValidationWindow(){
         clValidationWindow.setVisibility(View.VISIBLE);
         tvProductName.setText(selectedProduct.getName());
+        etQuantity.setText(Float.toString(selectedProduct.getTransactionQty()));
     }
 
     private void setupRecyclerView() {
@@ -130,8 +138,7 @@ public class ListProduit extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.product_list_menu,menu);
         MenuItem searchItem = menu.findItem(R.id.search);
-        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
-
+        searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
         searchView.setQueryHint("Recherche...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

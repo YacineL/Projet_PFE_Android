@@ -28,12 +28,12 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
     private static DiffUtil.ItemCallback DIFF_UTIL = new DiffUtil.ItemCallback<Product>() {
         @Override
         public boolean areItemsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
-            return false;
+            return oldItem.getId()==newItem.getId();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
-            return false;
+            return oldItem.equals(newItem);
         }
     };
 

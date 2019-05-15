@@ -24,6 +24,10 @@ public class Repository {
         productDao = database.productDao();
     }
 
+    public void updateProduct(Product product){
+        new UpdateProductAsync(productDao).execute(product);
+    }
+
     public LiveData<List<Product>> getAllProducts(){
         return productDao.getAllProducts();
     }
@@ -38,6 +42,20 @@ public class Repository {
 
 
 //    Async Tasks : DB Transactions
+
+    private class UpdateProductAsync extends AsyncTask<Product,Void,Void>{
+        private ProductDao productDao;
+
+        public UpdateProductAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Void doInBackground(Product... products) {
+            productDao.updateProduct(products[0]);
+            return null;
+        }
+    }
 
     private class InsertProductAsync extends AsyncTask<Product,Void,Void>{
         private ProductDao productDao;

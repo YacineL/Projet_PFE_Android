@@ -44,4 +44,8 @@ public class AppViewModel extends AndroidViewModel {
     public void deleteAllProducts(){
         repository.deleteAllProducts();
     }
+
+    public void updateProduct(Product product) {
+        repository.updateProduct(product);
+    }
 }

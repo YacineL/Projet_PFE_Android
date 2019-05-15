@@ -24,29 +24,40 @@ public class Product {
     @PrimaryKey(autoGenerate = true) //Définit id en tant que clé primaire
     public int id;
 
-    public String name;
-    public String brand;
+    public String name="";
+    public String brand="";
 
     @ColumnInfo(name = "available_qty") //Cette ligne impose le nom du champs correspondant dans la BD
-    public float availableQty;
+    public float availableQty=0;
 
     @ColumnInfo(name = "safety_stock_qty")
-    public float safetyStockQty;
+    public float safetyStockQty=0;
 
     @ColumnInfo(name = "mip")
-    public float MIP; //Maximum Inventory Position, le max permettant de calculer la quantité à réapprovisionner
+    public float MIP=0; //Maximum Inventory Position, le max permettant de calculer la quantité à réapprovisionner
 
     @ColumnInfo(name = "uom")
-    public String UOM; //Unit Of Measurement
+    public String UOM=""; //Unit Of Measurement
 
     @ColumnInfo(name = "unit_price")
-    public double unitPrice; //Price for 1 UOM
+    public double unitPrice=0; //Price for 1 UOM
 
     @ColumnInfo(name = "picture_uri")
-    public String pictureURI;
+    public String pictureURI="";
 
-    @Ignore //Cette ligne impose le nom du champs correspondant dans la BD
-    public float transactionQty;
+    @ColumnInfo(name = "transaction_qty")
+    public float transactionQty=0;
+
+//    METHODS
+
+    public boolean equals(Product otherProduct){
+        return name.equals(otherProduct.getName()) &&
+                availableQty == otherProduct.getAvailableQty() &&
+                transactionQty == otherProduct.getTransactionQty() &&
+                pictureURI.equals(otherProduct.getPictureURI());
+    }
+
+//    GETTERS AND SETTERS
 
     public int getId() {
         return id;
