@@ -14,15 +14,19 @@ import java.util.List;
 public interface FournisseurDao {
 
 
+    @Query("SELECT * FROM fournisseurs")
+    LiveData<List<Fournisseur>> getAllFournisseurs();
+
     @Insert
     void insertFournisseur(Fournisseur fournisseur);
+
+
+    @Query("DELETE FROM fournisseurs")
+    void deleteAllFournisseurs();
 
     @Delete
     void deleteFournisseur(Fournisseur fournisseur);
 
-    @Query("SELECT * FROM fournisseurs")
-    LiveData<List<Fournisseur>> getAllFournisseurs();
+     }
 
-    @Query("DELETE FROM fournisseurs")
-    void deleteAllFournisseurs();
-}
+

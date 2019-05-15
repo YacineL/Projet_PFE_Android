@@ -30,4 +30,33 @@ public class Fournisseur{
     public String ville;
     public String pays;
 
+    public String getNom() {
+
+        return nom;
+    }
+
+    public String getPrenom(){
+        return prenom;
+    }
+
+    public  String getNumeroTel(){
+        return numeroTel;
+    }
+
+    public String getEmailFournisseur(){
+        return emailFournisseur;
+    }
+
+    public String getRue(){
+        return rue;
+    }
+
+    public String getVille(){
+        return ville;
+    }
+
+    public String getPays(){
+        return pays;
+    }
+
 }
