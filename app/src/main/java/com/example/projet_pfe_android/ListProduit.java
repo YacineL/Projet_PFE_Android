@@ -137,29 +137,21 @@ public class ListProduit extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0 | 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-            @Override
-            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-                return 0; // Nothing to do here
-            }
-
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false; // Nothing to do here
+                return false;
             }
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                Let's delete the product either he swipes right or left
                 int position = viewHolder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
                     Toast.makeText(ListProduit.this, "Swiped !", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-        touchHelper.attachToRecyclerView(recyclerView);
+        }).attachToRecyclerView(recyclerView);
     }
 
     // are you here lol
