@@ -1,11 +1,13 @@
 package com.example.projet_pfe_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +52,7 @@ public class ListProduit extends AppCompatActivity {
             public void onChanged(List<Product> products) {
                 adapter.submitList(products);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(ListProduit.this, "Produits : "+products.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -62,17 +64,17 @@ public class ListProduit extends AppCompatActivity {
     }
 
     private void createDummyList() {
-        viewModel.insertProduct(new Product("CocaCola 1.5L",70));
-        viewModel.insertProduct(new Product("CocaCola Canette",70));
-        viewModel.insertProduct(new Product("CocaCola 2L",70));
-        viewModel.insertProduct(new Product("CocaCola 0.25L",70));
-        viewModel.insertProduct(new Product("Le chat 500g",70));
-        viewModel.insertProduct(new Product("Le chat 5Kg",70));
-        viewModel.insertProduct(new Product("Le chien !",70));
-        viewModel.insertProduct(new Product("Milka",70));
+        viewModel.insertProduct(new Product("CocaCola 1.5L", 70));
+        viewModel.insertProduct(new Product("CocaCola Canette", 70));
+        viewModel.insertProduct(new Product("CocaCola 2L", 70));
+        viewModel.insertProduct(new Product("CocaCola 0.25L", 70));
+        viewModel.insertProduct(new Product("Le chat 500g", 70));
+        viewModel.insertProduct(new Product("Le chat 5Kg", 70));
+        viewModel.insertProduct(new Product("Le chien !", 70));
+        viewModel.insertProduct(new Product("Milka", 70));
     }
 
-    private void setupValidationWindow(){
+    private void setupValidationWindow() {
         clValidationWindow = findViewById(R.id.cl_validation_window);
         tvProductName = findViewById(R.id.tv_nom_produit);
         etQuantity = findViewById(R.id.et_quantity);
@@ -83,17 +85,17 @@ public class ListProduit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Add product with qty to transaction list
-                try{
+                try {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
-                    if (selectedProduct!=null){
+                    if (selectedProduct != null) {
                         selectedProduct.setTransactionQty(qty);
                         viewModel.updateProduct(selectedProduct);
-                        searchView.setQuery("",false);
-                        Toast.makeText(ListProduit.this, "Update ID : "+selectedProduct.getId(), Toast.LENGTH_SHORT).show();
+                        searchView.setQuery("", false);
+                        Toast.makeText(ListProduit.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();
-                }catch (NumberFormatException e){
-                    Log.d("#EXP", "ListProduit.bValider.onClick: "+e.getMessage());
+                } catch (NumberFormatException e) {
+                    Log.d("#EXP", "ListProduit.bValider.onClick: " + e.getMessage());
                 }
                 hideValidationWindow();
 
@@ -108,17 +110,18 @@ public class ListProduit extends AppCompatActivity {
         });
     }
 
-    private void hideValidationWindow(){
+    private void hideValidationWindow() {
         clValidationWindow.setVisibility(View.GONE);
     }
 
-    private void showValidationWindow(){
+    private void showValidationWindow() {
         clValidationWindow.setVisibility(View.VISIBLE);
         tvProductName.setText(selectedProduct.getName());
         etQuantity.setText(Float.toString(selectedProduct.getTransactionQty()));
     }
 
     private void setupRecyclerView() {
+
         RecyclerView recyclerView = findViewById(R.id.rc_product_list);
 
 //        AdapterListener, onAdd, set selected to current product
@@ -128,15 +131,41 @@ public class ListProduit extends AppCompatActivity {
                 selectedProduct = product;
                 showValidationWindow();
             }
-        }); //Null to be replaced with the proper adapter listener ones implemented
+        });
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0 | 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return 0; // Nothing to do here
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false; // Nothing to do here
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                Let's delete the product either he swipes right or left
+                int position = viewHolder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
+                    Toast.makeText(ListProduit.this, "Swiped !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        touchHelper.attachToRecyclerView(recyclerView);
     }
 
+    // are you here lol
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.product_list_menu,menu);
+        getMenuInflater().inflate(R.menu.product_list_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
         searchView.setQueryHint("Recherche...");
@@ -158,10 +187,11 @@ public class ListProduit extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.search:
 
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

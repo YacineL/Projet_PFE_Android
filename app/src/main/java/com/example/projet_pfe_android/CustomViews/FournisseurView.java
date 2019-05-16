@@ -17,12 +17,11 @@ import com.example.projet_pfe_android.Util.ViewUtil;
 
 public class FournisseurView extends CardView {
 
-    private TextView nameF, prenomF, telF;
+    private TextView nameF, telF, tvEmail;
     private FournisseurViewListener listener;
 
     public void setFournisseur(Fournisseur fournisseur) {
-        nameF.setText(fournisseur.getNom());
-        prenomF.setText(fournisseur.getPrenom());
+        nameF.setText(fournisseur.getNom() + ' ' + fournisseur.getPrenom());
         telF.setText(fournisseur.getNumeroTel());
 
     }
@@ -58,9 +57,8 @@ public class FournisseurView extends CardView {
 
     private void init() {
 
-        nameF = this.findViewById(R.id.name_fournisseur);
-        prenomF = this.findViewById(R.id.prenom_fournisseur);
-        telF = this.findViewById(R.id.numeroTel);
+        nameF = this.findViewById(R.id.tv_nom_prenom);
+        telF = this.findViewById(R.id.tv_numero_tel);
 
 
         this.setOnClickListener(new OnClickListener() {

@@ -16,12 +16,12 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
 
         @Override
         public boolean areItemsTheSame(@NonNull Fournisseur oldItem, @NonNull Fournisseur newItem) {
-            return false;
+            return oldItem.getId()==newItem.getId();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Fournisseur oldItem, @NonNull Fournisseur newItem) {
-            return false;
+            return oldItem.equals(newItem);
         }
     };
 

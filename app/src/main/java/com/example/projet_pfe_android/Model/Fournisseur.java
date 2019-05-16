@@ -59,4 +59,18 @@ public class Fournisseur{
         return pays;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean equals(Fournisseur autreFournisseur){
+        return this.nom.equals(autreFournisseur.getNom()) &&
+                this.prenom.equals(autreFournisseur.getPrenom()) &&
+                this.numeroTel.equals(autreFournisseur.getNumeroTel()) &&
+                this.emailFournisseur.equals(autreFournisseur.getEmailFournisseur());
+    }
 }

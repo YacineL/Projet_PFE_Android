@@ -40,8 +40,26 @@ public class Repository {
         new DeleteAllProductsAsync(productDao).execute();
     }
 
+    public void deleteProduct(Product product) {
+        new DeleteProductAsync(productDao).execute(product);
+    }
+
 
 //    Async Tasks : DB Transactions
+
+    private class DeleteProductAsync extends AsyncTask<Product,Void,Void>{
+        private ProductDao productDao;
+
+        public DeleteProductAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Void doInBackground(Product... products) {
+            productDao.deleteProduct(products[0]);
+            return null;
+        }
+    }
 
     private class UpdateProductAsync extends AsyncTask<Product,Void,Void>{
         private ProductDao productDao;

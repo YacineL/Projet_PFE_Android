@@ -103,6 +103,8 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
         }
     }
 
+//    For search field to function ...
+
     @Override
     public Filter getFilter() {
         return filter;
