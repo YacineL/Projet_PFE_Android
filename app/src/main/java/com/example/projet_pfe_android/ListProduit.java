@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 

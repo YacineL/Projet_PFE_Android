@@ -44,10 +44,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@id/cl_info_stock"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Picture"
-        app:layout_constraintBottom_toTopOf="@id/cl_info_stock">
+        app:layout_constraintTop_toBottomOf="@+id/Picture">
 
         <TextView
             android:id="@+id/tv_label_numero"
@@ -63,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="@color/cardview_shadow_start_color"
             android:hint="000015"
@@ -70,9 +72,11 @@
             android:textColor="@android:color/black"
             android:textSize="16dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/et_nom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.299"
             app:layout_constraintStart_toEndOf="@id/tv_label_numero"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/et_nom"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_label_nom"
@@ -95,6 +99,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline44"
             app:layout_constraintTop_toBottomOf="@id/et_numero_produit" />
+
         <TextView
             android:id="@+id/tv_label_brand"
             android:layout_width="94dp"
@@ -131,12 +136,13 @@
             android:layout_height="44dp"
             android:hint="Description"
             android:inputType="textPersonName"
-            android:textSize="16dp"
             android:lines="2"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline44"
             app:layout_constraintTop_toBottomOf="@id/et_brand" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline44"
             android:layout_width="wrap_content"
@@ -294,7 +300,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cl_info_commercial">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/BnumS"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -320,7 +326,7 @@
             android:inputType="textPersonName"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/BnumS"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/guideline7"
             app:layout_constraintTop_toTopOf="parent" />
