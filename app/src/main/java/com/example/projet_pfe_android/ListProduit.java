@@ -60,7 +60,7 @@ public class ListProduit extends AppCompatActivity {
 
         setupValidationWindow();
 
-        viewModel.deleteAllProducts();
+        //viewModel.deleteAllProducts();
         createDummyList();
         createDummyList();
     }

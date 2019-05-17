@@ -21,11 +21,25 @@ public class Product {
         this.availableQty = availableQty;
     }
 
+    public Product(String name,String brand,String description,
+                   float safetyStockQty,String uom,double unitPrice,
+                   double salePrice,String serial_number){
+        this.name=name;
+        this.brand=brand;
+        this.description=description;
+        this.safetyStockQty=safetyStockQty;
+        this.UOM=uom;
+        this.unitPrice=unitPrice;
+        this.salePrice=salePrice;
+        this.serial_number=serial_number;
+    }
+
     @PrimaryKey(autoGenerate = true) //Définit id en tant que clé primaire
     public int id;
 
     public String name="";
     public String brand="";
+    public String description="";
 
     @ColumnInfo(name = "available_qty") //Cette ligne impose le nom du champs correspondant dans la BD
     public float availableQty=0;
@@ -39,8 +53,14 @@ public class Product {
     @ColumnInfo(name = "uom")
     public String UOM=""; //Unit Of Measurement
 
+    @ColumnInfo(name = "serial_number")
+    public String serial_number=""; //Unit Of Measurement
+
     @ColumnInfo(name = "unit_price")
     public double unitPrice=0; //Price for 1 UOM
+
+    @ColumnInfo(name = "sale_price")
+    public double salePrice=0; //Price for 1 UOM
 
     @ColumnInfo(name = "picture_uri")
     public String pictureURI="";
@@ -58,6 +78,19 @@ public class Product {
     }
 
 //    GETTERS AND SETTERS
+
+
+    public String getDescription() { return description; }
+
+    public double getSalePrice() { return salePrice; }
+
+    public String getSerial_number() { return serial_number; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public void setSalePrice(double salePrice) { this.salePrice = salePrice; }
+
+    public void setSerial_number(String serial_number) { this.serial_number = serial_number; }
 
     public int getId() {
         return id;

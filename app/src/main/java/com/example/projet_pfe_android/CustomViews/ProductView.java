@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android.CustomViews;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ProductView extends CardView {
     public void setProduct(Product product) {
         tvName.setText(product.getName());
         tvStock.setText(Float.toString(product.getAvailableQty()));
+        ivProductImg.setImageURI(Uri.parse(product.pictureURI));
         if (product.getTransactionQty()!=0){
             tvTransactionQty.setText(Float.toString(product.getTransactionQty()));
             tvTransactionQty.setVisibility(VISIBLE);

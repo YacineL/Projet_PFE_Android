@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".FournisseurView" />
         <activity android:name=".ListFournisseur" />
-        <activity android:name=".AddProduct">
+        <activity android:name=".ListProduit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".Dashboard" />
         <activity android:name=".Add_fournisseur" />
-        <activity android:name=".ListProduit" />
+        <activity android:name=".AddProduct" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

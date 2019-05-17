@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/valider"
+        android:title="Valider"
+        android:icon="@drawable/ic_add"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/delete"
+        android:title="Supprimer"
+        app:showAsAction="never"/>
+</menu>

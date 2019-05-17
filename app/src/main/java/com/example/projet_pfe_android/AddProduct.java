@@ -16,6 +16,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 public class AddProduct extends AppCompatActivity {
 
     private AppViewModel viewModel;
+    private Uri mCurrentProductUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class AddProduct extends AppCompatActivity {
             }
         });
 
-        /*EditText et_nom = (EditText)findViewById(R.id.et_nom);
+        EditText et_nom = (EditText)findViewById(R.id.et_nom);
         EditText et_brand = (EditText)findViewById(R.id.et_brand);
         EditText et_description = (EditText)findViewById(R.id.et_description);
         EditText et_Stock1 = (EditText)findViewById(R.id.Stock1);
@@ -57,9 +60,18 @@ public class AddProduct extends AppCompatActivity {
         EditText et_uom = (EditText)findViewById(R.id.et_uom);
         EditText et_prix_achat = (EditText)findViewById(R.id.et_prix_achat);
         EditText et_prix_vente = (EditText)findViewById(R.id.et_prix_vente);
-        EditText et_numS = (EditText)findViewById(R.id.NumS1);*/
+        EditText et_numS = (EditText)findViewById(R.id.NumS1);
         ImageButton bnumS =(ImageButton) findViewById(R.id.BnumS);
         ImageView iv_picture=(ImageView)findViewById(R.id.iv_picture);
+        Intent intent = getIntent();
+        mCurrentProductUri = intent.getData();
+
+        if (mCurrentProductUri == null) {
+            setTitle("Ajouter produit");
+            invalidateOptionsMenu();
+        } else {
+            setTitle("Modifier produit");
+        }
         verifyPermissions();
         bnumS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +130,8 @@ public class AddProduct extends AppCompatActivity {
                     REQUEST_CODE);
         }
     }
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ImageView imageview=(ImageView)findViewById(R.id.iv_picture);
@@ -152,6 +166,55 @@ public class AddProduct extends AppCompatActivity {
 
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_product_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (mCurrentProductUri == null) {
+            MenuItem menuItem = menu.findItem(R.id.delete);
+            menuItem.setVisible(false);
+        }
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case (R.id.valider):
+                saveProduct();
+                break;
+            case (R.id.delete) :
+                break;
+            case (android.R.id.home):
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public void saveProduct(){
+        EditText et_nom = (EditText)findViewById(R.id.et_nom);
+        EditText et_brand = (EditText)findViewById(R.id.et_brand);
+        EditText et_description = (EditText)findViewById(R.id.et_description);
+        EditText et_Stock1 = (EditText)findViewById(R.id.Stock1);
+        EditText et_Stockop = (EditText)findViewById(R.id.Stockop);
+        EditText et_uom = (EditText)findViewById(R.id.et_uom);
+        EditText et_prix_achat = (EditText)findViewById(R.id.et_prix_achat);
+        EditText et_prix_vente = (EditText)findViewById(R.id.et_prix_vente);
+        EditText et_numS = (EditText)findViewById(R.id.NumS1);
+        ImageView iv_picture=(ImageView)findViewById(R.id.iv_picture);
+        if (et_nom.getText()!=null && et_uom.getText()!=null && et_prix_achat.getText()!=null && et_prix_vente.getText()!=null){
+            viewModel.insertProduct(new Product(et_nom.getText().toString(),
+                    et_brand.getText().toString(),
+                    et_description.getText().toString(),
+                    Float.valueOf(et_Stock1.getText().toString()),
+                    et_uom.getText().toString(),
+                    Double.valueOf(et_prix_achat.getText().toString()),
+                    Double.valueOf(et_prix_vente.getText().toString()),
+                    et_numS.getText().toString()));
+        }
+    }
 }
