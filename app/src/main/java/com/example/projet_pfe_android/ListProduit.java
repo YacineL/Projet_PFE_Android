@@ -156,7 +156,6 @@ public class ListProduit extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
     }
 
-    // are you here lol
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.product_list_menu, menu);

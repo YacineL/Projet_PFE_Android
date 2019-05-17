@@ -72,5 +72,7 @@ public class Fournisseur{
                 this.prenom.equals(autreFournisseur.getPrenom()) &&
                 this.numeroTel.equals(autreFournisseur.getNumeroTel()) &&
                 this.emailFournisseur.equals(autreFournisseur.getEmailFournisseur());
+
+
     }
 }

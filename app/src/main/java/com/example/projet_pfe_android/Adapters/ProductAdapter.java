@@ -84,7 +84,6 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
             super(productView);
             this.productView = productView;
         }
-// a tte
 
         public ProductView getProductView() {
             return productView;

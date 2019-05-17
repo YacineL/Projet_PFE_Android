@@ -27,7 +27,7 @@ public class FournisseurView extends CardView {
     }
 
 
-    public void setFournisseurViewListener(FournisseurViewListener Listener) {
+    public  void setFournisseurViewListener(FournisseurViewListener Listener) {
         this.listener = listener;
     }
 
