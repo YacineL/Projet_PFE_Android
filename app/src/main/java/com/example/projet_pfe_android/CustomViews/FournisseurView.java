@@ -23,6 +23,7 @@ public class FournisseurView extends CardView {
     public void setFournisseur(Fournisseur fournisseur) {
         nameF.setText(fournisseur.getNom() + ' ' + fournisseur.getPrenom());
         telF.setText(fournisseur.getNumeroTel());
+        tvEmail.setText(fournisseur.getEmailFournisseur());
 
     }
 
@@ -59,7 +60,7 @@ public class FournisseurView extends CardView {
 
         nameF = this.findViewById(R.id.tv_nom_prenom);
         telF = this.findViewById(R.id.tv_numero_tel);
-
+         tvEmail=this.findViewById(R.id.tv_email);
 
         this.setOnClickListener(new OnClickListener() {
             @Override
