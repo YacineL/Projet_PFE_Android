@@ -46,19 +46,20 @@ public class ListFournisseur extends AppCompatActivity {
             }
         });
 
+        viewModel.deleteAllFournisseurs();
         createDummyList();
     }
 
     private void createDummyList() {
 
-        viewModel.insertFournisseur(new Fournisseur("ait","000000","as@gmail.com"));
-        viewModel.insertFournisseur(new Fournisseur("impe","111111","bs@gmail.com"));
-        viewModel.insertFournisseur(new Fournisseur("yac","222222","cc@gmail.com"));
+        viewModel.insertFournisseur(new Fournisseur("ait","prénom","000000","as@gmail.com","rue","ville","pays"));
+        viewModel.insertFournisseur(new Fournisseur("impe","prénom","111111","bs@gmail.com","rue","ville","pays"));
+        viewModel.insertFournisseur(new Fournisseur("yac","prénom","222222","cc@gmail.com","rue","ville","pays"));
     }
 
     private void setupRecyclerView() {
 
-        RecyclerView recyclerView = findViewById(R.id.rc_fournisseur_list);
+        RecyclerView recyclerView = findViewById(R.id.recycler);
         adapter = new FournisseurAdapter(new FournisseurAdapter.FournisseurAdapterListener() {
             @Override
             public void onAdd(Fournisseur fournisseur) {

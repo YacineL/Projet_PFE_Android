@@ -212,7 +212,7 @@ public class AddProduct extends AppCompatActivity {
                     et_description.getText().toString(),
                     Float.valueOf(et_Stock1.getText().toString()),
                     et_uom.getText().toString(),
-                    Double.valueOf(et_prix_achat.getText().toString()),
+                    Double.parseDouble(et_prix_achat.getText().toString()),
                     Double.valueOf(et_prix_vente.getText().toString()),
                     et_numS.getText().toString()));
         }

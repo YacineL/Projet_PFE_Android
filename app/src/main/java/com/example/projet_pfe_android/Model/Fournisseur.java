@@ -9,7 +9,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "fournisseurs")
 public class Fournisseur{
 
-    public Fournisseur( String nom , String numeroTel, String emailFournisseur) {
+    public Fournisseur() {
+//        Required Empty Constructor
+    }
+
+    public Fournisseur(String nom , String numeroTel, String emailFournisseur) {
         this.nom=nom;
         this.numeroTel=numeroTel;
         this.emailFournisseur=emailFournisseur;
