@@ -93,7 +93,7 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
         }
 
         public void setListener(FournisseurView.FournisseurViewListener listener){
-            FournisseurView.setFournisseurViewListener(listener);
+            fournisseurView.setFournisseurViewListener(listener);
         }
 
         public Context getContext(){
