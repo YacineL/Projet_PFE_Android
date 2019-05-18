@@ -126,7 +126,7 @@ public class ListProduit extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.rc_product_list);
 
-//        AdapterListener, onAdd, set selected to current product
+//        AdapterListener, onCall, set selected to current product
         adapter = new ProductAdapter(new ProductAdapter.ProductAdapterListener() {
             @Override
             public void onAdd(Product product) {

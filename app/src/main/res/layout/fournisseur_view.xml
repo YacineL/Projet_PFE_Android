@@ -88,24 +88,24 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_numero_tel" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/iv_button_call"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintBottom_toTopOf="@+id/iv_button_mail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/sym_action_call" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/iv_button_mail"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/iv_button_call"
             android:tint="@color/colorPrimaryDark"
             app:srcCompat="@android:drawable/ic_dialog_email" />
 

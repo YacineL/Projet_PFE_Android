@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ public class FournisseurView extends CardView {
     }
 
 
-    public  void setFournisseurViewListener(FournisseurViewListener Listener) {
+    public  void setFournisseurViewListener(FournisseurViewListener listener) {
         this.listener = listener;
     }
 
@@ -36,7 +37,8 @@ public class FournisseurView extends CardView {
     public interface FournisseurViewListener {
         void onClick();
 
-        void onAdd();
+        void onCall();
+        void onMail();
         //void onEdit();
         //void onDelete();
     }
@@ -67,6 +69,23 @@ public class FournisseurView extends CardView {
             public void onClick(View view) {
                 if (listener != null)
                     listener.onClick();
+            }
+        });
+
+        ImageView bCall = findViewById(R.id.iv_button_call);
+        ImageView bMail = findViewById(R.id.iv_button_mail);
+
+        bCall.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onCall();
+            }
+        });
+
+        bMail.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onMail();
             }
         });
 

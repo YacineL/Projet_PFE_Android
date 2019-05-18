@@ -8,16 +8,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.example.projet_pfe_android.Adapters.FournisseurAdapter;
 import com.example.projet_pfe_android.Model.Fournisseur;
-import com.example.projet_pfe_android.Model.Product;
-
 import java.util.List;
 
 public class ListFournisseur extends AppCompatActivity {
@@ -25,7 +21,6 @@ public class ListFournisseur extends AppCompatActivity {
 
     private androidx.appcompat.widget.SearchView searchView;
     private FournisseurAdapter adapter;
-    private Fournisseur selectedFournisseur;
     private AppViewModel viewModel;
 
 
@@ -33,7 +28,7 @@ public class ListFournisseur extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_fournisseur);
-        getSupportActionBar().setTitle("Produits");
+        getSupportActionBar().setTitle("Fournisseurs");
 
         setupRecyclerView();
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
@@ -62,9 +57,16 @@ public class ListFournisseur extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler);
         adapter = new FournisseurAdapter(new FournisseurAdapter.FournisseurAdapterListener() {
             @Override
-            public void onAdd(Fournisseur fournisseur) {
-                selectedFournisseur= fournisseur;
+            public void onCall(Fournisseur fournisseur) {
+                Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onMail(Fournisseur fournisseur) {
+                Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
 
