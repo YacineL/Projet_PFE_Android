@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.projet_pfe_android.Model.Fournisseur;
 
@@ -27,6 +28,9 @@ public interface FournisseurDao {
     @Delete
     void deleteFournisseur(Fournisseur fournisseur);
 
-     }
+
+    @Update
+    void updateFournisseur(Fournisseur fournisseur);
+}
 
 
