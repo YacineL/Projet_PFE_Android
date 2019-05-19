@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FournisseurView" />
-        <activity android:name=".ListFournisseur" >
+        <activity android:name=".Add_fournisseur" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +25,8 @@
 
         </activity>
         <activity android:name=".Dashboard" />
-        <activity android:name=".Add_fournisseur" />
-        <activity android:name=".AddProduct" >
+        <activity android:name=".AddProduct" />
+        <activity android:name=".ListFournisseur" >
 
 
         </activity>
