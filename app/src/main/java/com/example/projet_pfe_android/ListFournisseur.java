@@ -8,6 +8,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,11 +62,16 @@ public class ListFournisseur extends AppCompatActivity {
             @Override
             public void onCall(Fournisseur fournisseur) {
                 Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
+                Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+fournisseur.getNumeroTel()));
+                startActivity(dial);
             }
 
             @Override
             public void onMail(Fournisseur fournisseur) {
                 Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
+                Intent email = new Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:"+fournisseur.getEmailFournisseur()));
+                startActivity(email);
+
             }
 
 
