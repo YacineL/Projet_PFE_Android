@@ -23,7 +23,7 @@ public class Product {
 
     public Product(String name,String brand,String description,
                    float safetyStockQty,String uom,double unitPrice,
-                   double salePrice,String serial_number){
+                   double salePrice,String pictureURI,String serial_number){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -32,6 +32,8 @@ public class Product {
         this.unitPrice=unitPrice;
         this.salePrice=salePrice;
         this.serial_number=serial_number;
+        this.pictureURI=pictureURI;
+
     }
 
     @PrimaryKey(autoGenerate = true) //Définit id en tant que clé primaire

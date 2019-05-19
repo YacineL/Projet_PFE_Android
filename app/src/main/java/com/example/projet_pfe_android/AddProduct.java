@@ -38,6 +38,7 @@ public class AddProduct extends AppCompatActivity {
 
     private AppViewModel viewModel;
     private Uri mCurrentProductUri;
+    public Uri imagepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class AddProduct extends AppCompatActivity {
                                 break;
                             case 1:
                                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
                                 break;
                         }
@@ -140,6 +141,7 @@ public class AddProduct extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = data.getData();
                     imageview.setImageURI(selectedImage);
+                    imagepath=selectedImage;
                 }
 
                 break;
@@ -147,6 +149,7 @@ public class AddProduct extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = data.getData();
                     imageview.setImageURI(selectedImage);
+                    imagepath=selectedImage;
                 }
                 break;
             case 0x0000c0de: //REQUEST_CODE of IntentIntegrator of the zxing library
@@ -214,6 +217,7 @@ public class AddProduct extends AppCompatActivity {
                     et_uom.getText().toString(),
                     Double.parseDouble(et_prix_achat.getText().toString()),
                     Double.valueOf(et_prix_vente.getText().toString()),
+                    imagepath.toString(),
                     et_numS.getText().toString()));
         }
     }
