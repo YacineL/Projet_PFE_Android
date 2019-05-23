@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
@@ -12,12 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class ListProduit extends AppCompatActivity {
     private AppViewModel viewModel;
 
     private ConstraintLayout clValidationWindow;
+    private FrameLayout flValidationWindow;
     private TextView tvProductName;
     private AppCompatEditText etQuantity;
     private Button bValider, bAnnuler;
@@ -44,7 +48,9 @@ public class ListProduit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_produit);
-        getSupportActionBar().setTitle("Produits");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Produits");
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         setupRecyclerView();
 
@@ -78,6 +84,7 @@ public class ListProduit extends AppCompatActivity {
 
     private void setupValidationWindow() {
         clValidationWindow = findViewById(R.id.cl_validation_window);
+        flValidationWindow = findViewById(R.id.fl_validation_window);
         tvProductName = findViewById(R.id.tv_nom_produit);
         etQuantity = findViewById(R.id.et_quantity);
         bValider = findViewById(R.id.b_valider);
@@ -114,10 +121,12 @@ public class ListProduit extends AppCompatActivity {
 
     private void hideValidationWindow() {
         clValidationWindow.setVisibility(View.GONE);
+        flValidationWindow.setVisibility(View.GONE);
     }
 
     private void showValidationWindow() {
         clValidationWindow.setVisibility(View.VISIBLE);
+        flValidationWindow.setVisibility(View.VISIBLE);
         tvProductName.setText(selectedProduct.getName());
         etQuantity.setText(Float.toString(selectedProduct.getTransactionQty()));
     }

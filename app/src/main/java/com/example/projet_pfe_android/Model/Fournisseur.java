@@ -3,6 +3,7 @@ package com.example.projet_pfe_android.Model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -13,12 +14,14 @@ public class Fournisseur{
 //        Required Empty Constructor
     }
 
+    @Ignore
     public Fournisseur(String nom , String numeroTel, String emailFournisseur) {
         this.nom=nom;
         this.numeroTel=numeroTel;
         this.emailFournisseur=emailFournisseur;
     }
 
+    @Ignore
     public Fournisseur(String nom , String prenom , String numeroTel, String emailFournisseur
                           , String rue, String ville , String pays){
         this.nom=nom;

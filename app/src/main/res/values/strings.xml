@@ -7,12 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Produit</string>
-    <string name="menu_gallery">Fournisseur</string>
+    <string name="menu_home">Produits</string>
+    <string name="menu_gallery">Fournisseurs</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_share">Partager</string>
+    <string name="menu_send">Nous Contacter</string>
     <string name="Nomp"> Nom </string>
     <string name="Nomp1"> Nom</string>
     <string name="boutton"> Générales </string>
@@ -43,5 +43,8 @@
     <string name="benefice"> Bénéfice: </string>
     <string name="benefice1"> 0000000</string>
 
-
+    <string-array name="transaction_types">
+        <item>Vente</item>
+        <item>Réception</item>
+    </string-array>
 </resources>

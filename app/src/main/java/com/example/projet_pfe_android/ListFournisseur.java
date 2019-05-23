@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -8,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,17 +21,17 @@ import java.util.List;
 
 public class ListFournisseur extends AppCompatActivity {
 
-
     private androidx.appcompat.widget.SearchView searchView;
     private FournisseurAdapter adapter;
     private AppViewModel viewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_fournisseur);
-        getSupportActionBar().setTitle("Fournisseurs");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Fournisseurs");
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         setupRecyclerView();
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);

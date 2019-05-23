@@ -35,7 +35,6 @@ public class Product {
         this.salePrice=salePrice;
         this.serial_number=serial_number;
         this.pictureURI=pictureURI;
-
     }
 
     @PrimaryKey(autoGenerate = true) //Définit id en tant que clé primaire
