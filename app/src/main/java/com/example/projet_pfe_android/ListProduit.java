@@ -98,6 +98,7 @@ public class ListProduit extends AppCompatActivity {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
                     if (selectedProduct != null) {
                         selectedProduct.setTransactionQty(qty);
+//                        viewModel.addToCurrentTransaction(selectedProduct);
                         viewModel.updateProduct(selectedProduct);
                         searchView.setQuery("", false);
                         Toast.makeText(ListProduit.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
@@ -159,7 +160,6 @@ public class ListProduit extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
-                    Toast.makeText(ListProduit.this, "Swiped !", Toast.LENGTH_SHORT).show();
                 }
             }
         }).attachToRecyclerView(recyclerView);

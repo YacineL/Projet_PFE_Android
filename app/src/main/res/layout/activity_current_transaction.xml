@@ -4,26 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CurrentTransactionActivity"
-    android:padding="8dp">
+    android:padding="8dp"
+    tools:context=".CurrentTransactionActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_label_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Type :"
-        android:textSize="16dp"
         android:textColor="@android:color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sp_type"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:entries="@array/transaction_types"
-        app:layout_constraintTop_toTopOf="@id/tv_label_type"
         app:layout_constraintBottom_toBottomOf="@id/tv_label_type"
-        app:layout_constraintStart_toEndOf="@id/tv_label_type" />
+        app:layout_constraintStart_toEndOf="@id/tv_label_type"
+        app:layout_constraintTop_toTopOf="@id/tv_label_type" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_type" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        android:layout_marginTop="8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total :"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:gravity="center"
+            android:text="2,130.00"
+            android:textColor="@android:color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_label_total"
+            app:layout_constraintEnd_toStartOf="@+id/tv_currency"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_total" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="DZD"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_total" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
