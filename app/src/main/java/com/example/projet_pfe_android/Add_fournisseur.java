@@ -111,12 +111,5 @@ public class Add_fournisseur extends AppCompatActivity {
                     et_ville.getText().toString(),
                     et_pays.getText().toString() ));
         }
-
-
-
-
-
-
-
     }
 }

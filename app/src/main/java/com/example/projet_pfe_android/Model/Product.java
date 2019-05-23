@@ -16,11 +16,13 @@ public class Product {
         //Required empty constructor
     }
 
+    @Ignore
     public Product(String name, int availableQty) {
         this.name = name;
         this.availableQty = availableQty;
     }
 
+    @Ignore
     public Product(String name,String brand,String description,
                    float safetyStockQty,String uom,double unitPrice,
                    double salePrice,String serial_number){
