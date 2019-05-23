@@ -14,19 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FournisseurView" />
-        <activity android:name=".ListFournisseur" >
+        <activity android:name=".AddProduct" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListProduit">
+        <activity android:name=".Add_fournisseur">
 
         </activity>
         <activity android:name=".Dashboard" />
-        <activity android:name=".Add_fournisseur" />
-        <activity android:name=".AddProduct" >
+        <activity android:name=".ListProduit" />
+        <activity android:name=".ListFournisseur" >
 
 
         </activity>
