@@ -66,18 +66,23 @@ public class ListProduit extends AppCompatActivity {
         });
 
         setupValidationWindow();
-        FloatingActionButton fab=findViewById(R.id.fab_produit);
+
+        //viewModel.deleteAllProducts();
+<<<<<<<<< Temporary merge branch 1
+//        createDummyList();
+//        createDummyList();
+=========
+        createDummyList();
+        createDummyList();
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_produit);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ListProduit.this, AddProduct.class);
+                Intent intent = new Intent(ListProduit.this,AddProduct.class);
                 startActivityForResult(intent,0);
             }
         });
-
-        //viewModel.deleteAllProducts();
-//        createDummyList();
-//        createDummyList();
+>>>>>>>>> Temporary merge branch 2
     }
 
     private void createDummyList() {
@@ -210,8 +215,7 @@ public class ListProduit extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0)
-        {
+        if (requestCode==0){
             setupRecyclerView();
 
             viewModel = ViewModelProviders.of(this).get(AppViewModel.class);

@@ -23,7 +23,7 @@ public class AppViewModel extends AndroidViewModel {
     //Le AppViewModel se charge de ramener les données nécessaires depuis la BDD à travers Repository
 
     private Repository repository;
-    private LiveData<List<Product>> products;
+    private LiveData<List<Product>> products, transactionProducts;
     private LiveData<List<Fournisseur>> fournisseurs;
     private Transaction currentTransaction;
 
@@ -32,6 +32,7 @@ public class AppViewModel extends AndroidViewModel {
         repository = new Repository(getApplication());
         products = repository.getAllProducts();
         fournisseurs = repository.getAllFournisseurs();
+        transactionProducts=repository.getCurrentTransactionProducts();
     }
 
 
@@ -76,22 +77,33 @@ public class AppViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Product>> getCurrentTransactionProducts(){
-        return repository.getCurrentTransactionProducts();
+        return transactionProducts;
     }
-//    public void addProductToCurrentTransaction(Product product) {
-//        if (currentTransaction.contains(product)) {
-//            if (product.getTransactionQty() == 0)
-//                currentTransaction.remove(product);
-//            else
-//                currentTransaction.get(currentTransaction.indexOf(product)).setTransactionQty(product.getTransactionQty());
-//        } else
-//            currentTransaction.add(product);
-//    }
 
     public Transaction getCurrentTransaction(){
         if (currentTransaction==null)
             currentTransaction = new Transaction();
 
         return currentTransaction;
+    }
+
+    public void removeFromCurrentTransaction(Product product){
+        product.setTransactionQty(0);
+        updateProduct(product);
+    }
+
+    public void removeFromCurrentTransaction(List<Product> products){
+        for (Product p : products){
+            p.setTransactionQty(0);
+        }
+        updateProducts(products);
+    }
+
+    public void emptyCurrentTransaction(){
+        removeFromCurrentTransaction(transactionProducts.getValue());
+    }
+
+    private void updateProducts(List<Product> products) {
+        repository.updateProducts(products);
     }
 }

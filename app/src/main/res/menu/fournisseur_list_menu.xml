@@ -7,4 +7,9 @@
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+    <item android:id="@+id/add_fournisseur"
+        android:title="Ajouter Fournisseur"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_add_white"/>
 </menu>
