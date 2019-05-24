@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -11,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.projet_pfe_android.AddProduct;
+import com.example.projet_pfe_android.Add_fournisseur;
 import com.example.projet_pfe_android.CustomViews.FournisseurView;
 import com.example.projet_pfe_android.Model.Fournisseur;
 import java.util.ArrayList;
@@ -69,6 +73,9 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
         holder.setListener(new FournisseurView.FournisseurViewListener() {
             @Override
             public void onClick() {
+                Context context=holder.getContext();
+                Intent intent=new Intent(context, Add_fournisseur.class);
+                context.startActivity(intent);
                 Toast.makeText(holder.getContext(), "Click !", Toast.LENGTH_SHORT).show();
             }
 

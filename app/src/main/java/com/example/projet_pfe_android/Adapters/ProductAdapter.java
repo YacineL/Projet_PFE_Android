@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.projet_pfe_android.AddProduct;
 import com.example.projet_pfe_android.CustomViews.ProductView;
 import com.example.projet_pfe_android.Model.Product;
 import java.util.ArrayList;
@@ -65,6 +68,9 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
             @Override
             public void onClick() {
 //                Execute the corresponding method from adapter's custom listener
+                Context context=holder.getContext();
+                Intent intent=new Intent(context, AddProduct.class);
+                context.startActivity(intent);
                 Toast.makeText(holder.getContext(), "Click !", Toast.LENGTH_SHORT).show();
             }
 
