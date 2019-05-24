@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -66,9 +67,10 @@ public class ListProduit extends AppCompatActivity {
 
         setupValidationWindow();
 
-        //viewModel.deleteAllProducts();
+//        viewModel.deleteAllProducts();
 //        createDummyList();
 //        createDummyList();
+
     }
 
     private void createDummyList() {
@@ -198,4 +200,21 @@ public class ListProduit extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==0){
+            setupRecyclerView();
+
+            viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+            viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
+                @Override
+                public void onChanged(List<Product> products) {
+                    adapter.submitList(products);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 }
