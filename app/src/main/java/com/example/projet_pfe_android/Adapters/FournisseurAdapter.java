@@ -130,7 +130,7 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
                 filteredList = fournisseurs;
             else
                 for (Fournisseur fournisseur : fournisseurs)
-                    if (fournisseur.getNom().toLowerCase().trim().contains(criteria))
+                    if ((fournisseur.getNom()+fournisseur.getPrenom()).toLowerCase().trim().contains(criteria))
                         filteredList.add(fournisseur);
 
 
