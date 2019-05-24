@@ -68,6 +68,7 @@ public class TransactionAdapter extends ListAdapter<TransactionLine, Transaction
 
         public TransactionHolder(@NonNull TransactionLineView transactionLineView) {
             super(transactionLineView);
+            this.transactionLineView = transactionLineView;
         }
 
         public void setTransactionLine(TransactionLine transactionLine){

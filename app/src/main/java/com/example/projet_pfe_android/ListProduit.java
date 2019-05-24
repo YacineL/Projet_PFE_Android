@@ -43,7 +43,6 @@ public class ListProduit extends AppCompatActivity {
     private androidx.appcompat.widget.SearchView searchView;
     private Product selectedProduct;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,7 @@ public class ListProduit extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Produits");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_home);
 
         setupRecyclerView();
 
@@ -67,8 +67,8 @@ public class ListProduit extends AppCompatActivity {
         setupValidationWindow();
 
         //viewModel.deleteAllProducts();
-        createDummyList();
-        createDummyList();
+//        createDummyList();
+//        createDummyList();
     }
 
     private void createDummyList() {
@@ -149,7 +149,7 @@ public class ListProduit extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -190,8 +190,10 @@ public class ListProduit extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search:
-
+            case R.id.cart:
+                Intent intent = new Intent(ListProduit.this, CurrentTransactionActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
