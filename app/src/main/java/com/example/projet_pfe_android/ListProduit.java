@@ -1,7 +1,6 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -44,7 +43,6 @@ public class ListProduit extends AppCompatActivity {
     private androidx.appcompat.widget.SearchView searchView;
     private Product selectedProduct;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +50,7 @@ public class ListProduit extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Produits");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_home);
 
         setupRecyclerView();
 
@@ -68,16 +67,8 @@ public class ListProduit extends AppCompatActivity {
         setupValidationWindow();
 
         //viewModel.deleteAllProducts();
-        createDummyList();
-        createDummyList();
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_produit);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListProduit.this,AddProduct.class);
-                startActivityForResult(intent,0);
-            }
-        });
+//        createDummyList();
+//        createDummyList();
     }
 
     private void createDummyList() {
@@ -107,6 +98,7 @@ public class ListProduit extends AppCompatActivity {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
                     if (selectedProduct != null) {
                         selectedProduct.setTransactionQty(qty);
+//                        viewModel.addToCurrentTransaction(selectedProduct);
                         viewModel.updateProduct(selectedProduct);
                         searchView.setQuery("", false);
                         Toast.makeText(ListProduit.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
@@ -157,7 +149,7 @@ public class ListProduit extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -168,7 +160,6 @@ public class ListProduit extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
-                    Toast.makeText(ListProduit.this, "Swiped !", Toast.LENGTH_SHORT).show();
                 }
             }
         }).attachToRecyclerView(recyclerView);
@@ -199,27 +190,12 @@ public class ListProduit extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search:
-
+            case R.id.cart:
+                Intent intent = new Intent(ListProduit.this, CurrentTransactionActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0){
-            setupRecyclerView();
-
-            viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-            viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
-                @Override
-                public void onChanged(List<Product> products) {
-                    adapter.submitList(products);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
 }

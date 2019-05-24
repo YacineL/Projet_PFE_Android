@@ -75,7 +75,12 @@ public class Repository {
         new  DeleteFournisseurAsync(fournisseurDao).execute(fournisseur);
     }
 
+    public LiveData<List<Product>> getCurrentTransactionProducts() {
+        return productDao.getCurrentTransactionProducts();
+    }
+
 //    Async Tasks : DB Transactions
+
 
     private class DeleteProductAsync extends AsyncTask<Product,Void,Void>{
         private ProductDao productDao;
