@@ -187,6 +187,7 @@ public class AddProduct extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.valider):
                 saveProduct();
+                finish();
                 break;
             case (R.id.delete) :
                 break;

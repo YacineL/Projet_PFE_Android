@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -14,9 +15,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import com.example.projet_pfe_android.Adapters.FournisseurAdapter;
 import com.example.projet_pfe_android.Model.Fournisseur;
+import com.example.projet_pfe_android.Model.Product;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 public class ListFournisseur extends AppCompatActivity {
@@ -44,8 +49,16 @@ public class ListFournisseur extends AppCompatActivity {
             }
         });
 
-        viewModel.deleteAllFournisseurs();
-        createDummyList();
+        //viewModel.deleteAllFournisseurs();
+        //createDummyList();
+        FloatingActionButton fab=findViewById(R.id.fab_fournisseur);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ListFournisseur.this,Add_fournisseur.class);
+                startActivityForResult(intent,0);
+            }
+        });
     }
 
     private void createDummyList() {
@@ -128,4 +141,23 @@ public class ListFournisseur extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==0)
+        {
+            setupRecyclerView();
+
+            viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+            viewModel.getAllFournisseurs().observe(this, new Observer<List<Fournisseur>>() {
+                @Override
+                public void onChanged(List<Fournisseur> fournisseurs) {
+                    adapter.submitList(fournisseurs);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(ListFournisseur.this, "Produits : " + fournisseurs.size(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 }
+

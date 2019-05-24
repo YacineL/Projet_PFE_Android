@@ -81,6 +81,7 @@ public class Add_fournisseur extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.valider2):
                 saveFournisseur();
+                finish();
                 break;
             case (R.id.delete2) :
                 break;

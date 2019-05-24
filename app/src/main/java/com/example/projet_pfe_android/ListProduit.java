@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -65,6 +66,14 @@ public class ListProduit extends AppCompatActivity {
         });
 
         setupValidationWindow();
+        FloatingActionButton fab=findViewById(R.id.fab_produit);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ListProduit.this, AddProduct.class);
+                startActivityForResult(intent,0);
+            }
+        });
 
         //viewModel.deleteAllProducts();
 //        createDummyList();
@@ -198,4 +207,22 @@ public class ListProduit extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==0)
+        {
+            setupRecyclerView();
+
+            viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+            viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
+                @Override
+                public void onChanged(List<Product> products) {
+                    adapter.submitList(products);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 }
