@@ -16,7 +16,8 @@
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/cl_header"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sp_type"
@@ -91,7 +92,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="491dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/cl_header"
         tools:layout_editor_absoluteX="8dp" />

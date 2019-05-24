@@ -79,7 +79,25 @@ public class Repository {
         return productDao.getCurrentTransactionProducts();
     }
 
+    public void updateProducts(List<Product> products) {
+        new UpdateProductsAsync(productDao).execute(products);
+    }
+
 //    Async Tasks : DB Transactions
+
+    private class UpdateProductsAsync extends AsyncTask<List<Product>,Void,Void>{
+        private ProductDao productDao;
+
+        public UpdateProductsAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Void doInBackground(List<Product>... lists) {
+            productDao.updateProducts(lists[0]);
+            return null;
+        }
+    }
 
 
     private class DeleteProductAsync extends AsyncTask<Product,Void,Void>{

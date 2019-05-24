@@ -38,4 +38,7 @@ public interface ProductDao {
 
     @Query("SELECT * FROM products WHERE transaction_qty <> 0")
     LiveData<List<Product>> getCurrentTransactionProducts();
+
+    @Update
+    void updateProducts(List<Product> products);
 }
