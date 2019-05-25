@@ -5,7 +5,7 @@
     <item
         android:id="@+id/valider"
         android:title="Valider"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_check"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/delete"

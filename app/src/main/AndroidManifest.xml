@@ -19,7 +19,8 @@
         <activity android:name=".CurrentTransactionActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".FournisseurView" />
-        <activity android:name=".AddProduct"></activity>
+        <activity android:name=".AddProduct"
+            android:parentActivityName=".ListProduit"></activity>
         <activity android:name=".Add_fournisseur"></activity>
         <activity android:name=".Dashboard" />
         <activity

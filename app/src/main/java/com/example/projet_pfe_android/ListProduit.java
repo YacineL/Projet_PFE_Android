@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +26,7 @@ import android.widget.Toast;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.projet_pfe_android.Util.JavaUtil;
 
 import java.util.List;
 
@@ -72,14 +71,6 @@ public class ListProduit extends AppCompatActivity {
 //        createDummyList();
         createDummyList();
         createDummyList();
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_produit);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListProduit.this,AddProduct.class);
-                startActivityForResult(intent,0);
-            }
-        });
     }
 
     private void createDummyList() {
@@ -158,6 +149,7 @@ public class ListProduit extends AppCompatActivity {
             @Override
             public void onClick(Product product) {
                 Intent intent = new Intent(ListProduit.this, AddProduct.class);
+                intent.putExtra(JavaUtil.PRODUCT_ID_KEY,product.getId());
                 startActivity(intent);
             }
         });
@@ -206,10 +198,15 @@ public class ListProduit extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent intent = new Intent(ListProduit.this, CurrentTransactionActivity.class);
+                intent = new Intent(ListProduit.this, CurrentTransactionActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.new_product:
+                intent = new Intent(ListProduit.this,AddProduct.class);
+                startActivityForResult(intent,0);
                 break;
         }
         return super.onOptionsItemSelected(item);

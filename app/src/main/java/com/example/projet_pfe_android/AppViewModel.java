@@ -1,7 +1,6 @@
 package com.example.projet_pfe_android;
 
 import android.app.Application;
-import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,7 +10,6 @@ import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -118,5 +116,17 @@ public class AppViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         return stockValue;
+    }
+
+    public Product getProductById(int productId) {
+        Product product = null;
+        try {
+            product = repository.getProductById(productId);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 }

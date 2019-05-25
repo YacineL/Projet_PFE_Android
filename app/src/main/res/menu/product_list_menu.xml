@@ -14,4 +14,8 @@
         android:icon="@drawable/ic_cart"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/new_product"
+        android:title="Nouveau Produit"
+        app:showAsAction="never"/>
+
 </menu>

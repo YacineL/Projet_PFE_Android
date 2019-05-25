@@ -88,8 +88,25 @@ public class Repository {
         return new GetStockValueAsync(productDao).execute().get();
     }
 
+    public Product getProductById(int productId) throws ExecutionException, InterruptedException {
+        return new GetProductByIdAsync(productDao).execute(productId).get();
+    }
+
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------
+
+    private class GetProductByIdAsync extends AsyncTask<Integer,Void,Product>{
+        private ProductDao productDao;
+
+        public GetProductByIdAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Product doInBackground(Integer... integers) {
+            return productDao.getProductById(integers[0]);
+        }
+    }
 
     private class GetStockValueAsync extends AsyncTask<Void,Void,Double>{
         private ProductDao productDao;
