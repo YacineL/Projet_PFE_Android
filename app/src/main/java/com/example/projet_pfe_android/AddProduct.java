@@ -1,10 +1,5 @@
 package com.example.projet_pfe_android;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,10 +15,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.apache.commons.lang3.StringUtils;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
@@ -69,7 +73,18 @@ public class AddProduct extends AppCompatActivity {
             product = viewModel.getProductById(productId);
             if (product != null) {
                 et_nom.setText(product.getName());
+                et_brand.setText(product.getBrand());
                 et_description.setText(product.getDescription());
+                et_Stock1.setText(String.valueOf(product.getSafetyStockQty()));
+                et_Stockop.setText(String.valueOf(product.getMIP()));
+                et_uom.setText(product.getUOM());
+                et_prix_achat.setText(String.valueOf(product.getUnitPrice()));
+                et_prix_vente.setText(String.valueOf(product.getSalePrice()));
+                final String pictureURI = product.getPictureURI();
+                et_numS.setText(product.getSerial_number());
+                if (StringUtils.isNotBlank(pictureURI)) {
+                    iv_picture.setImageURI(Uri.parse(pictureURI));
+                }
 //                To be completed by populating the remaining fields
             }
         }
