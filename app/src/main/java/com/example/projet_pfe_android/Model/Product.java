@@ -20,6 +20,7 @@ public class Product {
     public Product(String name, int availableQty) {
         this.name = name;
         this.availableQty = availableQty;
+        unitPrice=2;
     }
 
     @Ignore

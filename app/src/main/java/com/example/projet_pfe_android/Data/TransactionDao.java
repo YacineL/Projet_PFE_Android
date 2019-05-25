@@ -23,4 +23,5 @@ public interface TransactionDao {
 
     @Query("DELETE FROM transactions")
     void deleteAllTransactions();
+
 }

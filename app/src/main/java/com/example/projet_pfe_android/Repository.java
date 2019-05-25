@@ -12,6 +12,7 @@ import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /***
  * Dans cette classe on va implémenter tous les accès à la base de donnée
@@ -83,7 +84,25 @@ public class Repository {
         new UpdateProductsAsync(productDao).execute(products);
     }
 
+    public double getStockValue() throws ExecutionException, InterruptedException {
+        return new GetStockValueAsync(productDao).execute().get();
+    }
+
 //    Async Tasks : DB Transactions
+//    -------------------------------------------------------------------------------------------------------------------------
+
+    private class GetStockValueAsync extends AsyncTask<Void,Void,Double>{
+        private ProductDao productDao;
+
+        public GetStockValueAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Double doInBackground(Void... voids) {
+            return productDao.getStockValue();
+        }
+    }
 
     private class UpdateProductsAsync extends AsyncTask<List<Product>,Void,Void>{
         private ProductDao productDao;

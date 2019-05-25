@@ -13,6 +13,7 @@ import com.example.projet_pfe_android.Model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class AppViewModel extends AndroidViewModel {
     //AppViewModel permet de gérer les changements de configuration : orientation, langue ...
@@ -103,7 +104,19 @@ public class AppViewModel extends AndroidViewModel {
         removeFromCurrentTransaction(transactionProducts.getValue());
     }
 
-    private void updateProducts(List<Product> products) {
+    public void updateProducts(List<Product> products) {
         repository.updateProducts(products);
+    }
+
+    public double getStockValue(){
+        double stockValue=0;
+        try {
+            stockValue = repository.getStockValue();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return stockValue;
     }
 }

@@ -36,9 +36,20 @@ public interface ProductDao {
     @Update
     void updateProduct(Product product);
 
+
     @Query("SELECT * FROM products WHERE transaction_qty <> 0")
     LiveData<List<Product>> getCurrentTransactionProducts();
 
     @Update
     void updateProducts(List<Product> products);
+
+//    @Query("UPDATE available_qty FROM products ,transactions  WHERE id.product=id.transaction and available_qty=:available_qty+transaction_qty")
+    @Query("UPDATE products SET available_qty = available_qty+:transactionQty WHERE id=:productId")
+    void commitTransactionQty(float transactionQty, int productId);
+
+//    @Query("SELECT available_qty,unit_price, SUM(stock) FROM products WHERE available_qty*unit_price GROUP BY stock");
+//    @Query("SELECT available_qty,unit_price, SUM(stock) FROM products WHERE available_qty*unit_price GROUP BY stock");
+
+    @Query("SELECT SUM(available_qty * unit_price) FROM products")
+    double getStockValue();
 }

@@ -86,14 +86,14 @@ public class ListProduit extends AppCompatActivity {
     }
 
     private void createDummyList() {
-        viewModel.insertProduct(new Product("CocaCola 1.5L", 70));
-        viewModel.insertProduct(new Product("CocaCola Canette", 70));
-        viewModel.insertProduct(new Product("CocaCola 2L", 70));
-        viewModel.insertProduct(new Product("CocaCola 0.25L", 70));
-        viewModel.insertProduct(new Product("Le chat 500g", 70));
-        viewModel.insertProduct(new Product("Le chat 5Kg", 70));
-        viewModel.insertProduct(new Product("Le chien !", 70));
-        viewModel.insertProduct(new Product("Milka", 70));
+        viewModel.insertProduct(new Product("CocaCola 1.5L", 2));
+        viewModel.insertProduct(new Product("CocaCola Canette", 3));
+//        viewModel.insertProduct(new Product("CocaCola 2L", 70));
+//        viewModel.insertProduct(new Product("CocaCola 0.25L", 70));
+//        viewModel.insertProduct(new Product("Le chat 500g", 70));
+//        viewModel.insertProduct(new Product("Le chat 5Kg", 70));
+//        viewModel.insertProduct(new Product("Le chien !", 70));
+//        viewModel.insertProduct(new Product("Milka", 70));
     }
 
     private void setupValidationWindow() {
