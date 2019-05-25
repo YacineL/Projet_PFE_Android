@@ -51,6 +51,8 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
         void onCall(Fournisseur fournisseur);
 
         void onMail(Fournisseur fournisseur);
+
+        void onClick(Fournisseur item);
     }
 
     @Override
@@ -73,10 +75,8 @@ public class FournisseurAdapter extends ListAdapter<Fournisseur, FournisseurAdap
         holder.setListener(new FournisseurView.FournisseurViewListener() {
             @Override
             public void onClick() {
-                Context context=holder.getContext();
-                Intent intent=new Intent(context, Add_fournisseur.class);
-                context.startActivity(intent);
-                Toast.makeText(holder.getContext(), "Click !", Toast.LENGTH_SHORT).show();
+                if (getItem(position) != null)
+                    fournisseurAdapterListener.onClick(getItem(position));
             }
 
             @Override

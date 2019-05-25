@@ -68,10 +68,8 @@ public class ListProduit extends AppCompatActivity {
         setupValidationWindow();
 
         //viewModel.deleteAllProducts();
-<<<<<<<<< Temporary merge branch 1
 //        createDummyList();
 //        createDummyList();
-=========
         createDummyList();
         createDummyList();
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_produit);
@@ -82,7 +80,6 @@ public class ListProduit extends AppCompatActivity {
                 startActivityForResult(intent,0);
             }
         });
->>>>>>>>> Temporary merge branch 2
     }
 
     private void createDummyList() {
@@ -156,6 +153,12 @@ public class ListProduit extends AppCompatActivity {
             public void onAdd(Product product) {
                 selectedProduct = product;
                 showValidationWindow();
+            }
+
+            @Override
+            public void onClick(Product product) {
+                Intent intent = new Intent(ListProduit.this, AddProduct.class);
+                startActivity(intent);
             }
         });
 

@@ -87,6 +87,12 @@ public class ListFournisseur extends AppCompatActivity {
 
             }
 
+            @Override
+            public void onClick(Fournisseur item) {
+                Intent intent=new Intent(ListFournisseur.this,Add_fournisseur.class);
+                startActivity(intent);
+            }
+
 
         });
 

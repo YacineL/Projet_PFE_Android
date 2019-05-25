@@ -45,6 +45,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
     }
     public interface ProductAdapterListener{
         void onAdd(Product product);
+        void onClick(Product product);
     }
 
     @Override
@@ -68,10 +69,8 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
             @Override
             public void onClick() {
 //                Execute the corresponding method from adapter's custom listener
-                Context context=holder.getContext();
-                Intent intent=new Intent(context, AddProduct.class);
-                context.startActivity(intent);
-                Toast.makeText(holder.getContext(), "Click !", Toast.LENGTH_SHORT).show();
+                if (getItem(position)!=null)
+                    productAdapterListener.onClick(getItem(position));
             }
 
             @Override
