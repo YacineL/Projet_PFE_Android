@@ -2,6 +2,8 @@ package com.example.projet_pfe_android;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
@@ -13,10 +15,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private AppViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,9 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        Toast.makeText(this, "Stock Value = "+ JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
     }
 
     @Override
