@@ -9,9 +9,11 @@ public interface TransactionLineDao {
 
 
 
-//    @Query("SELECT TRANSACTIONS.transaction_qty, products.salePrice, SUM(vente_brute) FROM TRANSACTIONS WHERE transaction_qty*salePrice GROUP BY vente_brute");
-//
-//    @Query("SELECT TRANSACTIONS.transaction_qty, products.salePrice,products.unit_price, SUM(benefices) FROM TRANSACTIONS WHERE transaction_qty*(salePrice-unit_price) GROUP BY benefice ")
+// MES NVLE REQUETES DE TRANSACTIONLINES
 
+  @Query("SELECT SUM(transaction_qty * sale_price) FROM products")
+    double getVenteBrute();
 
+   @Query("SELECT SUM(transaction_qty * (sale_price - unit_price))FROM products")
+    double getBenefice();
 }
