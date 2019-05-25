@@ -92,8 +92,25 @@ public class Repository {
         return new GetProductByIdAsync(productDao).execute(productId).get();
     }
 
+    public Fournisseur getFournisseurById(int fournisseurId) throws ExecutionException, InterruptedException {
+        return new GetFournisseurByIdAsync(fournisseurDao).execute(fournisseurId).get();
+    }
+
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------
+
+    private class GetFournisseurByIdAsync extends AsyncTask<Integer,Void,Fournisseur>{
+        private FournisseurDao fournisseurDao;
+
+        public GetFournisseurByIdAsync(FournisseurDao fournisseurDao) {
+            this.fournisseurDao =fournisseurDao;
+        }
+
+        @Override
+        protected Fournisseur doInBackground(Integer... integers) {
+            return fournisseurDao.getFournisseurById(integers[0]);
+        }
+    }
 
     private class GetProductByIdAsync extends AsyncTask<Integer,Void,Product>{
         private ProductDao productDao;

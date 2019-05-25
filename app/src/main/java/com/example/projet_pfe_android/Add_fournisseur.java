@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.List;
@@ -23,7 +24,8 @@ import java.util.List;
 public class Add_fournisseur extends AppCompatActivity {
 
     private AppViewModel viewModel;
-    private Uri mCurrentProductUri;
+    private int fournisseurId;
+    private Fournisseur fournisseur;
 
 
 
@@ -49,13 +51,22 @@ public class Add_fournisseur extends AppCompatActivity {
         EditText et_pays =(EditText)findViewById(R.id.et_pays);
         ImageView iv_picture=(ImageView)findViewById(R.id.iv_picture);
         Intent intent = getIntent();
-        mCurrentProductUri = intent.getData();
 
-        if (mCurrentProductUri == null) {
+        fournisseurId=intent.getIntExtra(JavaUtil.FOURNISSEUR_ID_KEY,JavaUtil.NO_RESULT);
+
+        if (fournisseurId == JavaUtil.NO_RESULT) {
             setTitle("Ajouter fournisseur");
             invalidateOptionsMenu();
         } else {
             setTitle("Modifier fournisseur");
+            fournisseur=viewModel.getFournisseurById(fournisseurId);
+            et_nom.setText(fournisseur.getNom());
+            et_prenom.setText(fournisseur.getPrenom());
+            et_numero_tel.setText(fournisseur.getNumeroTel());
+            et_adresse_mail.setText(fournisseur.getEmailFournisseur());
+            et_rue.setText(fournisseur.getRue());
+            et_ville.setText(fournisseur.getVille());
+            et_pays.setText(fournisseur.getPays());
         }
 
     }
@@ -69,7 +80,7 @@ public class Add_fournisseur extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if (mCurrentProductUri == null) {
+        if (fournisseurId == JavaUtil.NO_RESULT) {
             MenuItem menuItem = menu.findItem(R.id.delete2);
             menuItem.setVisible(false);
         }

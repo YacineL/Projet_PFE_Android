@@ -129,4 +129,16 @@ public class AppViewModel extends AndroidViewModel {
         }
         return product;
     }
+
+    public Fournisseur getFournisseurById(int fournisseurId) {
+        Fournisseur fournisseur = null;
+        try {
+            fournisseur = repository.getFournisseurById(fournisseurId);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return fournisseur;
+    }
 }

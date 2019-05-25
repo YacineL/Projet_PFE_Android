@@ -31,6 +31,9 @@ public interface FournisseurDao {
 
     @Update
     void updateFournisseur(Fournisseur fournisseur);
+
+    @Query("SELECT * FROM fournisseurs WHERE id=:fournisseurId")
+    Fournisseur getFournisseurById(int fournisseurId);
 }
 
 

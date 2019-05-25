@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.projet_pfe_android.Adapters.FournisseurAdapter;
 import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -90,6 +91,7 @@ public class ListFournisseur extends AppCompatActivity {
             @Override
             public void onClick(Fournisseur item) {
                 Intent intent=new Intent(ListFournisseur.this,Add_fournisseur.class);
+                intent.putExtra(JavaUtil.FOURNISSEUR_ID_KEY,item.getId());
                 startActivity(intent);
             }
 
