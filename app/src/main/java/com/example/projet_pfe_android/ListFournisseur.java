@@ -1,5 +1,13 @@
 package com.example.projet_pfe_android;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -10,24 +18,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
+
 import com.example.projet_pfe_android.Adapters.FournisseurAdapter;
 import com.example.projet_pfe_android.Model.Fournisseur;
-import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import static org.apache.commons.lang3.Validate.notNull;
+
 public class ListFournisseur extends AppCompatActivity {
 
-    private androidx.appcompat.widget.SearchView searchView;
     private FournisseurAdapter adapter;
     private AppViewModel viewModel;
 
@@ -36,7 +38,8 @@ public class ListFournisseur extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_fournisseur);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Fournisseurs");
+        notNull(actionBar, "[ListFournisseur][onCreate] actionBar is null");
+        actionBar.setTitle(R.string.FOURNISSEURS_ACTION_BAR_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         setupRecyclerView();
@@ -76,16 +79,29 @@ public class ListFournisseur extends AppCompatActivity {
             @Override
             public void onCall(Fournisseur fournisseur) {
                 Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
-                Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+fournisseur.getNumeroTel()));
+                Intent dial = new Intent(
+                        Intent.ACTION_DIAL,
+                        Uri.parse(
+                                String.format(
+                                    getString(R.string.URI_PHONE_PROTOCOLE_TEMPLATE), fournisseur.getNumeroTel()
+                                )
+                        )
+                );
                 startActivity(dial);
             }
 
             @Override
             public void onMail(Fournisseur fournisseur) {
                 Toast.makeText(ListFournisseur.this, "Fournisseur "+fournisseur.getNom(), Toast.LENGTH_SHORT).show();
-                Intent email = new Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:"+fournisseur.getEmailFournisseur()));
+                Intent email = new Intent(
+                        Intent.ACTION_SENDTO,
+                        Uri.parse(
+                                String.format(
+                                        getString(R.string.URI_MAIL_PROTOCOLE_TEMPLATE), fournisseur.getEmailFournisseur()
+                                )
+                        )
+                );
                 startActivity(email);
-
             }
 
             @Override
@@ -123,8 +139,8 @@ public class ListFournisseur extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.fournisseur_list_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
-        searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
-        searchView.setQueryHint("Recherche...");
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint(getString(R.string.QUERY_HINT_MSG));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -152,8 +168,7 @@ public class ListFournisseur extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0)
-        {
+        if (requestCode==0) {
             setupRecyclerView();
 
             viewModel = ViewModelProviders.of(this).get(AppViewModel.class);

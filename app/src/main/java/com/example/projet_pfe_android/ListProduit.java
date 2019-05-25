@@ -30,6 +30,8 @@ import com.example.projet_pfe_android.Util.JavaUtil;
 
 import java.util.List;
 
+import static org.apache.commons.lang3.Validate.notNull;
+
 public class ListProduit extends AppCompatActivity {
 
     private ProductAdapter adapter;
@@ -48,7 +50,8 @@ public class ListProduit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_produit);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Produits");
+        notNull(actionBar, "[ListProduit][onCreate] actionBar is null");
+        actionBar.setTitle(R.string.PRODUCTS_ACTION_BAR_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_home);
 
@@ -179,7 +182,7 @@ public class ListProduit extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.product_list_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
-        searchView.setQueryHint("Recherche...");
+        searchView.setQueryHint(getString(R.string.QUERY_HINT_MSG));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -205,7 +208,7 @@ public class ListProduit extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.new_product:
-                intent = new Intent(ListProduit.this,AddProduct.class);
+                intent = new Intent(ListProduit.this, AddProduct.class);
                 startActivityForResult(intent,0);
                 break;
         }

@@ -8,6 +8,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Produits</string>
+    <string name="PRODUCTS_ACTION_BAR_TITLE">Produits</string>
+    <string name="FOURNISSEURS_ACTION_BAR_TITLE">Fournisseurs</string>
+    <string name="QUERY_HINT_MSG">Recherche…</string>
     <string name="menu_gallery">Fournisseurs</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
@@ -42,6 +45,8 @@
     <string name="solde"> 00000000</string>
     <string name="benefice"> Bénéfice: </string>
     <string name="benefice1"> 0000000</string>
+    <string name="URI_PHONE_PROTOCOLE_TEMPLATE">tel:%s</string>
+    <string name="URI_MAIL_PROTOCOLE_TEMPLATE">mailto:%s</string>
 
     <string-array name="transaction_types">
         <item>Vente</item>
