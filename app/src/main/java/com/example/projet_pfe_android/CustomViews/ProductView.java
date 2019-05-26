@@ -2,6 +2,7 @@ package com.example.projet_pfe_android.CustomViews;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.R;
 import com.example.projet_pfe_android.Util.ViewUtil;
+import com.squareup.picasso.Picasso;
 
 public class ProductView extends CardView {
 
@@ -24,7 +26,8 @@ public class ProductView extends CardView {
     public void setProduct(Product product) {
         tvName.setText(product.getName());
         tvStock.setText(Float.toString(product.getAvailableQty()));
-        ivProductImg.setImageURI(Uri.parse(product.pictureURI));
+        Picasso.get().load(Uri.parse(product.pictureURI)).into(ivProductImg);
+//        ivProductImg.setImageURI(Uri.parse(product.getPictureURI()));
         if (product.getTransactionQty()!=0){
             tvTransactionQty.setText(Float.toString(product.getTransactionQty()));
             tvTransactionQty.setVisibility(VISIBLE);
@@ -85,6 +88,7 @@ public class ProductView extends CardView {
                     listener.onAdd();
             }
         });
+
     }
 
     public void setMargin(int top, int bottom, int left, int right) {
@@ -97,5 +101,4 @@ public class ProductView extends CardView {
                 ViewUtil.dpToPx(this.getContext(), bottom));
         this.setLayoutParams(params);
     }
-
 }

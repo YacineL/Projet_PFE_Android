@@ -33,6 +33,9 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
     implementation 'com.google.zxing:core:3.2.0'
     implementation 'com.android.support:mediarouter-v7:28.0.0'
