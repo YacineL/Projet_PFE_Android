@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import static java.lang.Math.abs;
+
 //Ceci est un exemple de class définissant une table Room, à utiliser comme modèle pour créer les autres tables
 @Entity(tableName = "products")
 public class Product {
@@ -164,11 +166,7 @@ public class Product {
         this.pictureURI = pictureURI;
     }
 
-    public float getTransactionQty() {
-        return transactionQty;
-    }
+    public float getTransactionQty() { return abs(transactionQty); }
 
-    public void setTransactionQty(float transactionQty) {
-        this.transactionQty = transactionQty;
-    }
+    public void setTransactionQty(float transactionQty) { this.transactionQty = abs(transactionQty); }
 }

@@ -70,10 +70,10 @@ public class ListProduit extends AppCompatActivity {
         setupValidationWindow();
 
         //viewModel.deleteAllProducts();
-//        createDummyList();
-//        createDummyList();
-//        createDummyList();
-//        createDummyList();
+        /*createDummyList();
+          createDummyList();
+          createDummyList();
+          createDummyList();*/
     }
 
     private void createDummyList() {
