@@ -3,6 +3,7 @@ package com.example.projet_pfe_android;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CurrentTransactionActivity.class);
+                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_RECEPTION);
                 startActivity(intent);
             }
         });

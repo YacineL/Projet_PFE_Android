@@ -1,11 +1,13 @@
 package com.example.projet_pfe_android.Data;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.projet_pfe_android.Model.Transaction;
+import com.example.projet_pfe_android.Model.TransactionLine;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public interface TransactionDao {
 
     @Insert
-    void insertTransaction(Transaction transaction);
+    long insertTransaction(Transaction transaction);
 
     @Delete
     void deleteTransaction(Transaction transaction);
@@ -24,4 +26,9 @@ public interface TransactionDao {
     @Query("DELETE FROM transactions")
     void deleteAllTransactions();
 
+    @Insert
+    void insertTransactionLine(TransactionLine transactionLine);
+
+    @Query("SELECT * FROM transaction_lines")
+    LiveData<List<TransactionLine>> getAllTransactionLines();
 }

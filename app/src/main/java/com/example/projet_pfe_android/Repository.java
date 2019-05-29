@@ -5,11 +5,15 @@ import android.os.AsyncTask;
 import android.provider.ContactsContract;
 
 import androidx.lifecycle.LiveData;
+
 import com.example.projet_pfe_android.Data.Database;
 import com.example.projet_pfe_android.Data.FournisseurDao;
 import com.example.projet_pfe_android.Data.ProductDao;
+import com.example.projet_pfe_android.Data.TransactionDao;
 import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Model.Transaction;
+import com.example.projet_pfe_android.Model.TransactionLine;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -22,12 +26,14 @@ public class Repository {
     private Database database;
     private ProductDao productDao;
     private FournisseurDao fournisseurDao;
+    private TransactionDao transactionDao;
     public Repository(Application application) {
 
 //        Connexion à la BDD
         database = Database.getInstance(application); //instance de la BDD
         productDao = database.productDao();
         fournisseurDao= database.fournisseurDao();
+        transactionDao=database.transactionDao();
     }
 
 
@@ -96,9 +102,66 @@ public class Repository {
         return new GetFournisseurByIdAsync(fournisseurDao).execute(fournisseurId).get();
     }
 
+    public void commitTransactionLines(List<TransactionLine> transactionLines){
+        new CommitTransactionLinesAsync(productDao).execute(transactionLines);
+    }
+
+    public int insertTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
+        return new InsertTransactionAsync(transactionDao).execute(transaction).get();
+    }
+
+    public void insertTransactionLines(List<TransactionLine> transactionLines) {
+        new InsertTransactionLinesAsync(transactionDao).execute(transactionLines);
+    }
+
+    public LiveData<List<TransactionLine>> getAllTransactionLines() {
+        return transactionDao.getAllTransactionLines();
+    }
+
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------
 
+    private class InsertTransactionLinesAsync extends AsyncTask<List<TransactionLine>,Void,Void>{
+        private TransactionDao transactionDao;
+
+        public InsertTransactionLinesAsync(TransactionDao transactionDao) {
+            this.transactionDao = transactionDao;
+        }
+
+        @Override
+        protected Void doInBackground(List<TransactionLine>... lists) {
+            for (TransactionLine t : lists[0])
+                transactionDao.insertTransactionLine(t);
+            return null;
+        }
+    }
+    private class InsertTransactionAsync extends AsyncTask<Transaction,Void,Integer>{
+        private TransactionDao transactionDao;
+
+        public InsertTransactionAsync(TransactionDao transactionDao) {
+            this.transactionDao = transactionDao;
+        }
+
+        @Override
+        protected Integer doInBackground(Transaction... transactions) {
+            return (int) transactionDao.insertTransaction(transactions[0]);
+        }
+    }
+
+    private class CommitTransactionLinesAsync extends AsyncTask<List<TransactionLine>,Void,Void>{
+        private ProductDao productDao;
+
+        public CommitTransactionLinesAsync(ProductDao productDao) {
+            this.productDao = productDao;
+        }
+
+        @Override
+        protected Void doInBackground(List<TransactionLine>... lists) {
+            for (TransactionLine t : lists[0])
+                productDao.commitTransactionQty(t.getQuantity(),t.getProductId());
+            return null;
+        }
+    }
     private class GetFournisseurByIdAsync extends AsyncTask<Integer,Void,Fournisseur>{
         private FournisseurDao fournisseurDao;
 

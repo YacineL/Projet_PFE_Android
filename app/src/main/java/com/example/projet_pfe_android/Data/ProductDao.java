@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Model.TransactionLine;
 
 import java.util.List;
 
@@ -45,7 +46,6 @@ public interface ProductDao {
 
     @Query("UPDATE products SET available_qty = available_qty+:transactionQty WHERE id=:productId")
     void commitTransactionQty(float transactionQty, int productId);
-
 
     @Query("SELECT SUM(available_qty * unit_price) FROM products")
     double getStockValue();

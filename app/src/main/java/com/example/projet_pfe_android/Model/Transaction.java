@@ -9,23 +9,21 @@ public class Transaction {
 
     public static final int TYPE_VENTE = 0;
     public static final int TYPE_RECEPTION = 1;
+    public static final int TYPE_AJUSTEMENT = 2;
 
     public Transaction() {
         //Required empty constructor
     }
 
     @PrimaryKey(autoGenerate = true)
-    int id;
+    public int id;
 
-    int type; //Vente ou Réception
-
-    @ColumnInfo(name = "number_of_products")
-    int numberOfProducts;
+    public int type; //Vente ou Réception
 
     @ColumnInfo(name = "total_amount")
-    double totalAmount;
+    public double totalAmount;
 
-    long date;
+    public long date;
 
     public int getType() {
         return type;
@@ -33,14 +31,6 @@ public class Transaction {
 
     public void setType(int type) {
         this.type = type;
-    }
-
-    public int getNumberOfProducts() {
-        return numberOfProducts;
-    }
-
-    public void setNumberOfProducts(int numberOfProducts) {
-        this.numberOfProducts = numberOfProducts;
     }
 
     public double getTotalAmount() {
@@ -56,6 +46,11 @@ public class Transaction {
     }
 
     public void setDate(long date) {
+        this.date = date;
+    }
+
+    public void set(int type, long date) {
+        this.type = type;
         this.date = date;
     }
 }

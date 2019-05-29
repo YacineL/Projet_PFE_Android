@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.Util.JavaUtil;
 
 import java.util.List;
@@ -69,22 +70,13 @@ public class ListProduit extends AppCompatActivity {
 
         setupValidationWindow();
 
-        //viewModel.deleteAllProducts();
-        /*createDummyList();
-          createDummyList();
-          createDummyList();
-          createDummyList();*/
+//        viewModel.deleteAllProducts();
+//        createDummyList(10);
     }
 
-    private void createDummyList() {
-        viewModel.insertProduct(new Product("CocaCola 1.5L", 2));
-        viewModel.insertProduct(new Product("CocaCola Canette", 3));
-//        viewModel.insertProduct(new Product("CocaCola 2L", 70));
-//        viewModel.insertProduct(new Product("CocaCola 0.25L", 70));
-//        viewModel.insertProduct(new Product("Le chat 500g", 70));
-//        viewModel.insertProduct(new Product("Le chat 5Kg", 70));
-//        viewModel.insertProduct(new Product("Le chien !", 70));
-//        viewModel.insertProduct(new Product("Milka", 70));
+    private void createDummyList(int number) {
+        for(int i=1;i<=number;i++)
+            viewModel.insertProduct(new Product("Product "+i,"Brand", "A product", 0,"EA",1.5*i,2*i,"","xxx"));
     }
 
     private void setupValidationWindow() {

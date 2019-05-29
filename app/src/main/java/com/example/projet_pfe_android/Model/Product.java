@@ -74,6 +74,8 @@ public class Product {
     @ColumnInfo(name = "transaction_qty")
     public float transactionQty=0;
 
+    public boolean active;
+
 //    METHODS
 
     public boolean equals(Product otherProduct){
@@ -166,7 +168,15 @@ public class Product {
         this.pictureURI = pictureURI;
     }
 
-    public float getTransactionQty() { return abs(transactionQty); }
+    public float getTransactionQty() { return transactionQty; }
 
     public void setTransactionQty(float transactionQty) { this.transactionQty = abs(transactionQty); }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
+import com.example.projet_pfe_android.Model.TransactionLine;
+import com.example.projet_pfe_android.Util.JavaUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -140,5 +142,29 @@ public class AppViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         return fournisseur;
+    }
+
+    public void commitTransactionLines(List<TransactionLine> transactionLines) {
+        repository.commitTransactionLines(transactionLines);
+    }
+
+    public int insertCurrentTransaction() {
+        int transactionId= JavaUtil.NO_RESULT;
+        try {
+            transactionId = repository.insertTransaction(currentTransaction);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return transactionId;
+    }
+
+    public void insertTransactionLines(List<TransactionLine> transactionLines) {
+        repository.insertTransactionLines(transactionLines);
+    }
+
+    public LiveData<List<TransactionLine>> getAllTransactionLines() {
+        return repository.getAllTransactionLines();
     }
 }

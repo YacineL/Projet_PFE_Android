@@ -8,6 +8,7 @@ public class JavaUtil {
 
     public static final String PRODUCT_ID_KEY = "com.example.projet_pfe_android.Util_PRODUCT_ID_KEY";
     public static final String FOURNISSEUR_ID_KEY = "com.example.projet_pfe_android.Util_FOURNISSEUR_ID_KEY";
+    public static final String TRANSACTION_TYPE_KEY = "com.example.projet_pfe_android.Util_TRANSACTION_TYPE_KEY";
     public static final int NO_RESULT = -1;
 
 //    Gives proper format to currency values for display

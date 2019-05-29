@@ -51,5 +51,6 @@
     <string-array name="transaction_types">
         <item>Vente</item>
         <item>Réception</item>
+        <item>Ajustement</item>
     </string-array>
 </resources>
