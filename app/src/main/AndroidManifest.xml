@@ -21,7 +21,8 @@
         <activity android:name=".FournisseurView" />
         <activity android:name=".AddProduct"
             android:parentActivityName=".ListProduit"></activity>
-        <activity android:name=".Add_fournisseur"></activity>
+        <activity android:name=".Add_fournisseur"
+            android:parentActivityName=".ListFournisseur"></activity>
         <activity android:name=".Dashboard" />
         <activity
             android:name=".ListProduit"

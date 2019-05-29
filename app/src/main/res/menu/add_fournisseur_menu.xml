@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/valider2"
+        android:id="@+id/valider_fournisseur"
         android:title="Valider"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_check"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/delete2"
+        android:id="@+id/delete_fournisseur"
         android:title="Supprimer"
         app:showAsAction="never"/>
 </menu>

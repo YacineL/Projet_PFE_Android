@@ -63,7 +63,6 @@ public class ListProduit extends AppCompatActivity {
             @Override
             public void onChanged(List<Product> products) {
                 adapter.submitList(products);
-                adapter.notifyDataSetChanged();
                 Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -98,6 +97,7 @@ public class ListProduit extends AppCompatActivity {
 //                        viewModel.addToCurrentTransaction(selectedProduct);
                         viewModel.updateProduct(selectedProduct);
                         searchView.setQuery("", false);
+                        adapter.notifyDataSetChanged();
                         Toast.makeText(ListProduit.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();

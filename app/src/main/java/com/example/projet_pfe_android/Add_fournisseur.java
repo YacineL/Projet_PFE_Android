@@ -27,39 +27,38 @@ public class Add_fournisseur extends AppCompatActivity {
     private int fournisseurId;
     private Fournisseur fournisseur;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_fournisseur);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         viewModel.getAllFournisseurs().observe(this, new Observer<List<Fournisseur>>() {
             @Override
             public void onChanged(List<Fournisseur> fournisseurs) {
-                Toast.makeText(Add_fournisseur.this, "onChanged:"+Integer.toString(fournisseurs.size()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_fournisseur.this, "onChanged:" + Integer.toString(fournisseurs.size()), Toast.LENGTH_SHORT).show();
             }
         });
 
-        EditText et_nom =(EditText)findViewById(R.id.et_nom);
-        EditText et_prenom =(EditText)findViewById(R.id.et_prenom);
-        EditText et_numero_tel=(EditText)findViewById(R.id.et_numero_tel);
-        EditText et_adresse_mail=(EditText)findViewById(R.id.et_adresse_mail);
-        EditText et_rue =(EditText)findViewById(R.id.et_rue);
-        EditText et_ville =(EditText)findViewById(R.id.et_ville);
-        EditText et_pays =(EditText)findViewById(R.id.et_pays);
-        ImageView iv_picture=(ImageView)findViewById(R.id.iv_picture);
+        EditText et_nom = (EditText) findViewById(R.id.et_nom);
+        EditText et_prenom = (EditText) findViewById(R.id.et_prenom);
+        EditText et_numero_tel = (EditText) findViewById(R.id.et_numero_tel);
+        EditText et_adresse_mail = (EditText) findViewById(R.id.et_adresse_mail);
+        EditText et_rue = (EditText) findViewById(R.id.et_rue);
+        EditText et_ville = (EditText) findViewById(R.id.et_ville);
+        EditText et_pays = (EditText) findViewById(R.id.et_pays);
+        ImageView iv_picture = (ImageView) findViewById(R.id.iv_picture);
         Intent intent = getIntent();
 
-        fournisseurId=intent.getIntExtra(JavaUtil.FOURNISSEUR_ID_KEY,JavaUtil.NO_RESULT);
+        fournisseurId = intent.getIntExtra(JavaUtil.FOURNISSEUR_ID_KEY, JavaUtil.NO_RESULT);
 
         if (fournisseurId == JavaUtil.NO_RESULT) {
             setTitle("Ajouter fournisseur");
             invalidateOptionsMenu();
         } else {
             setTitle("Modifier fournisseur");
-            fournisseur=viewModel.getFournisseurById(fournisseurId);
+            fournisseur = viewModel.getFournisseurById(fournisseurId);
             et_nom.setText(fournisseur.getNom());
             et_prenom.setText(fournisseur.getPrenom());
             et_numero_tel.setText(fournisseur.getNumeroTel());
@@ -81,7 +80,7 @@ public class Add_fournisseur extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         if (fournisseurId == JavaUtil.NO_RESULT) {
-            MenuItem menuItem = menu.findItem(R.id.delete2);
+            MenuItem menuItem = menu.findItem(R.id.delete_fournisseur);
             menuItem.setVisible(false);
         }
         return true;
@@ -89,12 +88,12 @@ public class Add_fournisseur extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case (R.id.valider2):
+        switch (item.getItemId()) {
+            case (R.id.valider_fournisseur):
                 saveFournisseur();
                 finish();
                 break;
-            case (R.id.delete2) :
+            case (R.id.delete_fournisseur):
                 break;
             case (android.R.id.home):
                 break;
@@ -104,24 +103,24 @@ public class Add_fournisseur extends AppCompatActivity {
 
     private void saveFournisseur() {
 
-        EditText et_nom =(EditText)findViewById(R.id.et_nom);
-        EditText et_prenom =(EditText)findViewById(R.id.et_prenom);
-        EditText et_numero_tel=(EditText)findViewById(R.id.et_numero_tel);
-        EditText et_adresse_mail=(EditText)findViewById(R.id.et_adresse_mail);
-        EditText et_rue =(EditText)findViewById(R.id.et_rue);
-        EditText et_ville =(EditText)findViewById(R.id.et_ville);
-        EditText et_pays =(EditText)findViewById(R.id.et_pays);
-        ImageView iv_picture=(ImageView)findViewById(R.id.iv_picture);
+        EditText et_nom = (EditText) findViewById(R.id.et_nom);
+        EditText et_prenom = (EditText) findViewById(R.id.et_prenom);
+        EditText et_numero_tel = (EditText) findViewById(R.id.et_numero_tel);
+        EditText et_adresse_mail = (EditText) findViewById(R.id.et_adresse_mail);
+        EditText et_rue = (EditText) findViewById(R.id.et_rue);
+        EditText et_ville = (EditText) findViewById(R.id.et_ville);
+        EditText et_pays = (EditText) findViewById(R.id.et_pays);
+        ImageView iv_picture = (ImageView) findViewById(R.id.iv_picture);
 
-        if (et_nom.getText()!=null && et_prenom.getText()!=null && et_numero_tel.getText() !=null && et_adresse_mail.getText() !=null){
+        if (et_nom.getText() != null && et_prenom.getText() != null && et_numero_tel.getText() != null && et_adresse_mail.getText() != null) {
 
             viewModel.insertFournisseur(new Fournisseur(et_nom.getText().toString(),
                     et_prenom.getText().toString(),
                     et_numero_tel.getText().toString(),
-                   et_adresse_mail.getText().toString(),
+                    et_adresse_mail.getText().toString(),
                     et_rue.getText().toString(),
                     et_ville.getText().toString(),
-                    et_pays.getText().toString() ));
+                    et_pays.getText().toString()));
         }
     }
 }

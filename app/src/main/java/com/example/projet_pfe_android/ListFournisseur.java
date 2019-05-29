@@ -48,21 +48,12 @@ public class ListFournisseur extends AppCompatActivity {
             @Override
             public void onChanged(List<Fournisseur> fournisseurs) {
                 adapter.submitList(fournisseurs);
-                adapter.notifyDataSetChanged();
                 Toast.makeText(ListFournisseur.this, "Fournisseurs : " + fournisseurs.size(), Toast.LENGTH_SHORT).show();
             }
         });
 
         //viewModel.deleteAllFournisseurs();
-        //createDummyList();
-        FloatingActionButton fab=findViewById(R.id.fab_fournisseur);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ListFournisseur.this,Add_fournisseur.class);
-                startActivityForResult(intent,0);
-            }
-        });
+//        createDummyList();
     }
 
     private void createDummyList() {
@@ -129,6 +120,7 @@ public class ListFournisseur extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     ListFournisseur.this.viewModel.deleteFournisseur(ListFournisseur.this.viewModel.getAllFournisseurs().getValue().get(position));
+//                    adapter.notifyDataSetChanged();
                     Toast.makeText(ListFournisseur.this, "Swiped !", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -160,7 +152,10 @@ public class ListFournisseur extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search:
+            case R.id.add_fournisseur:
+                Intent intent=new Intent(ListFournisseur.this,Add_fournisseur.class);
+                startActivityForResult(intent,0);
+                break;
 
         }
         return super.onOptionsItemSelected(item);
