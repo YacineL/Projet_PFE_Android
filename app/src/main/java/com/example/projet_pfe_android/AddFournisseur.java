@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.projet_pfe_android.Model.Fournisseur;
 import com.example.projet_pfe_android.Util.JavaUtil;
+import com.example.projet_pfe_android.validator.FournisseurValidator;
 
 import java.util.List;
 
@@ -89,7 +90,6 @@ public class AddFournisseur extends AppCompatActivity {
         switch (item.getItemId()) {
             case (R.id.valider_fournisseur):
                 saveFournisseur();
-                finish();
                 break;
             case (R.id.delete_fournisseur):
                 break;
@@ -109,15 +109,20 @@ public class AddFournisseur extends AppCompatActivity {
         EditText et_ville = findViewById(R.id.et_ville);
         EditText et_pays = findViewById(R.id.et_pays);
 
-        if (et_nom.getText() != null && et_prenom.getText() != null && et_numero_tel.getText() != null && et_adresse_mail.getText() != null) {
-
-            viewModel.insertFournisseur(new Fournisseur(et_nom.getText().toString(),
-                    et_prenom.getText().toString(),
-                    et_numero_tel.getText().toString(),
-                    et_adresse_mail.getText().toString(),
-                    et_rue.getText().toString(),
-                    et_ville.getText().toString(),
-                    et_pays.getText().toString()));
+        if (FournisseurValidator.validateInputForAdding(this)) {
+            viewModel.insertFournisseur(
+                    new Fournisseur(
+                            et_nom.getText().toString(),
+                            et_prenom.getText().toString(),
+                            et_numero_tel.getText().toString(),
+                            et_adresse_mail.getText().toString(),
+                            et_rue.getText().toString(),
+                            et_ville.getText().toString(),
+                            et_pays.getText().toString()
+                    )
+            );
+            finish();
         }
+
     }
 }
