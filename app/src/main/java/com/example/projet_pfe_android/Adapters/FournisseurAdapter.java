@@ -1,11 +1,9 @@
 package com.example.projet_pfe_android.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,8 +11,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projet_pfe_android.AddProduct;
-import com.example.projet_pfe_android.Add_fournisseur;
 import com.example.projet_pfe_android.CustomViews.FournisseurView;
 import com.example.projet_pfe_android.Model.Fournisseur;
 import java.util.ArrayList;
