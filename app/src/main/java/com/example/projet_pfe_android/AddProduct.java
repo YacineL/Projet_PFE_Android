@@ -233,7 +233,9 @@ public class AddProduct extends AppCompatActivity {
         product.setUOM(et_uom.getText().toString());///////
         product.setUnitPrice(Double.parseDouble(et_prix_achat.getText().toString()));///////
         product.setSalePrice(Double.valueOf(et_prix_vente.getText().toString()));///////
-        product.setPictureURI(imagepath.toString());
+        if (imagepath != null) {
+            product.setPictureURI(imagepath.toString());
+        }
         product.setSerial_number(et_numS.getText().toString());
 
         if (productId == JavaUtil.NO_RESULT)
