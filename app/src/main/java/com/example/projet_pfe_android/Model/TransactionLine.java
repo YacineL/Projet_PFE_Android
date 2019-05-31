@@ -30,18 +30,20 @@ public class TransactionLine {
     @ColumnInfo(name = "product_id")
     public int productId;
 
-    @Ignore
+    @ColumnInfo(name = "picture_uri")
     private String pictureUri;
 
-    @Ignore
     private String productName;
 
-    @Ignore
     private double price;
 
     public float quantity;
 
     public double amount;
+
+    public long date;
+
+    public int type;
 
     public int getSeq() {
         return seq;
@@ -105,6 +107,30 @@ public class TransactionLine {
 
     public void setPictureUri(String pictureUri) {
         this.pictureUri = pictureUri;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public TransactionLine(int seq, int productId, String pictureUri, String productName, double price, float quantity, double amount) {

@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +17,14 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.projet_pfe_android.Adapters.TransactionAdapter;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -63,7 +66,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         viewModel.getAllTransactionLines().observe(this, new Observer<List<TransactionLine>>() {
             @Override
             public void onChanged(List<TransactionLine> transactionLines) {
-                for (TransactionLine t:transactionLines)
+                for (TransactionLine t : transactionLines)
                     Log.d("tnx", t.toString());
             }
         });
@@ -84,7 +87,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                type=i;
+                type = i;
             }
 
             @Override
@@ -141,7 +144,8 @@ public class CurrentTransactionActivity extends AppCompatActivity {
 
     private void commitTransaction() {
 //         setTransactionDate, totalAmount
-        viewModel.getCurrentTransaction().setDate(Calendar.getInstance(TimeZone.getDefault()).getTimeInMillis());
+        long date = Calendar.getInstance(TimeZone.getDefault()).getTimeInMillis();
+        viewModel.getCurrentTransaction().setDate(date);
         viewModel.getCurrentTransaction().setTotalAmount(totalAmount);
         viewModel.getCurrentTransaction().setType(type);
 
@@ -150,8 +154,11 @@ public class CurrentTransactionActivity extends AppCompatActivity {
 
 //         set transactionId in lines
 
-        for (TransactionLine t : transactionLines)
+        for (TransactionLine t : transactionLines) {
             t.setTransactionId(transactionId);
+            t.setDate(date);
+            t.setType(type);
+        }
 
 //         insert lines
         viewModel.insertTransactionLines(transactionLines);
@@ -164,11 +171,11 @@ public class CurrentTransactionActivity extends AppCompatActivity {
 //        viewModel.commitTransactionLines(transactionLines);
 
         List<Product> products = viewModel.getCurrentTransactionProducts().getValue();
-        int i = (type==Transaction.TYPE_VENTE)?-1:1;
+        int i = (type == Transaction.TYPE_VENTE) ? -1 : 1;
         for (Product p : products)
-            for (TransactionLine t:transactionLines)
-                if (p.getId()==t.getProductId())
-                    p.setAvailableQty(p.getAvailableQty()+i*t.getQuantity());
+            for (TransactionLine t : transactionLines)
+                if (p.getId() == t.getProductId())
+                    p.setAvailableQty(p.getAvailableQty() + i * t.getQuantity());
         viewModel.updateProducts(products);
 
 //        Empty current transaction and reinitialize products transactionQty

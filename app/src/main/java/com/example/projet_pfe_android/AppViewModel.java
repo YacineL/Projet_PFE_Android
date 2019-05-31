@@ -167,4 +167,12 @@ public class AppViewModel extends AndroidViewModel {
     public LiveData<List<TransactionLine>> getAllTransactionLines() {
         return repository.getAllTransactionLines();
     }
+
+    public LiveData<List<TransactionLine>> getSalesTransactions() {
+        return repository.getSalesTransactions();
+    }
+
+    public LiveData<List<TransactionLine>> getReceivingTransactions() {
+        return repository.getReceivingTransactions();
+    }
 }

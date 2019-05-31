@@ -118,6 +118,14 @@ public class Repository {
         return transactionDao.getAllTransactionLines();
     }
 
+    public LiveData<List<TransactionLine>> getSalesTransactions() {
+        return transactionDao.getSalesTransactions();
+    }
+
+    public LiveData<List<TransactionLine>> getReceivingTransactions() {
+        return transactionDao.getReceivingTransactions();
+    }
+
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------
 

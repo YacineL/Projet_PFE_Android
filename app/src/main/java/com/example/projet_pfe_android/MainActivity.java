@@ -101,9 +101,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_ventes) {
             Intent intent = new Intent(this,TransactionHistoryActivity.class);
+            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,Transaction.TYPE_VENTE);
             startActivity(intent);
         } else if (id == R.id.nav_receptions) {
-
+            Intent intent = new Intent(this,TransactionHistoryActivity.class);
+            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,Transaction.TYPE_RECEPTION);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

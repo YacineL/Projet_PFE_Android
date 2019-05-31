@@ -12,7 +12,7 @@ import com.example.projet_pfe_android.Model.TransactionLine;
 
 //Ceci est la définition de la base de données, rien à changer dans ce fichier à part le version
 //Il faut incrémenter le numéro de version à chaque ajout/modification de table (tt changement dans la BD)
-@androidx.room.Database(entities = {Product.class, Fournisseur.class, Transaction.class, TransactionLine.class},version = 8) //(ici le numéro de version = 0)
+@androidx.room.Database(entities = {Product.class, Fournisseur.class, Transaction.class, TransactionLine.class},version = 10) //(ici le numéro de version = 0)
 public abstract class Database extends RoomDatabase {
     public abstract ProductDao productDao();
     public abstract FournisseurDao fournisseurDao();

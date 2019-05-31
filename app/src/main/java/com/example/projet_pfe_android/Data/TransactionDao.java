@@ -31,4 +31,10 @@ public interface TransactionDao {
 
     @Query("SELECT * FROM transaction_lines")
     LiveData<List<TransactionLine>> getAllTransactionLines();
+
+    @Query("SELECT * FROM transaction_lines WHERE type = 0")
+    LiveData<List<TransactionLine>> getSalesTransactions();
+
+    @Query("SELECT * FROM transaction_lines WHERE type = 1")
+    LiveData<List<TransactionLine>> getReceivingTransactions();
 }

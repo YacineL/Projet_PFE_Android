@@ -1,8 +1,10 @@
 package com.example.projet_pfe_android.CustomViews;
 
 import android.content.Context;
+import android.hardware.GeomagneticField;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,21 +24,27 @@ import com.squareup.picasso.Picasso;
 
 public class TransactionLineView extends CardView {
 
-    private TextView tvSeq, tvProductName, tvQty, tvPrice, tvAmount;
+    private TextView tvSeq, tvProductName, tvQty, tvPrice, tvAmount, tvTransactionLabel, tvTransactionId;
     private ImageView ivPicture, ivButton;
     private TransactionLineListener listener;
+    private int viewType;
 
     public void setTransactionLineListener(TransactionLineListener listener) {
         this.listener = listener;
     }
 
     public void setViewType(int viewType) {
+        this.viewType=viewType;
         switch (viewType) {
             case TransactionAdapter.TABLE:
                 ivButton.setVisibility(VISIBLE);
+                tvTransactionLabel.setVisibility(GONE);
+                tvTransactionId.setVisibility(GONE);
                 break;
             case TransactionAdapter.HISTORY:
                 ivButton.setVisibility(GONE);
+                tvTransactionLabel.setVisibility(VISIBLE);
+                tvTransactionId.setVisibility(VISIBLE);
                 break;
         }
     }
@@ -72,6 +80,8 @@ public class TransactionLineView extends CardView {
         tvQty.setText(Float.toString(transactionLine.getQuantity()));
         tvPrice.setText(JavaUtil.currencyString(transactionLine.getPrice()));
         tvAmount.setText(JavaUtil.currencyString(transactionLine.getAmount()));
+        if (viewType== TransactionAdapter.HISTORY)
+            tvTransactionId.setText(Integer.toString(transactionLine.getTransactionId()));
     }
 
     private void init() {
@@ -80,6 +90,8 @@ public class TransactionLineView extends CardView {
         tvQty = this.findViewById(R.id.tv_quantity);
         tvPrice = this.findViewById(R.id.tv_price);
         tvAmount = this.findViewById(R.id.tv_amount);
+        tvTransactionId=this.findViewById(R.id.tv_tnx);
+        tvTransactionLabel=this.findViewById(R.id.tv_label_transaction);
         ivPicture = this.findViewById(R.id.iv_picture);
         ivButton = this.findViewById(R.id.iv_button);
 
