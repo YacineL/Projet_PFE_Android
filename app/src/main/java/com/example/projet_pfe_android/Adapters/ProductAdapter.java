@@ -124,7 +124,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
                 filteredList = new ArrayList<>();
                 String criteria = charSequence.toString().toLowerCase().trim();
                 for (Product product : products) {
-                    for (String matchable : Arrays.asList(product.getName(), product.getDescription(), product.getSerial_number(), product.getBrand())) {
+                    for (String matchable : Arrays.asList(product.getName(), product.getDescription(), product.getSerialNumber(), product.getBrand())) {
                         if (StringUtils.containsIgnoreCase(matchable, criteria)) {
                             filteredList.add(product);
                         }

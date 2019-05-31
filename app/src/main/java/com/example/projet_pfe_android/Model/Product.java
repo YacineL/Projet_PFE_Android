@@ -28,7 +28,7 @@ public class Product {
     @Ignore
     public Product(String name,String brand,String description,
                    float safetyStockQty,String uom,double unitPrice,
-                   double salePrice,String pictureURI,String serial_number){
+                   double salePrice,String pictureURI,String serialNumber){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -36,7 +36,7 @@ public class Product {
         this.UOM=uom;
         this.unitPrice=unitPrice;
         this.salePrice=salePrice;
-        this.serial_number=serial_number;
+        this.serialNumber = serialNumber;
         this.pictureURI=pictureURI;
     }
 
@@ -60,7 +60,7 @@ public class Product {
     public String UOM=""; //Unit Of Measurement
 
     @ColumnInfo(name = "serial_number")
-    public String serial_number=""; //Unit Of Measurement
+    public String serialNumber =""; //Barcode
 
     @ColumnInfo(name = "unit_price")
     public double unitPrice=0; //Price for 1 UOM
@@ -92,13 +92,13 @@ public class Product {
 
     public double getSalePrice() { return salePrice; }
 
-    public String getSerial_number() { return serial_number; }
+    public String getSerialNumber() { return serialNumber; }
 
     public void setDescription(String description) { this.description = description; }
 
     public void setSalePrice(double salePrice) { this.salePrice = salePrice; }
 
-    public void setSerial_number(String serial_number) { this.serial_number = serial_number; }
+    public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
 
     public int getId() {
         return id;

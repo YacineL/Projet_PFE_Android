@@ -81,7 +81,7 @@ public class AddProduct extends AppCompatActivity {
                 et_prix_achat.setText(String.valueOf(product.getUnitPrice()));
                 et_prix_vente.setText(String.valueOf(product.getSalePrice()));
                 final String pictureURI = product.getPictureURI();
-                et_numS.setText(product.getSerial_number());
+                et_numS.setText(product.getSerialNumber());
                 if (StringUtils.isNotBlank(pictureURI)) {
                     iv_picture.setImageURI(Uri.parse(pictureURI));
                 }
@@ -236,7 +236,7 @@ public class AddProduct extends AppCompatActivity {
         if (imagepath != null) {
             product.setPictureURI(imagepath.toString());
         }
-        product.setSerial_number(et_numS.getText().toString());
+        product.setSerialNumber(et_numS.getText().toString());
 
         if (productId == JavaUtil.NO_RESULT)
             viewModel.insertProduct(product);
