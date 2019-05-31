@@ -235,6 +235,7 @@ public class ListProduit extends AppCompatActivity {
                         Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
                     } else {
                         searchView.setQuery(result.getContents(), true);
+                        searchView.setSubmitButtonEnabled(true);
                     }
                 } else {
                     // This is important, otherwise the result will not be passed to the fragment
