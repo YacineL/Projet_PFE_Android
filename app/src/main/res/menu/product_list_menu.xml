@@ -17,5 +17,8 @@
     <item android:id="@+id/new_product"
         android:title="Nouveau Produit"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/search_by_scan"
+        android:title="Scan" />
 
 </menu>

@@ -1,5 +1,16 @@
 package com.example.projet_pfe_android;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -13,21 +24,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
-import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.Util.JavaUtil;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.List;
 
@@ -85,7 +86,6 @@ public class ListProduit extends AppCompatActivity {
         etQuantity = findViewById(R.id.et_quantity);
         bValider = findViewById(R.id.b_valider);
         bAnnuler = findViewById(R.id.b_annuler);
-
         bValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,6 +203,9 @@ public class ListProduit extends AppCompatActivity {
                 intent = new Intent(ListProduit.this, AddProduct.class);
                 startActivityForResult(intent,0);
                 break;
+            case R.id.search_by_scan:
+                new IntentIntegrator(ListProduit.this).initiateScan();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -210,18 +213,34 @@ public class ListProduit extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0){
-            setupRecyclerView();
+        switch (requestCode) {
+            case 0:
+                setupRecyclerView();
 
-            viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-            viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
-                @Override
-                public void onChanged(List<Product> products) {
-                    adapter.submitList(products);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
+                viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+                viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
+                    @Override
+                    public void onChanged(List<Product> products) {
+                        adapter.submitList(products);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                break;
+
+            case 0x0000c0de: //REQUEST_CODE of IntentIntegrator of the zxing library
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null) {
+                    if (result.getContents() == null) {
+                        Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                    } else {
+                        searchView.setQuery(result.getContents(), true);
+                    }
+                } else {
+                    // This is important, otherwise the result will not be passed to the fragment
+                    super.onActivityResult(requestCode, resultCode, data);
                 }
-            });
+                break;
         }
     }
 }

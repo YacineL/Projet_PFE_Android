@@ -123,7 +123,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
                 filteredList = products;
             else
                 for(Product product : products)
-                    if (product.getName().toLowerCase().trim().contains(criteria))
+                    if (product.getName().toLowerCase().trim().contains(criteria) || product.getSerial_number().contains(criteria))
                         filteredList.add(product);
 
             FilterResults results = new FilterResults();
