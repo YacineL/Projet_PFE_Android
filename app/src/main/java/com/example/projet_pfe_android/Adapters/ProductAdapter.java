@@ -1,21 +1,23 @@
 package com.example.projet_pfe_android.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projet_pfe_android.AddProduct;
 import com.example.projet_pfe_android.CustomViews.ProductView;
 import com.example.projet_pfe_android.Model.Product;
+
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductHolder> implements Filterable {
@@ -117,17 +119,20 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
     private Filter filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-            List<Product> filteredList = new ArrayList<>();
-            String criteria = charSequence.toString().toLowerCase().trim();
-            if(charSequence == null || charSequence.length()==0)
-                filteredList = products;
-            else
-                for(Product product : products)
-                    if (product.getName().toLowerCase().trim().contains(criteria) || product.getSerial_number().contains(criteria))
-                        filteredList.add(product);
-
+            List<Product> filteredList = products;
+            if (StringUtils.isNotBlank(charSequence)) {
+                filteredList = new ArrayList<>();
+                String criteria = charSequence.toString().toLowerCase().trim();
+                for (Product product : products) {
+                    for (String matchable : Arrays.asList(product.getName(), product.getDescription(), product.getSerial_number(), product.getBrand())) {
+                        if (StringUtils.containsIgnoreCase(matchable, criteria)) {
+                            filteredList.add(product);
+                        }
+                    }
+                }
+            }
             FilterResults results = new FilterResults();
-            results.values=filteredList;
+            results.values = filteredList;
             return results;
         }
 
