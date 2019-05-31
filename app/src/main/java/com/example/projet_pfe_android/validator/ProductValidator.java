@@ -28,23 +28,32 @@ public class ProductValidator {
 
         final Editable rawSecurityStock = et_Stock1.getText();
         if (StringUtils.isBlank(rawSecurityStock)) {
-            et_Stock1.setError(addProductActivity.getString(R.string.malformed_security_threshold_error));
+            et_Stock1.setError(addProductActivity.getString(R.string.blank_security_threshold_error));
             success = false;
         }
         try {
-            Double.parseDouble(rawSecurityStock.toString());
+            double securityStock = Double.parseDouble(rawSecurityStock.toString());
+            if (securityStock < 0) {
+                success = false;
+                et_Stock1.setError(addProductActivity.getString(R.string.negative_number_error));
+            }
         } catch (NumberFormatException exception) {
             success = false;
-            et_Stock1.setError(addProductActivity.getString(R.string.malformed_bought_price_error));
+            et_Stock1.setError(addProductActivity.getString(R.string.malformed_security_threshold_error));
         }
 
         final Editable rawBoughtPrice = et_prix_achat.getText();
+        double boughtPrice = -1;
         if (StringUtils.isBlank(rawBoughtPrice)) {
             et_prix_achat.setError(addProductActivity.getString(R.string.blank_bought_price_error));
             success = false;
         }
         try {
-            Double.parseDouble(rawBoughtPrice.toString());
+            boughtPrice = Double.parseDouble(rawBoughtPrice.toString());
+            if (boughtPrice < 0) {
+                success = false;
+                et_prix_achat.setError(addProductActivity.getString(R.string.negative_number_error));
+            }
         } catch (NumberFormatException exception) {
             success = false;
             et_prix_achat.setError(addProductActivity.getString(R.string.malformed_bought_price_error));
@@ -56,7 +65,15 @@ public class ProductValidator {
             success = false;
         }
         try {
-            Double.parseDouble(rawSellingPrice.toString());
+            double salePrice = Double.parseDouble(rawSellingPrice.toString());
+            if (salePrice < 0) {
+                success = false;
+                et_prix_vente.setError(addProductActivity.getString(R.string.negative_number_error));
+            }
+             if (salePrice <= boughtPrice) {
+                success = false;
+                et_prix_vente.setError(addProductActivity.getString(R.string.inferior_sale_price));
+            }
         } catch (NumberFormatException exception) {
             success = false;
             et_prix_vente.setError(addProductActivity.getString(R.string.malformed_selling_price_error));
