@@ -22,12 +22,12 @@
             android:name=".CurrentTransactionActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".FournisseurView" />
-        <activity
-            android:name=".AddProduct"
-            android:parentActivityName=".ListProduit" />
-        <activity
-            android:name=".Add_fournisseur"
-            android:parentActivityName=".ListFournisseur" />
+
+        <activity android:name=".AddProduct"
+            android:parentActivityName=".ListProduit"></activity>
+        <activity android:name=".AddFournisseur"
+            android:parentActivityName=".ListFournisseur"></activity>
+
         <activity android:name=".Dashboard" />
         <activity
             android:name=".ListProduit"
