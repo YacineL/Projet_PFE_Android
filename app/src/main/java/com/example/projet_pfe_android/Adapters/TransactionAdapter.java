@@ -16,6 +16,9 @@ import java.util.List;
 public class TransactionAdapter extends ListAdapter<TransactionLine, TransactionAdapter.TransactionHolder> {
 
     private TransactionAdapterListener listener;
+    private int type = TABLE;
+    public static final int TABLE = 0;
+    public static final int HISTORY = 1;
 
     public interface TransactionAdapterListener {
         void onEdit(TransactionLine transactionLine);
@@ -48,6 +51,7 @@ public class TransactionAdapter extends ListAdapter<TransactionLine, Transaction
     public TransactionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         TransactionLineView transactionLineView = new TransactionLineView(parent.getContext());
         transactionLineView.setMargin(0,1,0,0);
+        transactionLineView.setViewType(viewType);
         return new TransactionHolder(transactionLineView);
     }
 
@@ -60,6 +64,15 @@ public class TransactionAdapter extends ListAdapter<TransactionLine, Transaction
                 listener.onEdit(getItem(position));
             }
         });
+    }
+
+    public void setType(int type){
+        this.type = type;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return type;
     }
 
     public class TransactionHolder extends RecyclerView.ViewHolder{

@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this,ListFournisseur.class);
             startActivity(intent);
         } else if (id == R.id.nav_ventes) {
-
+            Intent intent = new Intent(this,TransactionHistoryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_receptions) {
 
         } else if (id == R.id.nav_share) {

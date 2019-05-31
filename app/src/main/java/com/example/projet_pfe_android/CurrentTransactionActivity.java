@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,14 +16,12 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.projet_pfe_android.Adapters.TransactionAdapter;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -148,9 +145,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         viewModel.getCurrentTransaction().setTotalAmount(totalAmount);
         viewModel.getCurrentTransaction().setType(type);
 
-
 //         insert Transaction and get its id
-
         int transactionId = viewModel.insertCurrentTransaction();
 
 //         set transactionId in lines
@@ -162,11 +157,19 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         viewModel.insertTransactionLines(transactionLines);
 
 //         update products' availableQty
-        if (type==Transaction.TYPE_VENTE) {
-            for (TransactionLine t : transactionLines)
-                t.reverseQty();
-        }
-        viewModel.commitTransactionLines(transactionLines);
+//        if (type==Transaction.TYPE_VENTE) {
+//            for (TransactionLine t : transactionLines)
+//                t.reverseQty();
+//        }
+//        viewModel.commitTransactionLines(transactionLines);
+
+        List<Product> products = viewModel.getCurrentTransactionProducts().getValue();
+        int i = (type==Transaction.TYPE_VENTE)?-1:1;
+        for (Product p : products)
+            for (TransactionLine t:transactionLines)
+                if (p.getId()==t.getProductId())
+                    p.setAvailableQty(p.getAvailableQty()+i*t.getQuantity());
+        viewModel.updateProducts(products);
 
 //        Empty current transaction and reinitialize products transactionQty
         viewModel.emptyCurrentTransaction();
