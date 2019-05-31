@@ -1,195 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="4dp"
-    app:cardBackgroundColor="@android:color/white">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/tv_label_aujourdhui"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aujourd'hui"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_label_caisse"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_label_caisse"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="Caisse"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_caisse"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_aujourdhui" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_label_benefice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="Bénéfice"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_aujourdhui" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:background="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@id/tv_caisse"
-            app:layout_constraintEnd_toStartOf="@+id/tv_label_benefice"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_label_caisse"
-            app:layout_constraintTop_toTopOf="@id/tv_label_caisse" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_caisse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="14,325"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_label_valeur"
-            app:layout_constraintEnd_toStartOf="@id/view"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_caisse" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_benefice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="7,325"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/view"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_caisse" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_label_valeur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Valeur du Stock :"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_label_produits_ss"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_caisse" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_valeur_stock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="45,231.00"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@id/tv_label_valeur"
-            app:layout_constraintStart_toEndOf="@id/tv_label_valeur"
-            app:layout_constraintTop_toTopOf="@id/tv_label_valeur" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_label_produits_ss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Produits sous Stock Sécurité :"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_label_produits_sz"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_valeur" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_produits_ss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="12"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@id/tv_label_produits_ss"
-            app:layout_constraintStart_toEndOf="@id/tv_label_produits_ss"
-            app:layout_constraintTop_toTopOf="@id/tv_label_produits_ss" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_label_produits_sz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Produits en Rupture :"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_produits_ss" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_produits_zs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="4"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@id/tv_label_produits_sz"
-            app:layout_constraintStart_toEndOf="@id/tv_label_produits_sz"
-            app:layout_constraintTop_toTopOf="@id/tv_label_produits_sz" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="293dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tv_label_aujourdhui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="Aujourd'hui"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/caisse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/benefice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/today">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_caisse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Caisse"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_caisse"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_caisse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="14,325"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_caisse" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_settings"
+                android:tint="@color/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/benefice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/caisse"
+        app:layout_constraintTop_toBottomOf="@id/today">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_benefice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Bénéfice"
+                android:textColor="@android:color/black"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_benefice"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_benefice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="7,325"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_benefice"
+                tools:layout_editor_absoluteX="8dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/kpi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/caisse"
+        android:layout_marginTop="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_ventes_brutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ventes Brutes :"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_label_valeur"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_ventes_brutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="7125.50"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_ventes_brutes"
+                app:layout_constraintStart_toEndOf="@id/tv_label_ventes_brutes"
+                app:layout_constraintTop_toTopOf="@id/tv_label_ventes_brutes" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_valeur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Valeur du Stock :"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_label_produits_ss"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_ventes_brutes" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_valeur_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="45,231.00"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_valeur"
+                app:layout_constraintStart_toEndOf="@id/tv_label_valeur"
+                app:layout_constraintTop_toTopOf="@id/tv_label_valeur" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_produits_ss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Produits sous Stock Sécurité :"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_label_produits_sz"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_valeur" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_produits_ss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="12"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_produits_ss"
+                app:layout_constraintStart_toEndOf="@id/tv_label_produits_ss"
+                app:layout_constraintTop_toTopOf="@id/tv_label_produits_ss" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_label_produits_sz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Produits en Rupture :"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_produits_ss" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_produits_zs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="4"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_produits_sz"
+                app:layout_constraintStart_toEndOf="@id/tv_label_produits_sz"
+                app:layout_constraintTop_toTopOf="@id/tv_label_produits_sz" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</androidx.cardview.widget.CardView>

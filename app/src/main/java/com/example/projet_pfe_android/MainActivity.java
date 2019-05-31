@@ -6,12 +6,17 @@ import android.os.Bundle;
 import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 import android.view.View;
+
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import android.view.MenuItem;
+
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -26,18 +32,30 @@ public class MainActivity extends AppCompatActivity
 
     private AppViewModel viewModel;
 
+    // SS = en dessous du stock sécurité ZS = En rupture (Zero Stock)
+    private TextView tvCaisse, tvBenefice, tvValeurStock, tvVentesBrutes, tvProduitsSS, tvProduitsZS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        init();
+
+        viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        tvValeurStock.setText(JavaUtil.currencyString(viewModel.getStockValue()));
+        Toast.makeText(this, "Stock Value = " + JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
+    }
+
+    private void init() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CurrentTransactionActivity.class);
+                Intent intent = new Intent(MainActivity.this, CurrentTransactionActivity.class);
                 intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_RECEPTION);
                 startActivity(intent);
             }
@@ -50,8 +68,20 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-        Toast.makeText(this, "Stock Value = "+ JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
+        tvCaisse = findViewById(R.id.tv_caisse);
+        tvBenefice = findViewById(R.id.tv_benefice);
+        tvVentesBrutes = findViewById(R.id.tv_ventes_brutes);
+        tvValeurStock = findViewById(R.id.tv_valeur_stock);
+        tvProduitsSS = findViewById(R.id.tv_produits_ss);
+        tvProduitsZS = findViewById(R.id.tv_produits_zs);
+
+        CardView cvCaisse = findViewById(R.id.caisse);
+        cvCaisse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Go to Edit caisse
+            }
+        });
     }
 
     @Override
@@ -94,18 +124,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_produits) {
             // Handle the camera action
-            Intent intent = new Intent(this,ListProduit.class);
+            Intent intent = new Intent(this, ListProduit.class);
             startActivity(intent);
         } else if (id == R.id.nav_fournisseurs) {
-            Intent intent = new Intent(this,ListFournisseur.class);
+            Intent intent = new Intent(this, ListFournisseur.class);
             startActivity(intent);
         } else if (id == R.id.nav_ventes) {
-            Intent intent = new Intent(this,TransactionHistoryActivity.class);
-            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,Transaction.TYPE_VENTE);
+            Intent intent = new Intent(this, TransactionHistoryActivity.class);
+            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_VENTE);
             startActivity(intent);
         } else if (id == R.id.nav_receptions) {
-            Intent intent = new Intent(this,TransactionHistoryActivity.class);
-            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,Transaction.TYPE_RECEPTION);
+            Intent intent = new Intent(this, TransactionHistoryActivity.class);
+            intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_RECEPTION);
             startActivity(intent);
         } else if (id == R.id.nav_share) {
 
