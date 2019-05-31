@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Util.JavaUtil;
+import com.example.projet_pfe_android.validator.ProductValidator;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -207,11 +208,12 @@ public class AddProduct extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case (R.id.valider):
-                if (inputValid()) {
+                if (ProductValidator.validateInputForAdding(this)) {
                     saveProduct();
                     finish();
-                } else
+                } else {
                     Toast.makeText(this, "Entrée Invalide", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case (R.id.delete):
                 break;
@@ -223,8 +225,9 @@ public class AddProduct extends AppCompatActivity {
 
     public void saveProduct() {
 
-        if (product == null)
+        if (product == null) {
             product = new Product();
+        }
 
         product.setName(et_nom.getText().toString());///////
         product.setBrand(et_brand.getText().toString());
@@ -238,17 +241,10 @@ public class AddProduct extends AppCompatActivity {
         }
         product.setSerialNumber(et_numS.getText().toString());
 
-        if (productId == JavaUtil.NO_RESULT)
+        if (productId == JavaUtil.NO_RESULT) {
             viewModel.insertProduct(product);
-        else
+        } else {
             viewModel.updateProduct(product);
-    }
-
-    private boolean inputValid() {
-        return !et_nom.getText().toString().equals("") &&
-                !et_Stock1.getText().toString().equals("") &&
-                !et_prix_achat.getText().toString().equals("") &&
-                !et_prix_vente.getText().toString().equals("") &&
-                !et_uom.getText().toString().equals("");
+        }
     }
 }

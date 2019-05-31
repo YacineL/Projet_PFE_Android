@@ -53,6 +53,13 @@
     <string name="blank_name_error">Le nom est obligatoire</string>
     <string name="blank_first_name_error">Le prénom est obligatoire</string>
     <string name="blank_email_error">L\'email est obligatoire</string>
+    <string name="blank_uom_error">L\'unité de mesure est obligatoire</string>
+    <string name="blank_bought_price_error">Le prix d\'achat est obligatoire</string>
+    <string name="malformed_bought_price_error">Le prix d\'achat n\'est pas un nombre valide</string>
+    <string name="blank_selling_price_error">Le prix de vente est obligatoire</string>
+    <string name="malformed_selling_price_error">Le prix de vente n\'est pas un nombre valide</string>
+    <string name="blank_security_threshold_error">Le stock de sécurité est obligatoire</string>
+    <string name="malformed_security_threshold_error">Le stock de sécurité n\'est pas un nombre valide</string>
 
     <string-array name="transaction_types">
         <item>Vente</item>
