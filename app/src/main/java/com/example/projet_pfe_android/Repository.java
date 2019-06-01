@@ -138,6 +138,15 @@ public class Repository {
     public LiveData<List<Product>> getAvailableProducts(){
         return productDao.getAvailableProducts();
     }
+//------------------------------------------------------------------
+    public LiveData<List<Product>> getProductStockSecurite() {
+        return productDao.getProductStockSecurite();
+    }
+
+    public LiveData<List<Product>> getProductReptureStock() {
+        return productDao.getProductReptureStock();
+    }
+
 
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------

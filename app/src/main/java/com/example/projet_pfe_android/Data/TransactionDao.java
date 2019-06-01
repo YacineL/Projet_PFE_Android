@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Model.TransactionLine;
 
@@ -45,6 +46,6 @@ public interface TransactionDao {
     @Query("SELECT SUM(sales_price*quantity) FROM transaction_lines")
     double getVentesBrutes();
 
-//    @Query("SELECT ")
-//    double getBenefice();
+
+
 }

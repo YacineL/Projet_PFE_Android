@@ -89,7 +89,7 @@ public class AddProduct extends AppCompatActivity {
                 if (StringUtils.isNotBlank(pictureURI)) {
                     iv_picture.setImageURI(Uri.parse(pictureURI));
                 }
-//                To be completed by populating the remaining fields
+
             }
         }
 
