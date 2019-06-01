@@ -67,6 +67,7 @@ public class ListProduit extends AppCompatActivity {
             loadAllProducts();
 
         setupValidationWindow();
+        JavaUtil.saveCaisse(this,1998);
 
 //        viewModel.deleteAllProducts();
 //        createDummyList(10);

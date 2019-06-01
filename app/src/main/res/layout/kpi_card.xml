@@ -6,6 +6,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/fl_validation_window2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:alpha=".3"
+        android:background="@color/colorDarkGrey"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/cl_validation_window2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_validation_window2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@drawable/stroke"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter à la transaction courante"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nom_produit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom du produit"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_title2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_quantity2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Quantité :"
+            android:textColor="@android:color/black"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_quantity2"
+            app:layout_constraintEnd_toStartOf="@id/et_quantity2" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_quantity2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@id/b_valider2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nom_produit2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_uom2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kg"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_quantity2"
+            app:layout_constraintStart_toEndOf="@id/et_quantity2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/b_valider2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Valider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_annuler2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/b_annuler2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Annuler"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_valider2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/today"
         android:layout_width="match_parent"
@@ -48,7 +145,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_caisse"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_caisse"
@@ -63,6 +161,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_label_caisse" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/update_caisse"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="8dp"

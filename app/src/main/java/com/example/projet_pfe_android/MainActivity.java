@@ -8,9 +8,12 @@ import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -25,6 +28,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +37,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppViewModel viewModel;
+    private ConstraintLayout clValidationWindow;
+    private FrameLayout flValidationWindow;
+    private TextView tvProductName;
+    private AppCompatEditText etQuantity;
+    private Button bValider, bAnnuler;
+
 
     // SS = en dessous du stock sécurité ZS = En rupture (Zero Stock)
     private TextView tvCaisse, tvBenefice, tvValeurStock, tvVentesBrutes, tvProduitsSS, tvProduitsZS;
@@ -49,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         tvBenefice.setText(JavaUtil.currencyString(viewModel.getBenefice(/*Parametre a ajouter : date1 date2*/)));
         tvVentesBrutes.setText(JavaUtil.currencyString(viewModel.getVentesBrutes(/*Parametre a ajouter : date1 date2*/)));
         Toast.makeText(this, "Stock Value = " + JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
+        setupValidationWindow();
     }
 
     private void init() {
@@ -82,11 +94,12 @@ public class MainActivity extends AppCompatActivity
         cvCaisse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Go to Edit caisse
+                showValidationWindow();
             }
         });
 
         float caisseValue = JavaUtil.getCaisse(this);
+        tvCaisse.setText(String.valueOf(JavaUtil.getCaisse(this)));
         Toast.makeText(this, "NC = "+caisseValue, Toast.LENGTH_SHORT).show();
         if (caisseValue<0)
             tvCaisse.setTextColor(Color.RED);
@@ -158,5 +171,48 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void setupValidationWindow() {
+        clValidationWindow = findViewById(R.id.cl_validation_window2);
+        flValidationWindow = findViewById(R.id.fl_validation_window2);
+        tvProductName = findViewById(R.id.tv_nom_produit2);
+        etQuantity = findViewById(R.id.et_quantity2);
+        bValider = findViewById(R.id.b_valider2);
+        bAnnuler = findViewById(R.id.b_annuler2);
+        bValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add product with qty to transaction list
+                try {
+                    float qty = Float.parseFloat(etQuantity.getText().toString());
+                    JavaUtil.saveCaisse(MainActivity.this,qty);
+                    tvCaisse.setText(String.valueOf(JavaUtil.getCaisse(MainActivity.this)));
+                    // Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();
+                } catch (NumberFormatException e) {
+                    Log.d("#EXP", "ListProduit.bValider.onClick: " + e.getMessage());
+                }
+                hideValidationWindow();
+
+            }
+        });
+        bAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideValidationWindow();
+            }
+        });
+    }
+
+    private void hideValidationWindow() {
+        clValidationWindow.setVisibility(View.GONE);
+        flValidationWindow.setVisibility(View.GONE);
+    }
+
+    private void showValidationWindow() {
+        clValidationWindow.setVisibility(View.VISIBLE);
+        flValidationWindow.setVisibility(View.VISIBLE);
+        tvProductName.setText("Valeur de la caisse");
+        etQuantity.setText(Float.toString(JavaUtil.getCaisse(this)));
+
     }
 }
