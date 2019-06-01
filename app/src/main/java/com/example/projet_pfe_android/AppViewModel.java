@@ -65,6 +65,9 @@ public class AppViewModel extends AndroidViewModel {
     public void updateProduct(Product product) {
         repository.updateProduct(product);
     }
+    public void updateTransactionLne(TransactionLine transaction){
+        return;
+    }
 
     public void updateFournisseur(Fournisseur fournisseur) {
         repository.updateFournisseur(fournisseur);

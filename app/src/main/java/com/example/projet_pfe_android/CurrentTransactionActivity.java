@@ -2,6 +2,8 @@ package com.example.projet_pfe_android;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +40,12 @@ public class CurrentTransactionActivity extends AppCompatActivity {
     private int type;
     private List<TransactionLine> transactionLines;
     private double totalAmount;
+    private TransactionLine selectedTransaction;
+    private ConstraintLayout clValidationWindow;
+    private FrameLayout flValidationWindow;
+    private TextView tvProductName;
+    private AppCompatEditText etQuantity;
+    private Button bValider, bAnnuler;
 
     private TextView tvTotalAmount;
 
@@ -49,6 +59,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         setupViewModel();
 
         setupRecycler();
+        setupValidationWindow();
     }
 
     private void setupViewModel() {
@@ -99,7 +110,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +127,8 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         adapter = new TransactionAdapter(new TransactionAdapter.TransactionAdapterListener() {
             @Override
             public void onEdit(TransactionLine transactionLine) {
-                Toast.makeText(CurrentTransactionActivity.this, "Edit !", Toast.LENGTH_SHORT).show();
+                selectedTransaction= transactionLine;
+                showValidationWindow();
             }
         });
 
@@ -203,5 +215,53 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         }
         this.totalAmount = totalAmount;
         tvTotalAmount.setText(JavaUtil.currencyString(totalAmount));
+    }
+
+    private void setupValidationWindow() {
+        clValidationWindow = findViewById(R.id.cl_validation_window1);
+        flValidationWindow = findViewById(R.id.fl_validation_window1);
+        tvProductName = findViewById(R.id.tv_nom_produit1);
+        etQuantity = findViewById(R.id.et_quantity1);
+        bValider = findViewById(R.id.b_valider1);
+        bAnnuler = findViewById(R.id.b_annuler1);
+        bValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add product with qty to transaction list
+                try {
+                    float qty = Float.parseFloat(etQuantity.getText().toString());
+                    if (selectedTransaction != null) {
+                        selectedTransaction.setQuantity(qty);
+//                        viewModel.addToCurrentTransaction(selectedProduct);
+                        viewModel.updateTransactionLne(selectedTransaction);
+                        adapter.notifyDataSetChanged();
+                        // Toast.makeText(C.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
+                    }
+                    // Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();
+                } catch (NumberFormatException e) {
+                    Log.d("#EXP", "ListProduit.bValider.onClick: " + e.getMessage());
+                }
+                hideValidationWindow();
+
+            }
+        });
+        bAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideValidationWindow();
+            }
+        });
+    }
+
+    private void hideValidationWindow() {
+        clValidationWindow.setVisibility(View.GONE);
+        flValidationWindow.setVisibility(View.GONE);
+    }
+
+    private void showValidationWindow() {
+        clValidationWindow.setVisibility(View.VISIBLE);
+        flValidationWindow.setVisibility(View.VISIBLE);
+        tvProductName.setText(selectedTransaction.getProductName());
+        etQuantity.setText(Float.toString(selectedTransaction.getQuantity()));
     }
 }
