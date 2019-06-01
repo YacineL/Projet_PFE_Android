@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +19,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
+import com.example.projet_pfe_android.Util.AndroidUtil;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -229,9 +228,10 @@ public class ListProduit extends AppCompatActivity {
                 intent = new Intent(ListProduit.this, AddProduct.class);
                 startActivityForResult(intent, 0);
                 break;
-//            case R.id.search_by_scan:
-//                new IntentIntegrator(ListProduit.this).initiateScan();
-//                break;
+            case R.id.search_by_scan:
+                AndroidUtil.verifyPermissionsForScanner(this);
+                new IntentIntegrator(ListProduit.this).initiateScan();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -254,7 +254,7 @@ public class ListProduit extends AppCompatActivity {
                 });
                 break;
 
-            case 0x0000c0de: //REQUEST_CODE of IntentIntegrator of the zxing library
+            case AndroidUtil.SCANNER_REQUEST_CODE: //REQUEST_CODE of IntentIntegrator of the zxing library
                 IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
                 if (result != null) {
                     if (result.getContents() == null) {
