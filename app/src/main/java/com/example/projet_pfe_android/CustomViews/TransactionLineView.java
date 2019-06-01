@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.example.projet_pfe_android.Adapters.TransactionAdapter;
+import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.R;
 import com.example.projet_pfe_android.Util.JavaUtil;
@@ -34,7 +35,7 @@ public class TransactionLineView extends CardView {
     }
 
     public void setViewType(int viewType) {
-        this.viewType=viewType;
+        this.viewType = viewType;
         switch (viewType) {
             case TransactionAdapter.TABLE:
                 ivButton.setVisibility(VISIBLE);
@@ -78,9 +79,19 @@ public class TransactionLineView extends CardView {
         }
         tvProductName.setText(transactionLine.getProductName());
         tvQty.setText(Float.toString(transactionLine.getQuantity()));
-        tvPrice.setText(JavaUtil.currencyString(transactionLine.getPrice()));
+
+        switch (transactionLine.getType()) {
+            case Transaction.TYPE_VENTE:
+                tvPrice.setText(JavaUtil.currencyString(transactionLine.getSalesPrice()));
+                Log.d("price#", "Sales Price: "+transactionLine.getSalesPrice());
+                break;
+            case Transaction.TYPE_RECEPTION:
+                tvPrice.setText(JavaUtil.currencyString(transactionLine.getPrice()));
+                Log.d("price#", "Unit Price: "+transactionLine.getPrice());
+                break;
+        }
         tvAmount.setText(JavaUtil.currencyString(transactionLine.getAmount()));
-        if (viewType== TransactionAdapter.HISTORY)
+        if (viewType == TransactionAdapter.HISTORY)
             tvTransactionId.setText(Integer.toString(transactionLine.getTransactionId()));
     }
 
@@ -90,8 +101,8 @@ public class TransactionLineView extends CardView {
         tvQty = this.findViewById(R.id.tv_quantity);
         tvPrice = this.findViewById(R.id.tv_price);
         tvAmount = this.findViewById(R.id.tv_amount);
-        tvTransactionId=this.findViewById(R.id.tv_tnx);
-        tvTransactionLabel=this.findViewById(R.id.tv_label_transaction);
+        tvTransactionId = this.findViewById(R.id.tv_tnx);
+        tvTransactionLabel = this.findViewById(R.id.tv_label_transaction);
         ivPicture = this.findViewById(R.id.iv_picture);
         ivButton = this.findViewById(R.id.iv_button);
 

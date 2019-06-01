@@ -24,7 +24,7 @@ public class AppViewModel extends AndroidViewModel {
     //Le AppViewModel se charge de ramener les données nécessaires depuis la BDD à travers Repository
 
     private Repository repository;
-    private LiveData<List<Product>> products, transactionProducts;
+    private LiveData<List<Product>> products, transactionProducts, availableProducts;
     private LiveData<List<Fournisseur>> fournisseurs;
     private Transaction currentTransaction;
 
@@ -34,6 +34,7 @@ public class AppViewModel extends AndroidViewModel {
         products = repository.getAllProducts();
         fournisseurs = repository.getAllFournisseurs();
         transactionProducts=repository.getCurrentTransactionProducts();
+        availableProducts = repository.getAvailableProducts();
     }
 
 
@@ -174,5 +175,33 @@ public class AppViewModel extends AndroidViewModel {
 
     public LiveData<List<TransactionLine>> getReceivingTransactions() {
         return repository.getReceivingTransactions();
+    }
+
+    public double getBenefice() {
+        double benefice=0;
+        try {
+            benefice = repository.getBenefice();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return benefice;
+    }
+
+    public double getVentesBrutes() {
+        double ventesBrutes=0;
+        try {
+            ventesBrutes = repository.getVentesBrutes();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return ventesBrutes;
+    }
+
+    public LiveData<List<Product>> getAvailableProducts(){
+        return availableProducts;
     }
 }

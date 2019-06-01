@@ -88,6 +88,9 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = i;
+                transactionLines=TransactionLine.toTransactionLine(viewModel.getCurrentTransactionProducts().getValue(),type);
+                setTotalAmount();
+                adapter.submitList(transactionLines);
             }
 
             @Override
@@ -101,6 +104,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CurrentTransactionActivity.this, ListProduit.class);
+                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,type);
                 startActivity(intent);
             }
         });
@@ -163,13 +167,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
 //         insert lines
         viewModel.insertTransactionLines(transactionLines);
 
-//         update products' availableQty
-//        if (type==Transaction.TYPE_VENTE) {
-//            for (TransactionLine t : transactionLines)
-//                t.reverseQty();
-//        }
-//        viewModel.commitTransactionLines(transactionLines);
-
+//        Update product availableQty
         List<Product> products = viewModel.getCurrentTransactionProducts().getValue();
         int i = (type == Transaction.TYPE_VENTE) ? -1 : 1;
         for (Product p : products)
@@ -178,8 +176,18 @@ public class CurrentTransactionActivity extends AppCompatActivity {
                     p.setAvailableQty(p.getAvailableQty() + i * t.getQuantity());
         viewModel.updateProducts(products);
 
+//        Update caisse
+        float nouvellecaisse = JavaUtil.getCaisse(this)+(float)((-i)*totalAmount);
+        Toast.makeText(this, "NC = "+nouvellecaisse, Toast.LENGTH_SHORT).show();
+        JavaUtil.saveCaisse(this,  nouvellecaisse);
+
 //        Empty current transaction and reinitialize products transactionQty
         viewModel.emptyCurrentTransaction();
+
+
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void setTotalAmount() {

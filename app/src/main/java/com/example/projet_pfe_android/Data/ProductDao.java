@@ -52,4 +52,7 @@ public interface ProductDao {
 
     @Query("SELECT * FROM products WHERE id=:productId")
     Product getProductById(int productId);
+
+    @Query("SELECT * FROM products WHERE available_qty > 0 ")
+    LiveData<List<Product>> getAvailableProducts();
 }

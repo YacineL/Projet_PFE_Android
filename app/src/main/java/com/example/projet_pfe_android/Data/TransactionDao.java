@@ -37,4 +37,14 @@ public interface TransactionDao {
 
     @Query("SELECT * FROM transaction_lines WHERE type = 1")
     LiveData<List<TransactionLine>> getReceivingTransactions();
+
+    @Query("SELECT SUM((sales_price-price)*quantity) FROM transaction_lines")
+    double getBenefice();
+
+
+    @Query("SELECT SUM(sales_price*quantity) FROM transaction_lines")
+    double getVentesBrutes();
+
+//    @Query("SELECT ")
+//    double getBenefice();
 }

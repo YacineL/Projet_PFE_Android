@@ -34,6 +34,7 @@ public class JavaUtil {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putFloat(CAISSE_KEY,caisseValue);
+        editor.commit();
     }
 
     public static float getCaisse(Context context){

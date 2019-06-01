@@ -1,6 +1,7 @@
 package com.example.projet_pfe_android;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.projet_pfe_android.Model.Transaction;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity
 
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         tvValeurStock.setText(JavaUtil.currencyString(viewModel.getStockValue()));
+        tvBenefice.setText(JavaUtil.currencyString(viewModel.getBenefice(/*Parametre a ajouter : date1 date2*/)));
+        tvVentesBrutes.setText(JavaUtil.currencyString(viewModel.getVentesBrutes(/*Parametre a ajouter : date1 date2*/)));
         Toast.makeText(this, "Stock Value = " + JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
     }
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CurrentTransactionActivity.class);
-                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_RECEPTION);
+                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_VENTE);
                 startActivity(intent);
             }
         });
@@ -82,6 +85,15 @@ public class MainActivity extends AppCompatActivity
 //                Go to Edit caisse
             }
         });
+
+        float caisseValue = JavaUtil.getCaisse(this);
+        Toast.makeText(this, "NC = "+caisseValue, Toast.LENGTH_SHORT).show();
+        if (caisseValue<0)
+            tvCaisse.setTextColor(Color.RED);
+        else
+            tvCaisse.setTextColor(Color.BLACK);
+
+        tvCaisse.setText(JavaUtil.currencyString((double)caisseValue));
     }
 
     @Override

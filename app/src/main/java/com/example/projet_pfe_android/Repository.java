@@ -126,8 +126,46 @@ public class Repository {
         return transactionDao.getReceivingTransactions();
     }
 
+    public double getBenefice() throws ExecutionException, InterruptedException {
+        return new GetBeneficeAsync(transactionDao).execute().get();
+    }
+
+    public double getVentesBrutes() throws ExecutionException, InterruptedException {
+        return new GetVentesBrutesAsync(transactionDao).execute().get();
+    }
+
+    public LiveData<List<Product>> getAvailableProducts(){
+        return productDao.getAvailableProducts();
+    }
+
 //    Async Tasks : DB Transactions
 //    -------------------------------------------------------------------------------------------------------------------------
+
+    private class GetVentesBrutesAsync extends AsyncTask<Void,Void,Double>{
+        private TransactionDao transactionDao;
+
+        public GetVentesBrutesAsync(TransactionDao transactionDao) {
+            this.transactionDao = transactionDao;
+        }
+
+        @Override
+        protected Double doInBackground(Void... voids) {
+            return transactionDao.getVentesBrutes();
+        }
+    }
+
+    private class GetBeneficeAsync extends AsyncTask<Void,Void,Double>{
+        private TransactionDao transactionDao;
+
+        public GetBeneficeAsync(TransactionDao transactionDao) {
+            this.transactionDao = transactionDao;
+        }
+
+        @Override
+        protected Double doInBackground(Void... voids) {
+            return transactionDao.getBenefice();
+        }
+    }
 
     private class InsertTransactionLinesAsync extends AsyncTask<List<TransactionLine>,Void,Void>{
         private TransactionDao transactionDao;

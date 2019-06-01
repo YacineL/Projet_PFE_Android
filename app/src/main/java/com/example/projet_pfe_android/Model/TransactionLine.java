@@ -31,11 +31,14 @@ public class TransactionLine {
     public int productId;
 
     @ColumnInfo(name = "picture_uri")
-    private String pictureUri;
+    public String pictureUri;
 
-    private String productName;
+    public String productName;
 
-    private double price;
+    public double price;
+
+    @ColumnInfo(name = "sales_price")
+    public double salesPrice;
 
     public float quantity;
 
@@ -133,14 +136,24 @@ public class TransactionLine {
         this.type = type;
     }
 
-    public TransactionLine(int seq, int productId, String pictureUri, String productName, double price, float quantity, double amount) {
+    public double getSalesPrice() {
+        return salesPrice;
+    }
+
+    public void setSalesPrice(double salesPrice) {
+        this.salesPrice = salesPrice;
+    }
+
+    public TransactionLine(int seq, int productId, String pictureUri, String productName, double price, double salesPrice, float quantity, double amount, int type) {
         this.seq = seq;
         this.productId = productId;
         this.pictureUri = pictureUri;
         this.productName = productName;
         this.price = price;
+        this.salesPrice = salesPrice;
         this.quantity = quantity;
         this.amount = amount;
+        this.type = type;
     }
 
     public static List<TransactionLine> toTransactionLine(List<Product> products, int transactionType) {
@@ -148,17 +161,27 @@ public class TransactionLine {
         int i = 0;
         for (Product p : products) {
             i++;
-            double price = (transactionType == Transaction.TYPE_VENTE) ? p.getSalePrice() : p.getUnitPrice();
-            Log.d("tnx", "Price: " + price + " | SalesPrice: " + p.getSalePrice() + " | UnitPrice: " + p.getUnitPrice());
-            double amount = p.getTransactionQty() * price;
+            double price = p.getUnitPrice(), salesPrice = p.getSalePrice();
+            Log.d("PRICE", "SalesPrice: "+salesPrice+" | UnitPrice: "+price);
+            double amount=0;
+            switch (transactionType) {
+                case Transaction.TYPE_VENTE:
+                amount = p.getTransactionQty() * salesPrice;
+                    break;
+                case Transaction.TYPE_RECEPTION:
+                amount = p.getTransactionQty() * price;
+                    break;
+            }
             transactionLines.add(new TransactionLine(
                     i,
                     p.getId(),
                     p.getPictureURI(),
                     p.getName(),
                     price,
+                    salesPrice,
                     p.getTransactionQty(),
-                    amount
+                    amount,
+                    transactionType
             ));
         }
         return transactionLines;

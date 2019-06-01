@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projet_pfe_android.Adapters.ProductAdapter;
 import com.example.projet_pfe_android.Model.Product;
+import com.example.projet_pfe_android.Model.Transaction;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -60,13 +61,11 @@ public class ListProduit extends AppCompatActivity {
         setupRecyclerView();
 
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-        viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> products) {
-                adapter.submitList(products);
-                Toast.makeText(ListProduit.this, "Produits : " + products.size(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        int transactionType = getIntent().getIntExtra(JavaUtil.TRANSACTION_TYPE_KEY, JavaUtil.NO_RESULT);
+        if (transactionType == Transaction.TYPE_VENTE)
+            loadAvailableProducts();
+        else
+            loadAllProducts();
 
         setupValidationWindow();
 
@@ -74,9 +73,27 @@ public class ListProduit extends AppCompatActivity {
 //        createDummyList(10);
     }
 
+    private void loadAvailableProducts() {
+        viewModel.getAvailableProducts().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                adapter.submitList(products);
+            }
+        });
+    }
+
+    private void loadAllProducts() {
+        viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                adapter.submitList(products);
+            }
+        });
+    }
+
     private void createDummyList(int number) {
-        for(int i=1;i<=number;i++)
-            viewModel.insertProduct(new Product("Product "+i,"Brand", "A product", 0,"EA",1.5*i,2*i,"","xxx"));
+        for (int i = 1; i <= number; i++)
+            viewModel.insertProduct(new Product("Product " + i, "Brand", "A product", 0, "EA", 1.5 * i, 2 * i, "", "xxx"));
     }
 
     private void setupValidationWindow() {
@@ -144,7 +161,7 @@ public class ListProduit extends AppCompatActivity {
             @Override
             public void onClick(Product product) {
                 Intent intent = new Intent(ListProduit.this, AddProduct.class);
-                intent.putExtra(JavaUtil.PRODUCT_ID_KEY,product.getId());
+                intent.putExtra(JavaUtil.PRODUCT_ID_KEY, product.getId());
                 startActivity(intent);
             }
         });
@@ -201,11 +218,11 @@ public class ListProduit extends AppCompatActivity {
                 break;
             case R.id.new_product:
                 intent = new Intent(ListProduit.this, AddProduct.class);
-                startActivityForResult(intent,0);
+                startActivityForResult(intent, 0);
                 break;
-            case R.id.search_by_scan:
-                new IntentIntegrator(ListProduit.this).initiateScan();
-                break;
+//            case R.id.search_by_scan:
+//                new IntentIntegrator(ListProduit.this).initiateScan();
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
