@@ -76,6 +76,8 @@ public class AppViewModel extends AndroidViewModel {
     public void deleteProduct(Product product) {
         repository.deleteProduct(product);
     }
+    public void deleteTransactionLine(TransactionLine transactionLine) {
+    }
 
     public void deleteFournisseur(Fournisseur fournisseur) {
         repository.deleteFournisseur(fournisseur);

@@ -72,7 +72,8 @@ public class Repository {
     //fournisseur
     public  void deleteAllFournisseurs(){ new DeleteAllFournisseursAsync(fournisseurDao).execute();}
 
-
+//transactionLine
+    public  void deleteTransactionLine(TransactionLine transactionLine){}
 
     public void deleteProduct(Product product) {
         new DeleteProductAsync(productDao).execute(product);
