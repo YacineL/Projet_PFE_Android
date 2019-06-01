@@ -91,6 +91,15 @@ public class ListProduit extends AppCompatActivity {
         });
     }
 
+    private void loadProductsSS(){
+
+    }
+
+    private void loadProductsZS(){
+
+    }
+
+
     private void createDummyList(int number) {
         for (int i = 1; i <= number; i++)
             viewModel.insertProduct(new Product("Product " + i, "Brand", "A product", 0, "EA", 1.5 * i, 2 * i, "", "xxx"));
@@ -170,20 +179,20 @@ public class ListProduit extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
-                }
-            }
-        }).attachToRecyclerView(recyclerView);
+//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                int position = viewHolder.getAdapterPosition();
+//                if (position != RecyclerView.NO_POSITION) {
+//                    viewModel.deleteProduct(viewModel.getAllProducts().getValue().get(position));
+//                }
+//            }
+//        }).attachToRecyclerView(recyclerView);
     }
 
     @Override

@@ -88,7 +88,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = i;
-                transactionLines=TransactionLine.toTransactionLine(viewModel.getCurrentTransactionProducts().getValue(),type);
+                transactionLines = TransactionLine.toTransactionLine(viewModel.getCurrentTransactionProducts().getValue(), type);
                 setTotalAmount();
                 adapter.submitList(transactionLines);
             }
@@ -104,7 +104,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CurrentTransactionActivity.this, ListProduit.class);
-                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY,type);
+                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, type);
                 startActivity(intent);
             }
         });
@@ -177,15 +177,15 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         viewModel.updateProducts(products);
 
 //        Update caisse
-        float nouvellecaisse = JavaUtil.getCaisse(this)+(float)((-i)*totalAmount);
-        Toast.makeText(this, "NC = "+nouvellecaisse, Toast.LENGTH_SHORT).show();
-        JavaUtil.saveCaisse(this,  nouvellecaisse);
+        float nouvellecaisse = JavaUtil.getCaisse(this) + (float) ((-i) * totalAmount);
+        Toast.makeText(this, "NC = " + nouvellecaisse, Toast.LENGTH_SHORT).show();
+        JavaUtil.saveCaisse(this, nouvellecaisse);
 
 //        Empty current transaction and reinitialize products transactionQty
         viewModel.emptyCurrentTransaction();
 
 
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
