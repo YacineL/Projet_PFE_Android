@@ -57,7 +57,6 @@ public class AddProduct extends AppCompatActivity {
         et_brand = findViewById(R.id.et_brand);
         et_description = findViewById(R.id.et_description);
         et_Stock1 = findViewById(R.id.Stock1);
-        et_Stockop = findViewById(R.id.Stockop);
         et_uom = findViewById(R.id.et_uom);
         et_prix_achat = findViewById(R.id.et_prix_achat);
         et_prix_vente = findViewById(R.id.et_prix_vente);

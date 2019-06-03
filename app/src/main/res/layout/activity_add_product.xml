@@ -168,7 +168,8 @@
             android:id="@+id/StockS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stk_min"
+            android:text="Stock Sécurité (*)"
+            android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/Stock1"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -183,24 +184,6 @@
             app:layout_constraintStart_toEndOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Stockop1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stk_max"
-            app:layout_constraintBaseline_toBaselineOf="@+id/Stockop"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/Stockop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/stk_max"
-            android:inputType="textPersonName"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@id/Stock1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -265,7 +248,7 @@
             android:id="@+id/tv_label_prix_vente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pric de vente (*)"
+            android:text="Prix de vente (*)"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@id/et_prix_vente"
             app:layout_constraintStart_toStartOf="parent" />
