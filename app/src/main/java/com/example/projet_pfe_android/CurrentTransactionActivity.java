@@ -249,10 +249,10 @@ public class CurrentTransactionActivity extends AppCompatActivity {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
                     if (selectedTransaction != null) {
                         selectedTransaction.setQuantity(qty);
-                        if (selectedTransaction.getType()==1) {
+                        if (selectedTransaction.getType() == Transaction.TYPE_VENTE) {
                             selectedTransaction.setAmount(qty* selectedTransaction.getSalesPrice());
                         }
-                        else {
+                        else if (selectedTransaction.getType() == Transaction.TYPE_RECEPTION) {
                             selectedTransaction.setAmount(qty* selectedTransaction.getPrice());
                         }
 //                        viewModel.addToCurrentTransaction(selectedProduct);
