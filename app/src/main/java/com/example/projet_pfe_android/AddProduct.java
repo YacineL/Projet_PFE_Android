@@ -79,7 +79,6 @@ public class AddProduct extends AppCompatActivity {
                 et_brand.setText(product.getBrand());
                 et_description.setText(product.getDescription());
                 et_Stock1.setText(String.valueOf(product.getSafetyStockQty()));
-                et_Stockop.setText(String.valueOf(product.getMIP()));
                 et_uom.setText(product.getUOM());
                 et_prix_achat.setText(String.valueOf(product.getUnitPrice()));
                 et_prix_vente.setText(String.valueOf(product.getSalePrice()));

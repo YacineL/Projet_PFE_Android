@@ -1,16 +1,6 @@
 package com.example.projet_pfe_android;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +14,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.projet_pfe_android.Adapters.TransactionAdapter;
 import com.example.projet_pfe_android.Model.Product;
 import com.example.projet_pfe_android.Model.Transaction;
@@ -31,9 +33,12 @@ import com.example.projet_pfe_android.Model.TransactionLine;
 import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
+
+import static org.apache.commons.lang3.Validate.notNull;
 
 public class CurrentTransactionActivity extends AppCompatActivity {
 
@@ -102,7 +107,19 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = i;
-                transactionLines = TransactionLine.toTransactionLine(viewModel.getCurrentTransactionProducts().getValue(), type);
+//                transactionLines = TransactionLine.toTransactionLine(viewModel.getCurrentTransactionProducts().getValue(), type);
+                for (TransactionLine transactionLine : transactionLines) {
+                    double amount=0;
+                    switch (type) {
+                        case Transaction.TYPE_VENTE:
+                            amount = transactionLine.getQuantity() * transactionLine.getSalesPrice();
+                            break;
+                        case Transaction.TYPE_RECEPTION:
+                            amount = transactionLine.getQuantity() * transactionLine.getPrice();
+                            break;
+                    }
+                    transactionLine.setAmount(amount);
+                }
                 setTotalAmount();
                 adapter.submitList(transactionLines);
             }
@@ -165,11 +182,69 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.validate:
                 // TODO: 29/05/2019 [for Yacine] implement a SnackBar to confirm validation
-                commitTransaction();
+                float caisse = JavaUtil.getCaisse(this);
+                if (caisse < totalAmount && type == Transaction.TYPE_RECEPTION) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setCancelable(true);
+                    builder.setMessage("Vous n'avez pas assez d'argent en caisse");
+                    builder.create().show();
+                    break;
+                }
+                if (type == Transaction.TYPE_VENTE) {
+                    List<Product> productsUnderStockLimit = new ArrayList<>();
+                    for (TransactionLine transactionLine : transactionLines) {
+                        List<Product> products = viewModel.getCurrentTransactionProducts().getValue();
+                        notNull(products, "[CurrentTransactionActivity][onOptionsItemSelected] products is null");
+                        for (Product product : products) {
+                            if (transactionLine.getProductId() == product.getId() && transactionLine.getQuantity() > product.getAvailableQty()) {
+                                productsUnderStockLimit.add(product);
+                            }
+                        }
+                    }
+
+                    if (!productsUnderStockLimit.isEmpty()) {
+                        String failsDetails = "Vous n'avez pas assez de stock pour ce(s) produit(s) : \n ";
+                        String failMsgTemplate = "Produit : %s , quantité disponible : %s %s";
+                        for (Product product : productsUnderStockLimit) {
+                            failsDetails = failsDetails.concat(
+                                    String.format(
+                                            failMsgTemplate,
+                                            product.getName(),
+                                            product.getAvailableQty(),
+                                            product.getUOM()
+                                    )
+                            );
+                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setCancelable(true);
+                        builder.setMessage(failsDetails);
+                        builder.create().show();
+                        break;
+                    }
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setMessage("Êtes vous sûr de vouloir valider cette transaction ?");
+                builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        commitTransaction();
+                    }
+                });
+                builder.create().show();
                 break;
             case R.id.empty_transaction:
                 // TODO: 29/05/2019 [for Yacine] SnackBar to confirm deleting all transaction lines from current transaction
-                viewModel.emptyCurrentTransaction();
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setCancelable(true);
+                builder1.setMessage("Êtes vous sûr de vouloir vider la transaction ?");
+                builder1.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        viewModel.emptyCurrentTransaction();
+                    }
+                });
+                builder1.create().show();
                 break;
         }
         return super.onOptionsItemSelected(item);
