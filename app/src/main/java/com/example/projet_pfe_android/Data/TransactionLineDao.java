@@ -11,7 +11,7 @@ public interface TransactionLineDao {
 
 // MES NVLE REQUETES DE TRANSACTIONLINES
 
-  @Query("SELECT SUM(transaction_qty * sale_price) FROM products")
+  @Query("SELECT SUM(transaction_qty * sale_price*)FROM products")
     double getVenteBrute();
 
    @Query("SELECT SUM(transaction_qty * (sale_price - unit_price))FROM products")

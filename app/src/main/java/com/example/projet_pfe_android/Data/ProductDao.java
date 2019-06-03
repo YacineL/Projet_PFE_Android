@@ -55,4 +55,15 @@ public interface ProductDao {
 
     @Query("SELECT * FROM products WHERE available_qty > 0 ")
     LiveData<List<Product>> getAvailableProducts();
+
+
+    // requetes pr mettre les produits en sctock sous securite et repture stock
+
+    @Query("SELECT * FROM products WHERE available_qty<=safety_stock_qty")
+    LiveData<List<Product>> getProductStockSecurite();
+
+    @Query("SELECT * FROM products WHERE available_qty=0")
+    LiveData<List<Product>> getProductReptureStock();
+    //--------------------------------------------------------------------------------
+
 }
