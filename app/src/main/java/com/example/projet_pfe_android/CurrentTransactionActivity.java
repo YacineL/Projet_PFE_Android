@@ -62,6 +62,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
 
         setupRecycler();
         setupValidationWindow();
+
     }
 
     private void setupViewModel() {
@@ -248,9 +249,17 @@ public class CurrentTransactionActivity extends AppCompatActivity {
                     float qty = Float.parseFloat(etQuantity.getText().toString());
                     if (selectedTransaction != null) {
                         selectedTransaction.setQuantity(qty);
+                        if (selectedTransaction.getType()==1) {
+                            selectedTransaction.setAmount(qty* selectedTransaction.getSalesPrice());
+                        }
+                        else {
+                            selectedTransaction.setAmount(qty* selectedTransaction.getPrice());
+                        }
 //                        viewModel.addToCurrentTransaction(selectedProduct);
                         viewModel.updateTransactionLne(selectedTransaction);
                         adapter.notifyDataSetChanged();
+                        tvTotalAmount.setText(String.valueOf(totalAmount));
+                        setTotalAmount();
                         // Toast.makeText(C.this, "Update ID : " + selectedProduct.getId(), Toast.LENGTH_SHORT).show();
                     }
                     // Toast.makeText(ListProduit.this, "Transaction mise à jour.", Toast.LENGTH_SHORT).show();
