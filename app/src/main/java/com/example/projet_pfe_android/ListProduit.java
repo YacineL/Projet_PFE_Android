@@ -30,6 +30,8 @@ import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 import static org.apache.commons.lang3.Validate.notNull;
@@ -61,14 +63,34 @@ public class ListProduit extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         int transactionType = getIntent().getIntExtra(JavaUtil.TRANSACTION_TYPE_KEY, JavaUtil.NO_RESULT);
+        String stockType = getIntent().getStringExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE);
         if (transactionType == Transaction.TYPE_VENTE)
             loadAvailableProducts();
-        else
-            loadAllProducts();
+        else if (stockType == "securité")
+            loadUnderStockProducts();
+        else if (stockType == "rupture")
+            loadNoStockProducts();
+        else loadAllProducts();
 
         setupValidationWindow();
 //        viewModel.deleteAllProducts();
 //        createDummyList(10);
+    }
+    private void loadUnderStockProducts() {
+        viewModel.getProductStockSecurite().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                adapter.submitList(products);
+            }
+        });
+    }
+    private void loadNoStockProducts() {
+        viewModel.getProductReptureStock().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                adapter.submitList(products);
+            }
+        });
     }
 
     private void loadAvailableProducts() {

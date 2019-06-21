@@ -87,8 +87,25 @@ public class MainActivity extends AppCompatActivity
         tvBenefice = findViewById(R.id.tv_benefice);
         tvVentesBrutes = findViewById(R.id.tv_ventes_brutes);
         tvValeurStock = findViewById(R.id.tv_valeur_stock);
-        tvProduitsSS = findViewById(R.id.tv_produits_ss);
-        tvProduitsZS = findViewById(R.id.tv_produits_zs);
+        tvProduitsSS = findViewById(R.id.tv_label_produits_ss);
+        tvProduitsZS = findViewById(R.id.tv_label_produits_sz);
+        tvProduitsSS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListProduit.class);
+                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, "securité");
+                startActivity(intent);
+            }
+        });
+
+        tvProduitsZS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListProduit.class);
+                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, "rupture");
+                startActivity(intent);
+            }
+        });
 
         CardView cvCaisse = findViewById(R.id.caisse);
         cvCaisse.setOnClickListener(new View.OnClickListener() {
