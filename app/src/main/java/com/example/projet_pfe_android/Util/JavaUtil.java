@@ -16,6 +16,8 @@ public class JavaUtil {
     public static final String PRDUCTS_STOCK_VALUE_TYPE = "com.example.projet_pfe_android.Util_PRDUCTS_STOCK_VALUE_TYPE";
     public static final String CAISSE_KEY = "com.example.projet_pfe_android.Util_CAISSE_KEY";
     public static final int NO_RESULT = -1;
+    public static final int STOCK_SECURITE = 3;
+    public static final int STOCK_RUPTURE = 4;
 
     //    Gives proper format to currency values for display
     public static String currencyString(double value) {

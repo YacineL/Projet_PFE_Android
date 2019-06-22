@@ -63,13 +63,22 @@ public class ListProduit extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         int transactionType = getIntent().getIntExtra(JavaUtil.TRANSACTION_TYPE_KEY, JavaUtil.NO_RESULT);
-        String stockType = getIntent().getStringExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE);
+        int stockType = getIntent().getIntExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE,0);
         if (transactionType == Transaction.TYPE_VENTE)
+        {
             loadAvailableProducts();
-        else if (stockType == "securité")
+            actionBar.setTitle("Produits disponibles");
+        }
+        else if (stockType == JavaUtil.STOCK_SECURITE)
+        {
             loadUnderStockProducts();
-        else if (stockType == "rupture")
+            actionBar.setTitle("Sous stock sécurité");
+        }
+        else if (stockType == JavaUtil.STOCK_RUPTURE)
+        {
             loadNoStockProducts();
+            actionBar.setTitle("Rupture de stock");
+        }
         else loadAllProducts();
 
         setupValidationWindow();

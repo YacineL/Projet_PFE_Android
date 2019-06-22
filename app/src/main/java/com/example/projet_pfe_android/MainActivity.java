@@ -1,5 +1,6 @@
 package com.example.projet_pfe_android;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,8 +10,10 @@ import com.example.projet_pfe_android.Util.JavaUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -29,6 +32,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListProduit.class);
-                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, "securité");
+                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, JavaUtil.STOCK_SECURITE);
                 startActivity(intent);
             }
         });
@@ -102,16 +106,29 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListProduit.class);
-                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, "rupture");
+                intent.putExtra(JavaUtil.PRDUCTS_STOCK_VALUE_TYPE, JavaUtil.STOCK_RUPTURE);
                 startActivity(intent);
             }
         });
-
         CardView cvCaisse = findViewById(R.id.caisse);
         cvCaisse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showValidationWindow();
+                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.setup_caisse,null);
+                final EditText valeurCaisse = (EditText) dialogView.findViewById(R.id.valeur_caisse);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setCancelable(true);
+                builder.setView(dialogView);
+                builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        JavaUtil.saveCaisse(MainActivity.this,Float.parseFloat(valeurCaisse.getText().toString()));
+                        tvCaisse.setText(String.valueOf(JavaUtil.getCaisse(MainActivity.this)));
+                    }
+                });
+                builder.create().show();
+                //showValidationWindow();
             }
         });
 
@@ -179,7 +196,12 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, TransactionHistoryActivity.class);
             intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_RECEPTION);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_transaction) {
+            Intent intent = new Intent(this,CurrentTransactionActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 

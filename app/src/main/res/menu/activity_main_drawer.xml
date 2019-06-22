@@ -13,13 +13,14 @@
             android:icon="@drawable/ic_people"
             android:title="@string/menu_gallery" />
 
-<!--        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />-->
+        <item
+            android:id="@+id/nav_transaction"
+            android:icon="@drawable/ic_cart"
+            android:iconTint="#000"
+            android:title="Transaction"/>
     </group>
 
-    <item android:title="Transactions">
+    <item android:title="Historique">
         <menu>
             <item
                 android:id="@+id/nav_ventes"
