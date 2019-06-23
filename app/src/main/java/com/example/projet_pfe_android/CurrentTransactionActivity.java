@@ -77,6 +77,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Product> products) {
                 transactionLines = TransactionLine.toTransactionLine(products, type);
+                Log.d("price#", "type : "+type);
                 setTotalAmount();
                 adapter.submitList(transactionLines);
             }
@@ -119,6 +120,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
                             break;
                     }
                     transactionLine.setAmount(amount);
+                    transactionLine.setType(type);
                 }
                 setTotalAmount();
                 adapter.submitList(transactionLines);
