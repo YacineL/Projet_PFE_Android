@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_pressed="true" >
+    <shape>
+
+      <stroke
+          android:width="0.1dp"
+
+          android:color="#ce85b743" />
+      <corners
+      android:radius="0dp"
+      android:bottomRightRadius="0dp"
+      android:bottomLeftRadius="0dp"
+      android:topLeftRadius="0dp"
+      android:topRightRadius="0dp" />
+      <padding
+          android:left="5dp"
+          android:top="5dp"
+          android:right="5dp"
+          android:bottom="5dp" />
+    </shape>
+  </item>
+  <item android:state_selected="true" >
+    <shape>
+<solid
+
+
+    android:color="#5b000000"/>
+      <stroke
+          android:width="0.1dp"
+
+          />
+      <corners
+          android:radius="0dp"
+          android:bottomRightRadius="0dp"
+          android:bottomLeftRadius="0dp"
+          android:topLeftRadius="0dp"
+          android:topRightRadius="0dp" />
+      <padding
+          android:left="5dp"
+          android:top="5dp"
+          android:right="5dp"
+          android:bottom="5dp" />
+    </shape>
+  </item>
+  <item>
+    <shape>
+
+      <corners
+           android:radius="0dp"
+        android:bottomRightRadius="0dp"
+        android:bottomLeftRadius="0dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+      <padding
+          android:left="5dp"
+          android:top="5dp"
+          android:right="5dp"
+          android:bottom="5dp" />
+    </shape>
+  </item>
+</selector>
