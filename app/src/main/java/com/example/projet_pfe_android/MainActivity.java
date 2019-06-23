@@ -1,7 +1,9 @@
 package com.example.projet_pfe_android;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -36,6 +38,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -166,10 +170,24 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent intent;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_log_out) {
+            SharedPreferences ShredRefsign = getSharedPreferences("Login", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = ShredRefsign.edit();
+            editor.putBoolean("session", Boolean.FALSE);
+            editor.commit();
+            intent = new Intent(MainActivity.this, SignIn.class);
+            startActivityForResult(intent, 0);
+        } if (id == R.id.action_reset_account) {
+            SharedPreferences ShredRefsign = getSharedPreferences("Login", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = ShredRefsign.edit();
+            editor.putString("UserName", StringUtils.EMPTY);
+            editor.putString("Password", StringUtils.EMPTY);
+            editor.putBoolean("session", Boolean.FALSE);
+            editor.commit();
+            intent = new Intent(MainActivity.this, SignIn.class);
+            startActivityForResult(intent, 0);
         }
 
         return super.onOptionsItemSelected(item);

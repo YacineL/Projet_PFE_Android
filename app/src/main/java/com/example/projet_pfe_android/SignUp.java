@@ -38,7 +38,8 @@ public class SignUp extends AppCompatActivity {
                     SharedPreferences.Editor editor = ShredRef.edit();
                     editor.putString("UserName", username.getText().toString());
                     editor.putString("Password", paswword2.getText().toString());
-                    editor.commit();
+                    editor.putBoolean("session", Boolean.TRUE);
+                    editor.apply();
                     Toast.makeText(SignUp.this,"Create compte avec succés ",Toast.LENGTH_LONG).show();
                     Intent homeIntent = new Intent(SignUp.this, SignIn.class);
 
