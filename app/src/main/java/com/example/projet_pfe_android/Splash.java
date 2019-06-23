@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Splash extends AppCompatActivity {
 
     private final int SPLASH_DISPLAY_LENGTH = 1000; //Splash Screen Will Display fro 15 Sec.
@@ -23,20 +25,16 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
 
-                String user=ShredRef.getString("UserName","");
-                String mot_pass=ShredRef.getString("Password","");
-                if (user=="") {
+                String user = ShredRef.getString("UserName","");
+                boolean session = ShredRef.getBoolean("session", Boolean.FALSE);
+                if ( !session || ( user != null && StringUtils.EMPTY.equals(user.trim())) ) {
                     Intent mainIntent = new Intent(Splash.this,SignIn.class);
-
-
                     Splash.this.startActivity(mainIntent);
                     Splash.this.finish();
                 }
                 else
                 {
                     Intent mainIntent = new Intent(Splash.this,MainActivity.class);
-
-
                     Splash.this.startActivity(mainIntent);
                     Splash.this.finish();
                 }
