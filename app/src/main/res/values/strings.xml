@@ -68,13 +68,13 @@
         <item>Vente</item>
         <item>Réception</item>
     </string-array>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_login">Inscription</string>
+    <string name="prompt_email">Email ou identifiant</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">Inscription ou enregistrement</string>
+    <string name="action_sign_in_short">Inscription</string>
+    <string name="welcome">"Bienvenue !"</string>
+    <string name="invalid_username">Email ou identifiant invalide</string>
+    <string name="invalid_password">Le mot de passe doit avoir plus de 5 caractéres</string>
+    <string name="login_failed">"Inscription échouée"</string>
 </resources>

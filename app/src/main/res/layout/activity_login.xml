@@ -54,7 +54,7 @@
         android:layout_marginEnd="24dp"
 
         android:layout_marginBottom="8dp"
-        android:hint="Confirmer password"
+        android:hint="Confirmer le mot de passe"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
@@ -75,7 +75,7 @@
         android:layout_marginBottom="64dp"
         android:background="@drawable/corner22"
         android:textColor="#FFF"
-        android:text="SignUp"
+        android:text="Inscription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
