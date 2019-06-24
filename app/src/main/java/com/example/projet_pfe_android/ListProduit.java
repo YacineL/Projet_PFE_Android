@@ -252,6 +252,7 @@ public class ListProduit extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.cart:
                 intent = new Intent(ListProduit.this, CurrentTransactionActivity.class);
+                intent.putExtra(JavaUtil.TRANSACTION_TYPE_KEY, Transaction.TYPE_VENTE);
                 startActivity(intent);
                 break;
             case R.id.new_product:

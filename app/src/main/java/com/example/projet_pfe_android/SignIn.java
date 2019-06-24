@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 public class SignIn extends AppCompatActivity {
     EditText edtuser,edtpass;
     Button btnSignIn;
-    private Button configuration;
+    private TextView configuration;
     private ProgressDialog progress;
     private SharedPreferences ShredRef;
     private boolean success;

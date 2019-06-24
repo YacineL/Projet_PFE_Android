@@ -4,154 +4,105 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#243047"
+    android:background="@drawable/gradient"
 
     android:layout_height="match_parent">
 
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="153dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/carter_one"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textColor="#eeeeee"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtuser"
+        android:layout_width="274dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorLightGrey"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Adresse  E-mail"
+        android:textColor="#eeeeee"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtpass"
+        app:layout_constraintEnd_toEndOf="@+id/edtpass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtpass"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.975" />
+
+    <EditText
+        android:id="@+id/edtpass"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/colorLightGrey"
+        android:ems="10"
+        android:hint="Mot de passe"
+        android:inputType="numberPassword"
+        android:text="Mot De Passe"
+        android:textColor="#eee"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="264dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/zxing_transparent"
+        android:fontFamily="@font/carter_one"
+        android:text="Se Connecter"
+        android:textColor="#eee"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="169dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Si vous n'etes pas inscrit !"
+        android:textColor="#eee"
+        app:layout_constraintBottom_toBottomOf="@+id/configuration"
+        app:layout_constraintEnd_toStartOf="@+id/configuration"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnSignIn"
+        app:layout_constraintTop_toTopOf="@+id/configuration"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/configuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:baselineAligned="false"
-        android:text="SignUp"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginBottom="220dp"
+        android:text="Cliquez ici "
+        android:textColor="#eee"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnSignIn" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginRight="40dp"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="381.0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15px"
-                android:gravity="left"
-                android:text="LOG IN"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#b4ffffff"
-                android:textSize="50sp" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="#b4ffffff" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:gravity="center"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7.5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="9dp"
-                android:layout_marginBottom="9.5dp"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="26.0dp"
-                    android:layout_height="26.0dp"
-                    android:layout_marginLeft="0.0dp"
-                    android:layout_marginRight="7.5dp"
-                    android:backgroundTint="#fff" />
-
-                <EditText
-                    android:id="@+id/edtuser"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="33.0dp"
-                    android:background="@null"
-                    android:hint="Adresse de messagerie *"
-                    android:textColor="#fff"
-                    android:textColorHint="#fff"
-                    android:textSize="16dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8.0dp"
-                android:layout_marginTop="13.0dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="9.5dp"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="26.0dp"
-                    android:layout_height="26.0dp"
-                    android:layout_marginLeft="1.0dp"
-                    android:layout_marginRight="7.5dp"
-                    android:backgroundTint="#fff" />
-
-                <EditText
-                    android:id="@+id/edtpass"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0.0dp"
-                    android:background="@null"
-                    android:hint="Mot de passe *"
-                    android:inputType="none|textPassword"
-                    android:textColor="#fff"
-                    android:textColorHint="#fff"
-                    android:textSize="16dp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnSignIn"
-            android:layout_width="199.0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="36.0dp"
-            android:text="CONNECTEZ-VOUS"
-            android:background="@drawable/corner1"
-            android:textColor="#FFFFFF" />
-
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
