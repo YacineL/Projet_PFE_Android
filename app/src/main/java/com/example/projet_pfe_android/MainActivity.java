@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         tvValeurStock.setText(JavaUtil.currencyString(viewModel.getStockValue()));
         tvBenefice.setText(JavaUtil.currencyString(viewModel.getBenefice(/*Parametre a ajouter : date1 date2*/)));
         tvVentesBrutes.setText(JavaUtil.currencyString(viewModel.getVentesBrutes(/*Parametre a ajouter : date1 date2*/)));
-        Toast.makeText(this, "Stock Value = " + JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Stock Value = " + JavaUtil.currencyString(viewModel.getStockValue()), Toast.LENGTH_SHORT).show();
         setupValidationWindow();
     }
 

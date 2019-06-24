@@ -60,9 +60,9 @@ public class SignIn extends AppCompatActivity {
                                    session
                                         ||
                                    (
-                                       user != null
+                                       user != null && !user.equals("")
                                                &&
-                                       mot_pass != null
+                                       mot_pass != null && !mot_pass.equals("")
                                                &&
                                        user.toLowerCase().trim().equals(edtuser.getText().toString().toLowerCase().trim())
                                                &&
