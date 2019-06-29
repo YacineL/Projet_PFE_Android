@@ -28,7 +28,6 @@ public class AppViewModel extends AndroidViewModel {
     private LiveData<List<Fournisseur>> fournisseurs;
     private Transaction currentTransaction;
 
-    // il n'y a plus de probleme ici!!!!
 
     public AppViewModel(@NonNull Application application){
         super(application);

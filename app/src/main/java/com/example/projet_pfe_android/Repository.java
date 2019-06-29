@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /***
- * Dans cette classe on va implémenter tous les accès à la base de donnée
+ * implémenter tous les accès à la base de donnée
  **/
 public class Repository {
 

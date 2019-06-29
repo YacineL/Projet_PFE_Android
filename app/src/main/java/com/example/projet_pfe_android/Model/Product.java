@@ -7,11 +7,11 @@ import androidx.room.PrimaryKey;
 
 import static java.lang.Math.abs;
 
-//Ceci est un exemple de class définissant une table Room, à utiliser comme modèle pour créer les autres tables
+//exemple de class définissant une table Room
 @Entity(tableName = "products")
 public class Product {
 
-    //J'ai mis des champs qui me parraissent importants, à vous de modifier selon votre diagramme de classes
+
 
 
     public Product() {
@@ -47,7 +47,7 @@ public class Product {
     public String brand="";
     public String description="";
 
-    @ColumnInfo(name = "available_qty") //Cette ligne impose le nom du champs correspondant dans la BD
+    @ColumnInfo(name = "available_qty")
     public float availableQty=0;
 
     @ColumnInfo(name = "safety_stock_qty")

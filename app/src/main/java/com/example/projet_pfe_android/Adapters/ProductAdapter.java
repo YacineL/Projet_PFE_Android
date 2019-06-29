@@ -70,7 +70,7 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductH
         holder.setListener(new ProductView.ProductViewListener() {
             @Override
             public void onClick() {
-//                Execute the corresponding method from adapter's custom listener
+
                 if (getItem(position)!=null)
                     productAdapterListener.onClick(getItem(position));
             }
