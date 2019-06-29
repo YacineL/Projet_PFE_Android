@@ -157,7 +157,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        /*new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -170,7 +170,7 @@ public class CurrentTransactionActivity extends AppCompatActivity {
                     viewModel.deleteTransactionLine(viewModel.getAllTransactionLines().getValue().get(position));
                 }
             }
-       }).attachToRecyclerView(recyclerView);
+       }).attachToRecyclerView(recyclerView);*/
     }
 
     @Override
