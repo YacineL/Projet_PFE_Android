@@ -38,7 +38,7 @@
         <menu>
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/help"
+                android:icon="@drawable/ic_assignment"
                 android:title="Help" />
         </menu>
     </item>
