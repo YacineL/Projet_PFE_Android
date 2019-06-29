@@ -16,15 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".help"></activity>
         <activity
             android:name=".SignUp"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".SignIn"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".MainActivity" />
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -38,7 +39,6 @@
 
         <activity
             android:name=".TransactionHistoryActivity"
-
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CurrentTransactionActivity"
