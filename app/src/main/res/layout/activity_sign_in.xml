@@ -13,14 +13,13 @@
         android:id="@+id/textView3"
         android:layout_width="175dp"
         android:layout_height="98dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/carter_one"
         android:gravity="center"
         android:text="LOGIN"
         android:textColor="#eeeeee"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
