@@ -259,7 +259,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Valeur du Stock :"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_label_produits_ss"
@@ -270,19 +269,20 @@
                 android:id="@+id/tv_valeur_stock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="45,231.00"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@id/tv_label_valeur"
                 app:layout_constraintStart_toEndOf="@id/tv_label_valeur"
-                app:layout_constraintTop_toTopOf="@id/tv_label_valeur" />
+                app:layout_constraintTop_toTopOf="@id/tv_label_valeur"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_label_produits_ss"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginTop="16dp"
                 android:text="Produits sous Stock Sécurité"
                 android:textColor="@android:color/black"

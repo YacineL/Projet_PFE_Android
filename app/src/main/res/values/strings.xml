@@ -50,7 +50,7 @@
     <string name="URI_MAIL_PROTOCOLE_TEMPLATE">mailto:%s</string>
     <string name="add_fournissuer_screen_title">Ajouter fournisseur</string>
     <string name="modify_fournisseur_screen_title">Modifier fournisseur</string>
-    <string name="blank_phone_number_error">Le numéro de téléphone est obligatoire</string>
+    <string name="blank_phone_number_error">Vous devez saisir au moins un numéro de telephone ou un email</string>
     <string name="blank_name_error">Le nom est obligatoire</string>
     <string name="blank_first_name_error">Le prénom est obligatoire</string>
     <string name="blank_email_error">L\'email est obligatoire</string>

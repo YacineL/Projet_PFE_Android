@@ -27,12 +27,9 @@ public class FournisseurValidator {
             et_prenom.setError(addFournisseurActivity.getString(R.string.blank_first_name_error));
             success = false;
         }
-        if (StringUtils.isBlank(et_numero_tel.getText())) {
+        if (StringUtils.isBlank(et_numero_tel.getText()) && StringUtils.isBlank(et_adresse_mail.getText()) ) {
             et_numero_tel.setError(addFournisseurActivity.getString(R.string.blank_phone_number_error));
-            success = false;
-        }
-        if (StringUtils.isBlank(et_adresse_mail.getText())) {
-            et_adresse_mail.setError(addFournisseurActivity.getString(R.string.blank_email_error));
+            et_adresse_mail.setError(addFournisseurActivity.getString(R.string.blank_phone_number_error));
             success = false;
         }
         return success;
